@@ -15,7 +15,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
