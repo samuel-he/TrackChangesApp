@@ -18,10 +18,17 @@ class PostViewController: UIViewController, UITextViewDelegate {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    // Dismiss PostViewController
+    @IBAction func exitPost(_ sender: Any) {
+        dismiss(animated: true, completion: nil) 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         postText.text = "What are you listening to?"
         postText.textColor = UIColor.lightGray
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         postText.becomeFirstResponder()
         
         postText.selectedTextRange = postText.textRange(from: postText.beginningOfDocument, to: postText.beginningOfDocument)

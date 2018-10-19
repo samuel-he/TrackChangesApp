@@ -11,12 +11,12 @@
 		30127D3D2173DE3100F6E267 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D3C2173DE3100F6E267 /* FeedCollectionViewCell.swift */; };
 		30127D432173E0FF00F6E267 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D422173E0FF00F6E267 /* DiscoverViewController.swift */; };
 		30127D452173E67800F6E267 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D442173E67800F6E267 /* ProfileViewController.swift */; };
-		30127D472173E6DD00F6E267 /* ProfileInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D462173E6DD00F6E267 /* ProfileInfoCollectionViewCell.swift */; };
 		30127D4B2174002700F6E267 /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D4A2174002700F6E267 /* DiscoverTableViewCell.swift */; };
 		30127D4D217403D100F6E267 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D4C217403D100F6E267 /* DiscoverCollectionViewCell.swift */; };
 		30127D4F21740AA200F6E267 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D4E21740AA200F6E267 /* FollowViewController.swift */; };
 		30127D5121740AB600F6E267 /* FollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D5021740AB600F6E267 /* FollowTableViewCell.swift */; };
 		30127D5321758D5300F6E267 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D5221758D5300F6E267 /* PostViewController.swift */; };
+		30127D5C2179513300F6E267 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D5B2179513300F6E267 /* ProfileCollectionViewCell.swift */; };
 		30B3AA5721726208007CA413 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B3AA5621726208007CA413 /* AppDelegate.swift */; };
 		30B3AA5921726208007CA413 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B3AA5821726208007CA413 /* ViewController.swift */; };
 		30B3AA5C21726208007CA413 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B3AA5A21726208007CA413 /* Main.storyboard */; };
@@ -30,12 +30,12 @@
 		30127D3C2173DE3100F6E267 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		30127D422173E0FF00F6E267 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		30127D442173E67800F6E267 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		30127D462173E6DD00F6E267 /* ProfileInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		30127D4A2174002700F6E267 /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
 		30127D4C217403D100F6E267 /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		30127D4E21740AA200F6E267 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		30127D5021740AB600F6E267 /* FollowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewCell.swift; sourceTree = "<group>"; };
 		30127D5221758D5300F6E267 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		30127D5B2179513300F6E267 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		30B3AA5321726207007CA413 /* TrackChanges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackChanges.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B3AA5621726208007CA413 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30B3AA5821726208007CA413 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 				30127D4A2174002700F6E267 /* DiscoverTableViewCell.swift */,
 				30127D4C217403D100F6E267 /* DiscoverCollectionViewCell.swift */,
 				30127D442173E67800F6E267 /* ProfileViewController.swift */,
-				30127D462173E6DD00F6E267 /* ProfileInfoCollectionViewCell.swift */,
+				30127D5B2179513300F6E267 /* ProfileCollectionViewCell.swift */,
 				30127D3C2173DE3100F6E267 /* FeedCollectionViewCell.swift */,
 				30127D382172E41C00F6E267 /* FeedViewController.swift */,
 				30127D422173E0FF00F6E267 /* DiscoverViewController.swift */,
@@ -173,10 +173,10 @@
 				30B3AA5721726208007CA413 /* AppDelegate.swift in Sources */,
 				30127D5321758D5300F6E267 /* PostViewController.swift in Sources */,
 				30127D4B2174002700F6E267 /* DiscoverTableViewCell.swift in Sources */,
-				30127D472173E6DD00F6E267 /* ProfileInfoCollectionViewCell.swift in Sources */,
 				30127D4D217403D100F6E267 /* DiscoverCollectionViewCell.swift in Sources */,
 				30127D3D2173DE3100F6E267 /* FeedCollectionViewCell.swift in Sources */,
 				30127D432173E0FF00F6E267 /* DiscoverViewController.swift in Sources */,
+				30127D5C2179513300F6E267 /* ProfileCollectionViewCell.swift in Sources */,
 				30127D452173E67800F6E267 /* ProfileViewController.swift in Sources */,
 				30127D392172E41C00F6E267 /* FeedViewController.swift in Sources */,
 				30127D5121740AB600F6E267 /* FollowTableViewCell.swift in Sources */,
