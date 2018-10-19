@@ -8,13 +8,26 @@
 
 import UIKit
 
+// Variable that determines the title of the FollowViewController 
+var ViewFollowers = Bool()
+
 class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func viewFollowing(_ sender: Any) {
+        self.performSegue(withIdentifier: "goToFollow", sender: nil)
+    }
+    
+    @IBAction func viewFollowers(_ sender: Any) {
+        ViewFollowers = true 
+        self.performSegue(withIdentifier: "goToFollow", sender: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -37,11 +50,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileInfoCell", for: indexPath) as! ProfileInfoCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCell", for: indexPath) as! ProfileCollectionViewCell
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! FeedCollectionViewCell
-            return cell 
+            return cell
         }
     }
 
