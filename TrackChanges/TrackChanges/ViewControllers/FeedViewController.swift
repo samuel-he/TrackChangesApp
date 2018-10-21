@@ -20,7 +20,7 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidAppear(_ animated: Bool) {
         // Dynamic cell size
         let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-        flowLayout?.estimatedItemSize = CGSize(width: 1, height: 1)
+        flowLayout?.estimatedItemSize = CGSize(width: 355, height: 245)
     }
     
     // Create a post 
@@ -29,7 +29,7 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -18,6 +18,10 @@ class FeedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var artist: UILabel!
     
     override func layoutSubviews() {
-        self.profilePic.layer.cornerRadius = self.profilePic.frame.width / 2 
+        self.profilePic.layer.cornerRadius = self.profilePic.frame.width / 2
+        // Add border to cell
+        self.layer.borderColor = UIColor.init(red: 109/255, green: 109/255, blue: 109/255, alpha: 1).cgColor
+        self.layer.borderWidth = 1
+        self.layer.cornerRadius = 5
     }
 }
