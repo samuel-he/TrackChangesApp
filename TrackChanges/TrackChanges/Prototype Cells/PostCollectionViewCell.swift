@@ -1,5 +1,5 @@
 //
-//  FeedCollectionViewCell.swift
+//  PostCollectionViewCell.swift
 //  TrackChanges
 //
 //  Created by Nolan Earl on 10/14/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedCollectionViewCell: UICollectionViewCell {
+class PostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var username: UILabel!
@@ -16,6 +16,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var coverImage: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var artist: UILabel!
+    @IBOutlet weak var playPauseButton: PlayPauseButton!
     
     override func layoutSubviews() {
         self.profilePic.layer.cornerRadius = self.profilePic.frame.width / 2

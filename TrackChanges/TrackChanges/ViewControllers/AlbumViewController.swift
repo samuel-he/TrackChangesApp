@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import AVFoundation
+
+var AlbumSongs = [String]()
+var CurrentSongIndex = Int()
 
 class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -14,6 +18,30 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    //////
+    // Start a post about a track
+    //////
+    
+    @IBAction func shareTrack(_ sender: Any) {
+        SharePost = true
+    }
+    
+    //////
+    // Start a post about an album
+    //////
+    
+    @IBAction func shareAlbum(_ sender: Any) {
+        SharePost = true 
+    }
+    
+    /*****
+    *** Go back to the previous screen
+    *******/
+    
+    @IBAction func previous(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -34,7 +62,22 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as! AlbumSongTableViewCell
+            cell.postButton.tag = indexPath.row - 1
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row != 0 {
+            do {
+                let audioPath = Bundle.main.path(forResource: AlbumSongs[indexPath.row], ofType: ".mp3")
+                try AudioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath!) as URL)
+                AudioPlayer.play()
+                // Set index of current song in album array 
+                CurrentSongIndex = indexPath.row
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 

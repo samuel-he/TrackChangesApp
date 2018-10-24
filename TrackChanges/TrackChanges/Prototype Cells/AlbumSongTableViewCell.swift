@@ -12,6 +12,7 @@ class AlbumSongTableViewCell: UITableViewCell {
     
     @IBOutlet weak var trackNumber: UILabel!
     @IBOutlet weak var songTitle: UILabel!
+    @IBOutlet weak var postButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

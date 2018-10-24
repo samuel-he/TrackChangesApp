@@ -8,9 +8,12 @@
 
 import UIKit
 
+var SharePost = Bool()
+
 class PostViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var postText: UITextView!
+    @IBOutlet weak var shareContent: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +23,18 @@ class PostViewController: UIViewController, UITextViewDelegate {
     
     // Dismiss PostViewController
     @IBAction func exitPost(_ sender: Any) {
-        dismiss(animated: true, completion: nil) 
+        SharePost = false 
+        dismiss(animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // Check if someone is sharing music 
+        if SharePost {
+            shareContent.isHidden = false
+        } else {
+            shareContent.isHidden = true 
+        }
+        
         postText.text = "What are you listening to?"
         postText.textColor = UIColor.lightGray
     }

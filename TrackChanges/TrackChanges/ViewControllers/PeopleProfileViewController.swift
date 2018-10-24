@@ -15,8 +15,20 @@ class PeopleProfileViewController: UIViewController, UICollectionViewDelegate, U
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-        flowLayout?.estimatedItemSize = CGSize(width: 355, height: 270)
+    }
+    
+    @IBAction func previous(_ sender: Any) {
+        navigationController?.popViewController(animated: true) 
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.section == 0 {
+            return CGSize(width: 355, height: 270)
+        } else {
+            return CGSize(width: 355, height: 245)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -28,7 +40,7 @@ class PeopleProfileViewController: UIViewController, UICollectionViewDelegate, U
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PeopleProfileCell", for: indexPath) as! PeopleProfileCollectionViewCell
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! FeedCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCollectionViewCell
             return cell 
         }
     }

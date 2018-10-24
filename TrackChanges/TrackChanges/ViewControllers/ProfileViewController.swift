@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         if indexPath.section == 0 {
             return CGSize(width: 355, height: 260)
         } else {
-            return CGSize(width: 355, height: 170)
+            return CGSize(width: 355, height: 245)
         }
     }
     
@@ -53,7 +53,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCell", for: indexPath) as! ProfileCollectionViewCell
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! FeedCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCollectionViewCell
             return cell
         }
     }

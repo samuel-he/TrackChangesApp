@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		30127D392172E41C00F6E267 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D382172E41C00F6E267 /* FeedViewController.swift */; };
-		30127D3D2173DE3100F6E267 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D3C2173DE3100F6E267 /* FeedCollectionViewCell.swift */; };
+		30127D3D2173DE3100F6E267 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D3C2173DE3100F6E267 /* PostCollectionViewCell.swift */; };
 		30127D432173E0FF00F6E267 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D422173E0FF00F6E267 /* DiscoverViewController.swift */; };
 		30127D452173E67800F6E267 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D442173E67800F6E267 /* ProfileViewController.swift */; };
 		30127D4B2174002700F6E267 /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D4A2174002700F6E267 /* DiscoverTableViewCell.swift */; };
@@ -37,7 +37,7 @@
 
 /* Begin PBXFileReference section */
 		30127D382172E41C00F6E267 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		30127D3C2173DE3100F6E267 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
+		30127D3C2173DE3100F6E267 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		30127D422173E0FF00F6E267 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		30127D442173E67800F6E267 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		30127D4A2174002700F6E267 /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 				30127D4A2174002700F6E267 /* DiscoverTableViewCell.swift */,
 				30127D4C217403D100F6E267 /* DiscoverCollectionViewCell.swift */,
 				30127D5B2179513300F6E267 /* ProfileCollectionViewCell.swift */,
-				30127D3C2173DE3100F6E267 /* FeedCollectionViewCell.swift */,
+				30127D3C2173DE3100F6E267 /* PostCollectionViewCell.swift */,
 			);
 			path = "Prototype Cells";
 			sourceTree = "<group>";
@@ -227,7 +227,7 @@
 				308C8FAB217BC10100D6337C /* AlbumViewController.swift in Sources */,
 				308C8FBA217D28D400D6337C /* AlbumSearchTableViewCell.swift in Sources */,
 				308C8FC0217D2AE800D6337C /* PeopleProfileCollectionViewCell.swift in Sources */,
-				30127D3D2173DE3100F6E267 /* FeedCollectionViewCell.swift in Sources */,
+				30127D3D2173DE3100F6E267 /* PostCollectionViewCell.swift in Sources */,
 				30127D432173E0FF00F6E267 /* DiscoverViewController.swift in Sources */,
 				30127D5C2179513300F6E267 /* ProfileCollectionViewCell.swift in Sources */,
 				30127D452173E67800F6E267 /* ProfileViewController.swift in Sources */,

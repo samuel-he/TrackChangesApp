@@ -8,8 +8,9 @@
 
 import UIKit
 
-class DiscoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class DiscoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,25 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverContentCell", for: indexPath) as! DiscoverCollectionViewCell
         return cell 
+    }
+    
+    /* Handle the Search Bar */
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.performSegue(withIdentifier: "Search", sender: self) 
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        view.endEditing(true)
     }
 
     /*
