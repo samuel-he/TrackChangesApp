@@ -8,9 +8,9 @@
 
 import UIKit
 
-class PeopleProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,30 +21,48 @@ class PeopleProfileViewController: UIViewController, UICollectionViewDelegate, U
         navigationController?.popViewController(animated: true) 
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+    /****
+    *** View Following
+    ****/
+    
+    @IBAction func viewFollowing(_ sender: Any) {
+        self.performSegue(withIdentifier: "PeopleProfileToFollow", sender: nil)
+    }
+    
+    /****
+     *** View Followers
+     ****/
+    
+    @IBAction func viewFollowers(_ sender: Any) {
+        ViewFollowers = true
+        self.performSegue(withIdentifier: "PeopleProfileToFollow", sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return CGSize(width: 355, height: 270)
+            return 245
         } else {
-            return CGSize(width: 355, height: 245)
+            return UITableViewAutomaticDimension
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PeopleProfileCell", for: indexPath) as! PeopleProfileCollectionViewCell
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCollectionViewCell
-            return cell 
-        }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileTableViewCell
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
+            return cell
+        }
+    }
 
     /*
     // MARK: - Navigation

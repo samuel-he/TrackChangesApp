@@ -19,6 +19,12 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        // Change cancel button color
+        let cancelButtonAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -37,7 +43,15 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         return cell 
     }
     
-    /* Handle the Search Bar */
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "DiscoverToAlbum", sender: nil)
+    }
+    
+    /*
+     
+     Handle the Search Bar
+ 
+     */
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.performSegue(withIdentifier: "Search", sender: self) 
@@ -45,10 +59,6 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

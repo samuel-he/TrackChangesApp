@@ -11,14 +11,30 @@ import UIKit
 // Variable that determines the title of the FollowViewController 
 var ViewFollowers = Bool()
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
-    @IBOutlet weak var collectionView: UICollectionView!
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var profileTitleLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    var tapToTheTop: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Add gesture recognizer to move to the top on click
+        tapToTheTop = UITapGestureRecognizer(target: self, action: #selector(scrollToTop))
+        profileTitleLabel.addGestureRecognizer(tapToTheTop)
+        
+        tableView.estimatedRowHeight = 365
+        tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    /*****
+     **** Tap to reload to top of the screen
+     *****/
+    @objc func scrollToTop() {
+        tableView.setContentOffset(.zero, animated: true)
     }
     
     @IBAction func viewFollowing(_ sender: Any) {
@@ -30,30 +46,28 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.performSegue(withIdentifier: "goToFollow", sender: nil)
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return CGSize(width: 355, height: 260)
+            return 245
         } else {
-            return CGSize(width: 355, height: 245)
+            return UITableViewAutomaticDimension
         }
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCell", for: indexPath) as! ProfileCollectionViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileTableViewCell
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCollectionViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
             return cell
         }
     }

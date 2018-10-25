@@ -12,23 +12,35 @@ class PlayPauseButton: UIButton {
     var isPlaying = false
 }
 
-class FeedViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    @IBOutlet weak var collectionView: UICollectionView!
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+//    @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var feedTitleLabel: UILabel!
+    var tapToTheTop: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Add gesture recognizer to move to the top on click
+        tapToTheTop = UITapGestureRecognizer(target: self, action: #selector(scrollToTop))
+        feedTitleLabel.addGestureRecognizer(tapToTheTop)
+        
+        tableView.estimatedRowHeight = 365
+        tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    /*****
+    **** Tap to reload to top of the screen
+    *****/
+    @objc func scrollToTop() {
+        tableView.setContentOffset(.zero, animated: true)
     }
     
     @IBAction func playAndPauseSong(_ sender: Any) {
         let sender = sender as! PlayPauseButton
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        // Dynamic cell size
-        let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-        flowLayout?.estimatedItemSize = CGSize(width: 1, height: 1)
     }
     
     // Create a post 
@@ -36,12 +48,12 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.performSegue(withIdentifier: "StartPost", sender: nil) 
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCollectionViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
         
         // Set the image for the play/pause button
         if cell.playPauseButton.isPlaying {
@@ -51,11 +63,9 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         // Add a tag to identify which cell was selected
         cell.playPauseButton.tag = indexPath.row
-        return cell 
+        return cell
     }
-    
-    
-    
+
     /*
     // MARK: - Navigation
 

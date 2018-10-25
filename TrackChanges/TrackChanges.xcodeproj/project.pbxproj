@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		30127D392172E41C00F6E267 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D382172E41C00F6E267 /* FeedViewController.swift */; };
-		30127D3D2173DE3100F6E267 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D3C2173DE3100F6E267 /* PostCollectionViewCell.swift */; };
 		30127D432173E0FF00F6E267 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D422173E0FF00F6E267 /* DiscoverViewController.swift */; };
 		30127D452173E67800F6E267 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D442173E67800F6E267 /* ProfileViewController.swift */; };
 		30127D4B2174002700F6E267 /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D4A2174002700F6E267 /* DiscoverTableViewCell.swift */; };
@@ -16,7 +15,6 @@
 		30127D4F21740AA200F6E267 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D4E21740AA200F6E267 /* FollowViewController.swift */; };
 		30127D5121740AB600F6E267 /* FollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D5021740AB600F6E267 /* FollowTableViewCell.swift */; };
 		30127D5321758D5300F6E267 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D5221758D5300F6E267 /* PostViewController.swift */; };
-		30127D5C2179513300F6E267 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D5B2179513300F6E267 /* ProfileCollectionViewCell.swift */; };
 		308C8FAB217BC10100D6337C /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FAA217BC10100D6337C /* AlbumViewController.swift */; };
 		308C8FAD217BC12200D6337C /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FAC217BC12200D6337C /* SongViewController.swift */; };
 		308C8FAF217BC1D500D6337C /* AlbumSongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FAE217BC1D500D6337C /* AlbumSongTableViewCell.swift */; };
@@ -26,7 +24,9 @@
 		308C8FB8217D26B300D6337C /* PeopleSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FB7217D26B300D6337C /* PeopleSearchTableViewCell.swift */; };
 		308C8FBA217D28D400D6337C /* AlbumSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FB9217D28D400D6337C /* AlbumSearchTableViewCell.swift */; };
 		308C8FBE217D29BF00D6337C /* SongSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FBD217D29BF00D6337C /* SongSearchTableViewCell.swift */; };
-		308C8FC0217D2AE800D6337C /* PeopleProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FBF217D2AE800D6337C /* PeopleProfileCollectionViewCell.swift */; };
+		308C8FC42180E95500D6337C /* SearchResultsTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FC32180E95500D6337C /* SearchResultsTitleTableViewCell.swift */; };
+		308C8FC621814D8700D6337C /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FC521814D8700D6337C /* PostTableViewCell.swift */; };
+		308C8FC82181536700D6337C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FC72181536700D6337C /* ProfileTableViewCell.swift */; };
 		30B3AA5721726208007CA413 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B3AA5621726208007CA413 /* AppDelegate.swift */; };
 		30B3AA5921726208007CA413 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B3AA5821726208007CA413 /* ViewController.swift */; };
 		30B3AA5C21726208007CA413 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B3AA5A21726208007CA413 /* Main.storyboard */; };
@@ -37,7 +37,6 @@
 
 /* Begin PBXFileReference section */
 		30127D382172E41C00F6E267 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		30127D3C2173DE3100F6E267 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		30127D422173E0FF00F6E267 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		30127D442173E67800F6E267 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		30127D4A2174002700F6E267 /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
@@ -45,7 +44,6 @@
 		30127D4E21740AA200F6E267 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		30127D5021740AB600F6E267 /* FollowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewCell.swift; sourceTree = "<group>"; };
 		30127D5221758D5300F6E267 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
-		30127D5B2179513300F6E267 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		308C8FAA217BC10100D6337C /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		308C8FAC217BC12200D6337C /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
 		308C8FAE217BC1D500D6337C /* AlbumSongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSongTableViewCell.swift; sourceTree = "<group>"; };
@@ -55,7 +53,9 @@
 		308C8FB7217D26B300D6337C /* PeopleSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleSearchTableViewCell.swift; sourceTree = "<group>"; };
 		308C8FB9217D28D400D6337C /* AlbumSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSearchTableViewCell.swift; sourceTree = "<group>"; };
 		308C8FBD217D29BF00D6337C /* SongSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchTableViewCell.swift; sourceTree = "<group>"; };
-		308C8FBF217D2AE800D6337C /* PeopleProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		308C8FC32180E95500D6337C /* SearchResultsTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTitleTableViewCell.swift; sourceTree = "<group>"; };
+		308C8FC521814D8700D6337C /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		308C8FC72181536700D6337C /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		30B3AA5321726207007CA413 /* TrackChanges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackChanges.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B3AA5621726208007CA413 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30B3AA5821726208007CA413 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +96,10 @@
 		308C8FC2217D2DF600D6337C /* Prototype Cells */ = {
 			isa = PBXGroup;
 			children = (
-				308C8FBF217D2AE800D6337C /* PeopleProfileCollectionViewCell.swift */,
+				308C8FC72181536700D6337C /* ProfileTableViewCell.swift */,
+				308C8FC521814D8700D6337C /* PostTableViewCell.swift */,
+				30127D5021740AB600F6E267 /* FollowTableViewCell.swift */,
+				308C8FC32180E95500D6337C /* SearchResultsTitleTableViewCell.swift */,
 				308C8FB9217D28D400D6337C /* AlbumSearchTableViewCell.swift */,
 				308C8FBD217D29BF00D6337C /* SongSearchTableViewCell.swift */,
 				308C8FB7217D26B300D6337C /* PeopleSearchTableViewCell.swift */,
@@ -104,8 +107,6 @@
 				308C8FAE217BC1D500D6337C /* AlbumSongTableViewCell.swift */,
 				30127D4A2174002700F6E267 /* DiscoverTableViewCell.swift */,
 				30127D4C217403D100F6E267 /* DiscoverCollectionViewCell.swift */,
-				30127D5B2179513300F6E267 /* ProfileCollectionViewCell.swift */,
-				30127D3C2173DE3100F6E267 /* PostCollectionViewCell.swift */,
 			);
 			path = "Prototype Cells";
 			sourceTree = "<group>";
@@ -134,7 +135,6 @@
 				30B3AA5A21726208007CA413 /* Main.storyboard */,
 				308C8FC2217D2DF600D6337C /* Prototype Cells */,
 				308C8FC1217D2DBF00D6337C /* ViewControllers */,
-				30127D5021740AB600F6E267 /* FollowTableViewCell.swift */,
 				30B3AA602172620B007CA413 /* Assets.xcassets */,
 				30B3AA622172620B007CA413 /* LaunchScreen.storyboard */,
 				30B3AA652172620B007CA413 /* Info.plist */,
@@ -219,17 +219,17 @@
 				308C8FAF217BC1D500D6337C /* AlbumSongTableViewCell.swift in Sources */,
 				30B3AA5721726208007CA413 /* AppDelegate.swift in Sources */,
 				308C8FBE217D29BF00D6337C /* SongSearchTableViewCell.swift in Sources */,
+				308C8FC42180E95500D6337C /* SearchResultsTitleTableViewCell.swift in Sources */,
 				308C8FB8217D26B300D6337C /* PeopleSearchTableViewCell.swift in Sources */,
 				30127D5321758D5300F6E267 /* PostViewController.swift in Sources */,
 				30127D4B2174002700F6E267 /* DiscoverTableViewCell.swift in Sources */,
+				308C8FC82181536700D6337C /* ProfileTableViewCell.swift in Sources */,
 				30127D4D217403D100F6E267 /* DiscoverCollectionViewCell.swift in Sources */,
 				308C8FB3217BC28300D6337C /* SearchResultsViewController.swift in Sources */,
 				308C8FAB217BC10100D6337C /* AlbumViewController.swift in Sources */,
 				308C8FBA217D28D400D6337C /* AlbumSearchTableViewCell.swift in Sources */,
-				308C8FC0217D2AE800D6337C /* PeopleProfileCollectionViewCell.swift in Sources */,
-				30127D3D2173DE3100F6E267 /* PostCollectionViewCell.swift in Sources */,
 				30127D432173E0FF00F6E267 /* DiscoverViewController.swift in Sources */,
-				30127D5C2179513300F6E267 /* ProfileCollectionViewCell.swift in Sources */,
+				308C8FC621814D8700D6337C /* PostTableViewCell.swift in Sources */,
 				30127D452173E67800F6E267 /* ProfileViewController.swift in Sources */,
 				308C8FB1217BC21400D6337C /* AlbumCoverTableViewCell.swift in Sources */,
 				30127D392172E41C00F6E267 /* FeedViewController.swift in Sources */,

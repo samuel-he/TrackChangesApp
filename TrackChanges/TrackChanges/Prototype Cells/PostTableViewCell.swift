@@ -1,14 +1,15 @@
 //
-//  PostCollectionViewCell.swift
+//  PostTableViewCell.swift
 //  TrackChanges
 //
-//  Created by Nolan Earl on 10/14/18.
+//  Created by Nolan Earl on 10/24/18.
 //  Copyright © 2018 TrackChanges. All rights reserved.
 //
 
 import UIKit
 
-class PostCollectionViewCell: UICollectionViewCell {
+class PostTableViewCell: UITableViewCell {
+    
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var username: UILabel!
@@ -21,8 +22,20 @@ class PostCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         self.profilePic.layer.cornerRadius = self.profilePic.frame.width / 2
         // Add border to cell
-        self.layer.borderColor = UIColor.init(red: 109/255, green: 109/255, blue: 109/255, alpha: 1).cgColor
-        self.layer.borderWidth = 1
-        self.layer.cornerRadius = 5
+//        self.layer.borderColor = UIColor.init(red: 109/255, green: 109/255, blue: 109/255, alpha: 1).cgColor
+//        self.layer.borderWidth = 1
+//        self.layer.cornerRadius = 5
     }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
 }
