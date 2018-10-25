@@ -68,17 +68,17 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row != 0 {
-            do {
-                let audioPath = Bundle.main.path(forResource: AlbumSongs[indexPath.row], ofType: ".mp3")
-                try AudioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath!) as URL)
-                AudioPlayer.play()
-                // Set index of current song in album array 
-                CurrentSongIndex = indexPath.row
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+//        if indexPath.row != 0 {
+//            do {
+//                let audioPath = Bundle.main.path(forResource: AlbumSongs[indexPath.row], ofType: ".mp3")
+//                try AudioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath!) as URL)
+//                AudioPlayer.play()
+//                // Set index of current song in album array 
+//                CurrentSongIndex = indexPath.row
+//            } catch {
+//                print(error.localizedDescription)
+//            }
+//        }
     }
 
     /*

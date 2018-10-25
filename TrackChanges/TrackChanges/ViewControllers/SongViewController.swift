@@ -28,6 +28,18 @@ class SongViewController: UIViewController {
         // Set title of song and album
     }
     
+    /****
+    ** Close the view of the song
+    ****/
+    
+    @IBAction func closeSongView(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    /****
+    ** Create a post about the song
+    ****/
+    
     @IBAction func postSong(_ sender: Any) {
         SharePost = true 
     }

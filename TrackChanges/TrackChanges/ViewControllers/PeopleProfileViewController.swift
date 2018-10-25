@@ -40,7 +40,7 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 245
+            return 280
         } else {
             return UITableViewAutomaticDimension
         }
