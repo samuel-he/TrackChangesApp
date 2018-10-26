@@ -1245,7 +1245,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acz-iy-z9Q">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Following" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw9-5P-kXC">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Following" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw9-5P-kXC">
                                         <rect key="frame" x="104.66666666666669" y="51.666666666666657" width="166" height="43"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                         <nil key="textColor"/>
@@ -1293,18 +1293,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0uh-3l-bHi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2594" y="188"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="N5z-wm-oZr">
-            <objects>
-                <navigationController navigationBarHidden="YES" id="fe4-5Y-EGR" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uF1-Ek-uCR">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rTg-Iz-2v1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3465" y="-98"/>
         </scene>
         <!--Feed-->
         <scene sceneID="INy-rs-yZf">
@@ -1710,13 +1698,29 @@
                     <view key="view" contentMode="scaleToFill" id="NkF-GT-JM0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TrackChanges." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woN-Jq-hcW">
+                                <rect key="frame" x="43.666666666666657" y="245" width="288" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="ebk-UM-bOE"/>
+                                    <constraint firstAttribute="width" constant="288" id="lm4-Ak-f4X"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="36"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="woN-Jq-hcW" firstAttribute="top" secondItem="aaG-43-37a" secondAttribute="top" constant="201" id="fxE-oP-8Vi"/>
+                            <constraint firstItem="woN-Jq-hcW" firstAttribute="centerX" secondItem="aaG-43-37a" secondAttribute="centerX" id="tOL-LH-8KW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="aaG-43-37a"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DfF-0r-ujM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1518" y="-197"/>
+            <point key="canvasLocation" x="-1519.2" y="-197.29064039408868"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="WwU-Lg-Wo7">
@@ -2015,7 +2019,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y9a-ZY-Ek2">
-                                <rect key="frame" x="0.0" y="654" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="703" width="375" height="75"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xMH-J6-X2z">
                                         <rect key="frame" x="131" y="16.666666666666629" width="111.33333333333331" height="42"/>
@@ -2108,7 +2112,7 @@
         <image name="QuickActions_Compose_2x" width="46" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ReD-vb-n90"/>
+        <segue reference="P8V-yy-S8r"/>
         <segue reference="DVm-nY-YqU"/>
         <segue reference="5Md-6Z-B37"/>
         <segue reference="xNQ-DH-ffZ"/>

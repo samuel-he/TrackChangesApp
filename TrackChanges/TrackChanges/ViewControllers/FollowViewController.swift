@@ -12,11 +12,22 @@ class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    var tapToTheTop: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        tapToTheTop = UITapGestureRecognizer(target: self, action: #selector(scrollToTop))
+        titleLabel.addGestureRecognizer(tapToTheTop)
+    }
+    
+    /****
+    *** Scroll to the top on title click
+    ****/
+    @objc func scrollToTop() {
+        tableView.setContentOffset(.zero, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
