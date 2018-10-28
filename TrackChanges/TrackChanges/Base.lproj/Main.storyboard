@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cQO-9F-crO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZJw-I7-OYw">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1432,7 +1432,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="313" id="Z7c-gt-725"/>
                                                             </constraints>
-                                                            <string key="text">fjkdslafjlsdkajfldskajfdksklslkkkfjdkjsfdlksaioqwrujeoiwqncowimwqeowfdvmasvwmeiomrmeqoiwmciowmoifmeqwiofeuqwoijreowmciowejeowjcimoifewiofmwqeiioiqpqjorqewijroewjqriewqjrioweqfjdaslkfjdklasjflasdkjflksadjflksadjflkasdjflksadjflkasdjflkasjdlkfajsdlkfjsdlkajflkasdjflkasdjflkasjdfkldsajflkasjdlkfjasdlkfjlkasdjflasdkfjaslkdjflkasdjflkasdjflasdlkjflsadkfjklsadlkfjalsdkjflkasdjflksadkfjasdlk</string>
+                                                            <string key="text">fjkdslafjlsdkajfldskajfdksklslkkkfjdkjsfdlksaioqwrujeoiwqncowimwqeowfdvmasvwmeiomrmeqoiwmciowmoifmeqwiofeuqwoijreowmciowejeowjcimoifewiofmwqeiioiqpqjorqewijroewjqriewqjrioweqfjdaslkfjdklasjflasdkjflksadjflksadjflkasdjflksadjflkasdjflkasjdlkfajsdlkfjsdlkajflkasdjflkasdjflkasjdfkldsajflkasjdlkfjasdlkfjlkasdjflasdkfjaslkdjflkasdjflkasdjflasdlkjflsadkfjklsadlkfjalsdkjflkasdjflksadkfjasdlkdja</string>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
@@ -1625,7 +1625,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DpN-lc-wYZ">
                                 <rect key="frame" x="27.666666666666657" y="448.66666666666669" width="320" height="110.00000000000006"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zlh-Im-erE">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zlh-Im-erE">
                                         <rect key="frame" x="13" y="15" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="h5I-Uf-JcE"/>
@@ -1640,7 +1640,7 @@
                                         </constraints>
                                         <state key="normal" image="Navigation_Play_2x"/>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zJ7-wp-eIl">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zJ7-wp-eIl">
                                         <rect key="frame" x="107" y="33.666666666666629" width="94" height="42.666666666666657"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Astronauts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1w-Mc-rcy">
@@ -1663,6 +1663,7 @@
                                     <constraint firstItem="zJ7-wp-eIl" firstAttribute="centerY" secondItem="BHA-QR-oMa" secondAttribute="centerY" id="57f-Ce-cKj"/>
                                     <constraint firstItem="zlh-Im-erE" firstAttribute="centerY" secondItem="DpN-lc-wYZ" secondAttribute="centerY" id="Dhf-mP-WmB"/>
                                     <constraint firstAttribute="height" constant="110" id="RCm-za-w4O"/>
+                                    <constraint firstItem="zlh-Im-erE" firstAttribute="leading" secondItem="DpN-lc-wYZ" secondAttribute="leading" constant="13" id="cjD-du-cj4"/>
                                     <constraint firstItem="zJ7-wp-eIl" firstAttribute="leading" secondItem="zlh-Im-erE" secondAttribute="trailing" constant="14" id="d6U-1k-HfM"/>
                                     <constraint firstItem="zJ7-wp-eIl" firstAttribute="centerY" secondItem="zlh-Im-erE" secondAttribute="centerY" id="hQ8-rD-tXd"/>
                                     <constraint firstAttribute="width" constant="320" id="lRN-Gx-D2L"/>
@@ -1691,10 +1692,10 @@
             </objects>
             <point key="canvasLocation" x="1760.8" y="-464.03940886699507"/>
         </scene>
-        <!--View Controller-->
+        <!--Connect View Controller-->
         <scene sceneID="Seo-B4-rCR">
             <objects>
-                <viewController id="ZJw-I7-OYw" sceneMemberID="viewController">
+                <viewController id="ZJw-I7-OYw" customClass="ConnectViewController" customModule="TrackChanges" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NkF-GT-JM0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1709,6 +1710,25 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8t-0a-R6b">
+                                <rect key="frame" x="100" y="457" width="175" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.11372549019607843" green="0.72549019607843135" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                <state key="normal" title="Connect">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="connectToSpotify:" destination="ZJw-I7-OYw" eventType="touchUpInside" id="txS-hC-k5f"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connect your Spotify account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UrV-ny-mV9">
+                                <rect key="frame" x="67" y="396" width="241" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1717,6 +1737,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aaG-43-37a"/>
                     </view>
+                    <connections>
+                        <outlet property="connectButton" destination="T8t-0a-R6b" id="JFj-MT-SMa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DfF-0r-ujM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2116,6 +2139,6 @@
         <segue reference="DVm-nY-YqU"/>
         <segue reference="5Md-6Z-B37"/>
         <segue reference="xNQ-DH-ffZ"/>
-        <segue reference="Q8E-bf-UVe"/>
+        <segue reference="16v-BD-pSX"/>
     </inferredMetricsTieBreakers>
 </document>
