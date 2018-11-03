@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ConnectViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate  {
+class ConnectViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
 
     @IBOutlet weak var connectButton: UIButton!
     
     let SpotifyClientID = "4bebf0c82b774aaa99764eb7c5c58cc4"
-    let SpotifyRedirectURL = URL(string: "http://localhost:6666/callback/")!
+    let SpotifyRedirectURL = URL(string: "trackchanges://spotify-login-callback/")!
     
     lazy var configuration = SPTConfiguration(
         clientID: SpotifyClientID,
@@ -21,8 +21,8 @@ class ConnectViewController: UIViewController, SPTSessionManagerDelegate, SPTApp
     )
     
     lazy var sessionManager: SPTSessionManager = {
-        if let tokenSwapURL = URL(string: "https://[your token swap app domain here]/api/token"),
-            let tokenRefreshURL = URL(string: "https://[your token swap app domain here]/api/refresh_token") {
+        if let tokenSwapURL = URL(string: "https://trackchanges.herokuapp.com/api/token"),
+            let tokenRefreshURL = URL(string: "https://trackchanges.herokuapp.com/api/refresh_token") {
             self.configuration.tokenSwapURL = tokenSwapURL
             self.configuration.tokenRefreshURL = tokenRefreshURL
             self.configuration.playURI = ""
@@ -46,8 +46,16 @@ class ConnectViewController: UIViewController, SPTSessionManagerDelegate, SPTApp
     override func viewWillAppear(_ animated: Bool) {
         // Edit connect button
         connectButton.layer.cornerRadius = 20
-        let title = NSAttributedString.init(string: "Connect", attributes: [NSAttributedStringKey.kern: 2, NSAttributedStringKey.foregroundColor: UIColor.white])
+        let title = NSAttributedString.init(string: "CONNECT", attributes: [NSAttributedStringKey.kern: 2, NSAttributedStringKey.foregroundColor: UIColor.white])
         connectButton.setAttributedTitle(title, for: .normal)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if appRemote.isConnected {
+            self.performSegue(withIdentifier: "GoToFeed", sender: nil)
+        } else {
+            print("-----NOT CONNECTED------")
+        }
     }
     
     @IBAction func connectToSpotify(_ sender: Any) {
@@ -57,7 +65,6 @@ class ConnectViewController: UIViewController, SPTSessionManagerDelegate, SPTApp
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         self.sessionManager.application(app, open: url, options: options)
-        
         return true
     }
     
