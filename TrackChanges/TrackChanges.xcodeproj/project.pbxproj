@@ -15,8 +15,12 @@
 		30127D4F21740AA200F6E267 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D4E21740AA200F6E267 /* FollowViewController.swift */; };
 		30127D5121740AB600F6E267 /* FollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D5021740AB600F6E267 /* FollowTableViewCell.swift */; };
 		30127D5321758D5300F6E267 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D5221758D5300F6E267 /* PostViewController.swift */; };
+		30250C3D219374C100FBA215 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30250C3C219374C100FBA215 /* SpotifyiOS.framework */; };
 		308179D421855AE600DCCC4F /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308179D321855AE600DCCC4F /* ConnectViewController.swift */; };
 		308179D521855BF800DCCC4F /* TrackChanges-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FCB2184000100D6337C /* TrackChanges-Bridging-Header.h */; };
+		308179D7218FBEDD00DCCC4F /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308179D6218FBEDD00DCCC4F /* FavoritesViewController.swift */; };
+		308179D9218FBF5500DCCC4F /* FavoritesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308179D8218FBF5400DCCC4F /* FavoritesListViewController.swift */; };
+		308179DB2190075D00DCCC4F /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308179DA2190075C00DCCC4F /* FavoritesTableViewCell.swift */; };
 		308C8FAB217BC10100D6337C /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FAA217BC10100D6337C /* AlbumViewController.swift */; };
 		308C8FAD217BC12200D6337C /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FAC217BC12200D6337C /* SongViewController.swift */; };
 		308C8FAF217BC1D500D6337C /* AlbumSongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FAE217BC1D500D6337C /* AlbumSongTableViewCell.swift */; };
@@ -29,7 +33,6 @@
 		308C8FC42180E95500D6337C /* SearchResultsTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FC32180E95500D6337C /* SearchResultsTitleTableViewCell.swift */; };
 		308C8FC621814D8700D6337C /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FC521814D8700D6337C /* PostTableViewCell.swift */; };
 		308C8FC82181536700D6337C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FC72181536700D6337C /* ProfileTableViewCell.swift */; };
-		308C8FCA2183F74E00D6337C /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308C8FC92183F74B00D6337C /* SpotifyiOS.framework */; };
 		30B3AA5721726208007CA413 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B3AA5621726208007CA413 /* AppDelegate.swift */; };
 		30B3AA5921726208007CA413 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B3AA5821726208007CA413 /* ViewController.swift */; };
 		30B3AA5C21726208007CA413 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B3AA5A21726208007CA413 /* Main.storyboard */; };
@@ -47,7 +50,11 @@
 		30127D4E21740AA200F6E267 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		30127D5021740AB600F6E267 /* FollowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewCell.swift; sourceTree = "<group>"; };
 		30127D5221758D5300F6E267 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		30250C3C219374C100FBA215 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		308179D321855AE600DCCC4F /* ConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
+		308179D6218FBEDD00DCCC4F /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		308179D8218FBF5400DCCC4F /* FavoritesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListViewController.swift; sourceTree = "<group>"; };
+		308179DA2190075C00DCCC4F /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		308C8FAA217BC10100D6337C /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		308C8FAC217BC12200D6337C /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
 		308C8FAE217BC1D500D6337C /* AlbumSongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSongTableViewCell.swift; sourceTree = "<group>"; };
@@ -60,7 +67,6 @@
 		308C8FC32180E95500D6337C /* SearchResultsTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTitleTableViewCell.swift; sourceTree = "<group>"; };
 		308C8FC521814D8700D6337C /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		308C8FC72181536700D6337C /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
-		308C8FC92183F74B00D6337C /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		308C8FCB2184000100D6337C /* TrackChanges-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrackChanges-Bridging-Header.h"; sourceTree = "<group>"; };
 		30B3AA5321726207007CA413 /* TrackChanges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackChanges.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B3AA5621726208007CA413 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				308C8FCA2183F74E00D6337C /* SpotifyiOS.framework in Frameworks */,
+				30250C3D219374C100FBA215 /* SpotifyiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				308179D321855AE600DCCC4F /* ConnectViewController.swift */,
+				308179D6218FBEDD00DCCC4F /* FavoritesViewController.swift */,
+				308179D8218FBF5400DCCC4F /* FavoritesListViewController.swift */,
 				308C8FAC217BC12200D6337C /* SongViewController.swift */,
 				308C8FB4217BDC4C00D6337C /* PeopleProfileViewController.swift */,
 				30127D442173E67800F6E267 /* ProfileViewController.swift */,
@@ -104,6 +112,7 @@
 		308C8FC2217D2DF600D6337C /* Prototype Cells */ = {
 			isa = PBXGroup;
 			children = (
+				308179DA2190075C00DCCC4F /* FavoritesTableViewCell.swift */,
 				308C8FC72181536700D6337C /* ProfileTableViewCell.swift */,
 				308C8FC521814D8700D6337C /* PostTableViewCell.swift */,
 				30127D5021740AB600F6E267 /* FollowTableViewCell.swift */,
@@ -125,7 +134,7 @@
 				308C8FCB2184000100D6337C /* TrackChanges-Bridging-Header.h */,
 				30B3AA5521726207007CA413 /* TrackChanges */,
 				30B3AA5421726207007CA413 /* Products */,
-				308C8FC92183F74B00D6337C /* SpotifyiOS.framework */,
+				30250C3C219374C100FBA215 /* SpotifyiOS.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -185,6 +194,11 @@
 				TargetAttributes = {
 					30B3AA5221726207007CA413 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -224,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				308179D7218FBEDD00DCCC4F /* FavoritesViewController.swift in Sources */,
 				308179D521855BF800DCCC4F /* TrackChanges-Bridging-Header.h in Sources */,
 				30127D4F21740AA200F6E267 /* FollowViewController.swift in Sources */,
 				30B3AA5921726208007CA413 /* ViewController.swift in Sources */,
@@ -236,6 +251,7 @@
 				30127D4B2174002700F6E267 /* DiscoverTableViewCell.swift in Sources */,
 				308C8FC82181536700D6337C /* ProfileTableViewCell.swift in Sources */,
 				30127D4D217403D100F6E267 /* DiscoverCollectionViewCell.swift in Sources */,
+				308179DB2190075D00DCCC4F /* FavoritesTableViewCell.swift in Sources */,
 				308C8FB3217BC28300D6337C /* SearchResultsViewController.swift in Sources */,
 				308C8FAB217BC10100D6337C /* AlbumViewController.swift in Sources */,
 				308C8FBA217D28D400D6337C /* AlbumSearchTableViewCell.swift in Sources */,
@@ -244,6 +260,7 @@
 				308C8FC621814D8700D6337C /* PostTableViewCell.swift in Sources */,
 				30127D452173E67800F6E267 /* ProfileViewController.swift in Sources */,
 				308C8FB1217BC21400D6337C /* AlbumCoverTableViewCell.swift in Sources */,
+				308179D9218FBF5500DCCC4F /* FavoritesListViewController.swift in Sources */,
 				30127D392172E41C00F6E267 /* FeedViewController.swift in Sources */,
 				308C8FB5217BDC4C00D6337C /* PeopleProfileViewController.swift in Sources */,
 				308C8FAD217BC12200D6337C /* SongViewController.swift in Sources */,
@@ -393,12 +410,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EN9D55UHPU;
+				DEVELOPMENT_TEAM = 6Q2VM9786B;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TrackChanges/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -417,12 +435,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EN9D55UHPU;
+				DEVELOPMENT_TEAM = 6Q2VM9786B;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TrackChanges/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

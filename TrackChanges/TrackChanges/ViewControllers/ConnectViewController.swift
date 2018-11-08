@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import StoreKit
+import MediaPlayer
 
 class ConnectViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
 
@@ -100,9 +102,7 @@ class ConnectViewController: UIViewController, SPTSessionManagerDelegate, SPTApp
     func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
         print("player state changed")
     }
-
     
-
     /*
     // MARK: - Navigation
 
