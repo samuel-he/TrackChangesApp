@@ -7,11 +7,8 @@
 //
 
 import UIKit
-import AVFoundation
 
-var AudioPlayer = AVAudioPlayer()
-
-class SongViewController: UIViewController {
+class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
 
     @IBOutlet weak var albumCover: UIImageView!
     @IBOutlet weak var songTitle: UILabel!
@@ -24,8 +21,53 @@ class SongViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        // Set title of song and album
+    override func viewWillAppear(_ animated: Bool) {
+        getPlayerState()
+    }
+    
+    func updateViewWithPlayerState(_ playerState: SPTAppRemotePlayerState) {
+        songTitle.text = playerState.track.name
+        artist.text = playerState.track.artist.name
+        fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
+            self.updateAlbumArtWithImage(image)
+        }
+        
+        if playerState.isPaused {
+            playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
+        } else {
+            playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
+        }
+    }
+    
+    func updateAlbumArtWithImage(_ image: UIImage) {
+        self.albumCover.image = image
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = kCATransitionFade
+        self.albumCover.layer.add(transition, forKey: "transition")
+    }
+    
+    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
+        PlayerState = playerState
+        updateViewWithPlayerState(playerState)
+    }
+    
+    func fetchAlbumArtForTrack(_ track: SPTAppRemoteTrack, callback: @escaping (UIImage) -> Void ) {
+        AppRemote.imageAPI?.fetchImage(forItem: track, with: CGSize(width: 250, height: 250), callback: { (image, error) -> Void in
+            guard error == nil else { return }
+            
+            let image = image as! UIImage
+            callback(image)
+        })
+    }
+    
+    func getPlayerState() {
+        AppRemote.playerAPI?.getPlayerState { (result, error) -> Void in
+            guard error == nil else { return }
+            
+            let playerState = result as! SPTAppRemotePlayerState
+            self.updateViewWithPlayerState(playerState)
+        }
     }
     
     /****
@@ -41,41 +83,33 @@ class SongViewController: UIViewController {
     ****/
     
     @IBAction func postSong(_ sender: Any) {
-        SharePost = true 
+        SharePost = true
+        ShareTitle = (songTitle.text as? String)!
+        ShareAlbum = albumCover.image!
+        ShareArtist = (artist.text as? String)!
+//        ShareTrackID = TrackIdentifier
     }
     
     @IBAction func playAndPauseSong(_ sender: Any) {
-        if !AudioPlayer.isPlaying {
-            AudioPlayer.play()
+        if PlayerState!.isPaused {
+            AppRemote.playerAPI?.play(TrackIdentifier, callback: { (track, error) in
+                print(error?.localizedDescription)
+            })
             playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
-        } else if AudioPlayer.isPlaying {
-            AudioPlayer.pause()
+        } else {
+            AppRemote.playerAPI?.pause({ (track, error) in
+                print(error?.localizedDescription)
+            })
             playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
         }
     }
     
     @IBAction func playNextSong(_ sender: Any) {
-        if CurrentSongIndex < AlbumSongs.count - 1 {
-            do {
-                let audioPath = Bundle.main.path(forResource: AlbumSongs[CurrentSongIndex + 1], ofType: ".mp3")
-                try AudioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath!) as URL)
-                AudioPlayer.play()
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+        
     }
     
     @IBAction func playPreviousSong(_ sender: Any) {
-        if CurrentSongIndex > 0 {
-            do {
-                let audioPath = Bundle.main.path(forResource: AlbumSongs[CurrentSongIndex - 1], ofType: ".mp3")
-                try AudioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath!) as URL)
-                AudioPlayer.play()
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+     
     }
     
     /*

@@ -16,6 +16,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var profileTitleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var tapToTheTop: UITapGestureRecognizer!
+    @IBOutlet weak var nowPlayerView: UIView!
+    @IBOutlet weak var nowPlayingImage: UIImageView!
+    @IBOutlet weak var nowPlayingTitle: UILabel!
+    @IBOutlet weak var nowPlayingArtist: UILabel!
+    @IBOutlet weak var playPauseButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +33,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         tableView.estimatedRowHeight = 365
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        getPlayerState()
     }
     
     /*****
@@ -69,6 +76,54 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
             return cell
+        }
+    }
+    
+    // MARK: Update now playing view
+    
+    func updateViewWithPlayerState(_ playerState: SPTAppRemotePlayerState) {
+        self.nowPlayingTitle.text = playerState.track.name
+        self.nowPlayingArtist.text = playerState.track.artist.name
+        fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
+            self.updateAlbumArtWithImage(image)
+        }
+        
+        if playerState.isPaused {
+            playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
+        } else {
+            playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
+        }
+    }
+    
+    func updateAlbumArtWithImage(_ image: UIImage) {
+        self.nowPlayingImage.image = image
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = kCATransitionFade
+        self.nowPlayingImage.layer.add(transition, forKey: "transition")
+    }
+    
+    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
+        //        self.PlayerState = playerState
+        PlayerState = playerState
+        updateViewWithPlayerState(playerState)
+    }
+    
+    func fetchAlbumArtForTrack(_ track: SPTAppRemoteTrack, callback: @escaping (UIImage) -> Void ) {
+        AppRemote.imageAPI?.fetchImage(forItem: track, with: CGSize(width: 50, height: 50), callback: { (image, error) -> Void in
+            guard error == nil else { return }
+            
+            let image = image as! UIImage
+            callback(image)
+        })
+    }
+    
+    func getPlayerState() {
+        AppRemote.playerAPI?.getPlayerState { (result, error) -> Void in
+            guard error == nil else { return }
+            
+            let playerState = result as! SPTAppRemotePlayerState
+            self.updateViewWithPlayerState(playerState)
         }
     }
 

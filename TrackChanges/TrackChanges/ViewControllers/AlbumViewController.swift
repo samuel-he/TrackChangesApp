@@ -33,7 +33,12 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //////
     
     @IBAction func shareAlbum(_ sender: Any) {
-        SharePost = true 
+        SharePost = true
+        
+        // Set info for share post
+//        ShareTitle = (songTitle.text as? String)!
+//        ShareAlbum = albumCover.image!
+//        ShareArtist = (artist.text as? String)!
     }
     
     /*****

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cQO-9F-crO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZJw-I7-OYw">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -102,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcB-CE-yBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4327" y="859"/>
+            <point key="canvasLocation" x="4325.6000000000004" y="858.62068965517244"/>
         </scene>
         <!--Discover-->
         <scene sceneID="tvy-Nj-OVf">
@@ -352,6 +352,10 @@
                     <tabBarItem key="tabBarItem" title="Discover" id="lR8-bq-Taj"/>
                     <navigationItem key="navigationItem" id="DoN-5J-WPG"/>
                     <connections>
+                        <outlet property="nowPlayingArtist" destination="k5j-7K-1ha" id="MAs-fI-b6W"/>
+                        <outlet property="nowPlayingImage" destination="hFb-N4-zV7" id="n47-eq-IHo"/>
+                        <outlet property="nowPlayingTitle" destination="qWL-o3-yEQ" id="Tyq-5A-msa"/>
+                        <outlet property="playPauseButton" destination="OhZ-xb-Ux1" id="iPi-wW-iiT"/>
                         <outlet property="searchBar" destination="4Zb-L0-kKL" id="R8N-bb-6Va"/>
                         <outlet property="tableView" destination="Sx6-Sm-Pji" id="jwy-qF-t7g"/>
                         <segue destination="90L-5V-mcJ" kind="show" identifier="Search" id="dWq-fR-loB"/>
@@ -646,6 +650,10 @@
                         <viewLayoutGuide key="safeArea" id="dv0-9a-Lkz"/>
                     </view>
                     <connections>
+                        <outlet property="nowPlayingArtist" destination="P7d-n3-iKn" id="ukv-pD-K9G"/>
+                        <outlet property="nowPlayingImage" destination="Rzn-TC-MLu" id="zW5-aZ-cCR"/>
+                        <outlet property="nowPlayingTitle" destination="S5S-SP-jIf" id="QFT-Uh-gzN"/>
+                        <outlet property="playPauseButton" destination="2OW-Lb-NNC" id="LOM-u6-7th"/>
                         <outlet property="searchBar" destination="J7L-rY-pfa" id="O9r-vY-dGa"/>
                         <outlet property="tableView" destination="GdV-7J-fyg" id="Nif-m1-YKk"/>
                         <segue destination="xR9-oV-cUs" kind="show" identifier="SearchResultsToAlbum" id="dZ0-AF-8NJ"/>
@@ -1169,6 +1177,11 @@
                     <tabBarItem key="tabBarItem" title="Profile" id="A21-2b-3Jk"/>
                     <navigationItem key="navigationItem" id="fSf-Hc-ZCB"/>
                     <connections>
+                        <outlet property="nowPlayerView" destination="E94-y8-TsB" id="kkK-d8-Ta8"/>
+                        <outlet property="nowPlayingArtist" destination="3u6-0B-11d" id="mod-dw-YFv"/>
+                        <outlet property="nowPlayingImage" destination="ksX-S3-pDK" id="qFs-H3-yXu"/>
+                        <outlet property="nowPlayingTitle" destination="4fK-TF-L0G" id="ah9-eF-Cnz"/>
+                        <outlet property="playPauseButton" destination="Ylv-l9-cdu" id="fcb-Fs-Gb1"/>
                         <outlet property="profileTitleLabel" destination="8xU-4w-zvb" id="tiC-9x-ThC"/>
                         <outlet property="tableView" destination="oCh-eK-iOo" id="bLH-XP-wp9"/>
                         <segue destination="vgA-NM-44t" kind="show" identifier="goToFollow" id="PRy-BA-hLA"/>
@@ -1512,10 +1525,6 @@
                                             <constraint firstAttribute="width" constant="50" id="jvC-UT-49X"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-MI-MiF">
-                                        <rect key="frame" x="0.0" y="8" width="375" height="75"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2J-I8-MCh">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                         <connections>
@@ -1558,6 +1567,11 @@
                     <tabBarItem key="tabBarItem" title="Feed" id="MZf-WY-vU3"/>
                     <connections>
                         <outlet property="feedTitleLabel" destination="Wlv-Eg-ydn" id="hnx-mq-8D0"/>
+                        <outlet property="nowPlayerView" destination="J6o-nx-qGe" id="AsX-wr-lm9"/>
+                        <outlet property="nowPlayingArtist" destination="Yqp-Ap-86V" id="s6e-dZ-R6c"/>
+                        <outlet property="nowPlayingImage" destination="WZx-uz-SVa" id="eQl-Vu-HGc"/>
+                        <outlet property="nowPlayingTitle" destination="1BE-qw-8RC" id="M7f-5j-imN"/>
+                        <outlet property="playPauseButton" destination="scB-D6-z83" id="OaY-tB-5de"/>
                         <outlet property="tableView" destination="1DY-cI-juC" id="MJE-6s-kqc"/>
                         <segue destination="rxu-hJ-1Nd" kind="presentation" identifier="StartPost" id="DVm-nY-YqU"/>
                     </connections>
@@ -1684,8 +1698,12 @@
                         <viewLayoutGuide key="safeArea" id="y00-rh-Ny2"/>
                     </view>
                     <connections>
+                        <outlet property="playPauseButton" destination="BHA-QR-oMa" id="MLC-Xf-icP"/>
                         <outlet property="postText" destination="lMO-g1-GW5" id="pXK-np-QE5"/>
+                        <outlet property="shareAlbumCover" destination="zlh-Im-erE" id="AFQ-X0-uFS"/>
+                        <outlet property="shareArtist" destination="3Ug-CR-92Y" id="Rhc-Jw-bKM"/>
                         <outlet property="shareContent" destination="DpN-lc-wYZ" id="AB8-8u-ZTc"/>
+                        <outlet property="shareTitle" destination="F1w-Mc-rcy" id="ddE-Xg-j7z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Oe-91-pZf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1844,6 +1862,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="CgS-Nb-jxf"/>
                     <connections>
+                        <outlet property="nowPlayingArtist" destination="TgK-Yj-V7i" id="P8s-CP-l9r"/>
+                        <outlet property="nowPlayingImage" destination="zDF-8i-Svc" id="LRQ-NM-iss"/>
+                        <outlet property="nowPlayingTitle" destination="wrj-RQ-Ulr" id="OUL-Lz-MZa"/>
+                        <outlet property="playPauseButton" destination="RVD-OL-cCT" id="Zxe-4K-QkM"/>
                         <outlet property="tableView" destination="5IR-uV-swd" id="VOo-gh-iTi"/>
                         <segue destination="wXU-Cy-FFw" kind="show" identifier="FavoritesToList" id="Evj-MI-SSA"/>
                     </connections>
@@ -2065,6 +2087,10 @@
                     </view>
                     <connections>
                         <outlet property="displayTitle" destination="7CP-ha-TR1" id="SUA-Zd-47C"/>
+                        <outlet property="nowPlayingArtist" destination="Amw-Zn-dT6" id="QP3-ZF-bDL"/>
+                        <outlet property="nowPlayingImage" destination="Md5-Ma-rxs" id="eON-mI-WeD"/>
+                        <outlet property="nowPlayingTitle" destination="dPb-Dz-p98" id="BpC-jy-xSh"/>
+                        <outlet property="playPauseButton" destination="Oig-8j-Sjo" id="gvi-Yo-pgR"/>
                         <outlet property="tableView" destination="Xya-px-DbE" id="m16-3U-KOQ"/>
                         <segue destination="xR9-oV-cUs" kind="show" identifier="FavoritesListToAlbum" id="Bl2-yC-hUY"/>
                     </connections>
@@ -2503,6 +2529,10 @@
                     <tabBarItem key="tabBarItem" title="Profile" id="bOg-QE-wVX"/>
                     <navigationItem key="navigationItem" id="20q-lu-R1Z"/>
                     <connections>
+                        <outlet property="nowPlayingArtist" destination="bDu-32-dlX" id="hW7-Mw-n7y"/>
+                        <outlet property="nowPlayingImage" destination="fMA-ii-tXC" id="Rfm-qo-DLN"/>
+                        <outlet property="nowPlayingTitle" destination="CE5-aS-7DV" id="VRy-4a-wnV"/>
+                        <outlet property="playPauseButton" destination="uLQ-eF-Ra5" id="wjy-qb-UEq"/>
                         <outlet property="tableView" destination="sRe-m8-5fF" id="XCn-aD-Fl8"/>
                         <segue destination="vgA-NM-44t" kind="show" identifier="PeopleProfileToFollow" id="5Md-6Z-B37"/>
                     </connections>
@@ -2702,9 +2732,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ReD-vb-n90"/>
-        <segue reference="XVd-25-IIu"/>
-        <segue reference="5Md-6Z-B37"/>
-        <segue reference="Bl2-yC-hUY"/>
-        <segue reference="Q8E-bf-UVe"/>
+        <segue reference="DVm-nY-YqU"/>
+        <segue reference="PRy-BA-hLA"/>
+        <segue reference="xNQ-DH-ffZ"/>
+        <segue reference="hLg-qF-GAw"/>
     </inferredMetricsTieBreakers>
 </document>

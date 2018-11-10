@@ -19,8 +19,7 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
         }
     }
     
-    
-    var playerViewController: ConnectViewController {
+    var connectViewController: ConnectViewController {
         get {
             return self.window?.rootViewController as! ConnectViewController
         }
@@ -74,7 +73,7 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
         self.appRemote = appRemote
 //        playerViewController.appRemoteConnected()
-        playerViewController.performSegue(withIdentifier: "GoToFeed", sender: ConnectViewController())
+        connectViewController.performSegue(withIdentifier: "GoToFeed", sender: nil)
     }
     
     func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
