@@ -1,7 +1,11 @@
 package TrackChangesBackend;
 
 import java.io.IOException;
-import java.util.Vector;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -10,47 +14,77 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint (value="/endpoint")
+
+@ServerEndpoint (value="/ws")
 
 public class WebSocketEndpoint {
 		
 	//Store users and their sessions
-	//private static Map<String, Session> sessionUser = new HashMap<String, Session>();
-
-	//Session vector
-	private static Vector<Session> sessionVector = new Vector<Session>();
-
+	private static final Map<String, Session> sessions = new HashMap<String, Session>();
+	private static Application application = new Application();
+	private static Lock lock = new ReentrantLock();
+	
+	
 	//Called when swift client connects
 	@OnOpen 
 	public void open(Session session) {
+		lock.lock(); 
 		System.out.println("onOpen:: " + session.getId());
-		sessionVector.add(session);
-		
+		sessions.put(session.getId(), session);
+		lock.unlock();
 	}
+	
 	//Called when a connection is closed
 	@OnClose
-	public void close (Session session) {
-		System.out.println("onClose:: " + session.getId());
-		
-	}
-	
-	//Called when message is recieved by client
-	@OnMessage
-	public void onMessage (String message, Session session) {
-		System.out.println("onMessage::From= " + session.getId() + "Message= " + message);
-		try {
-			session.getBasicRemote().sendText("Hello TrackChanges Client " + session.getId() + "!");
-			
-		}catch(IOException ioe)
+	public void close(Session session) {
+		lock.lock();
+		System.out.println("onClose:: " + session.getId());	
+		if (sessions.get(session.getId()) != null)
 		{
-			ioe.printStackTrace();
+			//TO-DO: write Application.java 
+			application.removeSession(session));
+			sessions.remove(session.getId());
 		}
+		lock.unlock();
 	}
 	
+	//Called when a message is received by the client
+	@OnMessage
+	public void onMessage (byte[] b, Session session) {
+		lock.lock();
+		String printMe ="";
+		
+		try {
+			printMe = new String(b, "US-ASCII");
+		}catch(UnsupportedEncodingException uee) {
+			uee.printStackTrace();
+		}
+		JSONObject json = null; //need a way to parse incoming JSON
+		application.parseMessage(json, session, this);
+		
+		lock.unlock();
+		// System.out.println("onMessage::From= " + session.getId() + "Message= " + message);
+	
+	}
    @OnError
-    public void onError(Throwable t) {
-        System.out.println("onError::" + t.getMessage());
+    public void onError(Throwable e) {
+       	e.printStackTrace();
     }
+   
+   public void sendtoSession() {
+	   
+	   //TODO
+	   
+   }
+   
+   public void sendtoAll() {
+	   
+	   //TODO
+	   
+   }
+   
+   
+   
 
 		
 }
