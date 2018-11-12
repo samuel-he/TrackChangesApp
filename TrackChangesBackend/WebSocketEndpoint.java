@@ -1,8 +1,6 @@
-package server;
+package TrackChangesBackend;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 
 import javax.websocket.OnClose;
@@ -12,16 +10,15 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-
 @ServerEndpoint (value="/endpoint")
-public class TCWebSocket {
-	
+
+public class WebSocketEndpoint {
+		
 	//Store users and their sessions
 	//private static Map<String, Session> sessionUser = new HashMap<String, Session>();
-	
+
 	//Session vector
 	private static Vector<Session> sessionVector = new Vector<Session>();
-
 
 	//Called when swift client connects
 	@OnOpen 
@@ -55,6 +52,5 @@ public class TCWebSocket {
         System.out.println("onError::" + t.getMessage());
     }
 
-	
-	
+		
 }
