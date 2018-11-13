@@ -2,6 +2,7 @@ package TrackChangesBackend;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
@@ -14,12 +15,14 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.json.simple.JSONObject;
+
 
 @ServerEndpoint (value="/ws")
 
 public class WebSocketEndpoint {
 		
-	//Store users and their sessions
+	//Store users and their sessions in the map
 	private static final Map<String, Session> sessions = new HashMap<String, Session>();
 	private static Application application = new Application();
 	private static Lock lock = new ReentrantLock();
@@ -71,15 +74,36 @@ public class WebSocketEndpoint {
        	e.printStackTrace();
     }
    
-   public void sendtoSession() {
+   public void sendToSession(Session session, byte[] data) {
 	   
-	   //TODO
+	   lock.lock();
+	   try {
+		   ByteBuffer tobeSent = ByteBuffer.wrap(data);
+		   session.getBasicRemote().sendBinary(tobeSent);
+		   
+	   }catch(IOException ioe) {
+		   sessions.remove(session.getId());   
+	   }
+	   lock.unlock();
 	   
    }
    
-   public void sendtoAll() {
+   public void sendToAllSessions(Session session, byte[] data) {
 	   
-	   //TODO
+	   lock.lock();
+	   try {
+		   ByteBuffer tobeSent = ByteBuffer.wrap(data);
+		   //loop through sessions
+		   for (String key : sessions.keySet()) {
+			    if (sessions.get(key)!=session) {
+			    	sessions.get(key).getBasicRemote().sendBinary(tobeSent);
+			    }
+			}		   
+	   }catch(IOException ioe) {
+		   
+		   ioe.printStackTrace();
+	   }
+	   lock.unlock();
 	   
    }
    
