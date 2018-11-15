@@ -34,6 +34,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         tableView.estimatedRowHeight = 365
         tableView.rowHeight = UITableView.automaticDimension
+      
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +49,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func viewFollowing(_ sender: Any) {
+        ViewFollowers = false
         self.performSegue(withIdentifier: "goToFollow", sender: nil)
     }
     

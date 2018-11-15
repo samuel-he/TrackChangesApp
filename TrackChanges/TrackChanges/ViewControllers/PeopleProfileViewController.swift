@@ -32,6 +32,7 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
     ****/
     
     @IBAction func viewFollowing(_ sender: Any) {
+        ViewFollowers = false
         self.performSegue(withIdentifier: "PeopleProfileToFollow", sender: nil)
     }
     

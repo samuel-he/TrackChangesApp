@@ -40,7 +40,7 @@ class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Go back to profile page
     @IBAction func backToProfile(_ sender: Any) {
-       ViewFollowers = false
+        ViewFollowers = false
         navigationController?.popViewController(animated: true)
     }
     

@@ -1544,7 +1544,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BS1-fo-exm">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="265"/>
+                                                    <rect key="frame" x="15" y="15" width="345" height="250"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUU-SH-qj6">
                                                             <rect key="frame" x="82" y="205" width="181" height="32"/>
@@ -1564,7 +1564,7 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Jew-w9-bOx">
-                                                    <rect key="frame" x="132" y="148" width="111.33333333333331" height="42"/>
+                                                    <rect key="frame" x="132" y="163" width="111.33333333333331" height="42"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vladimir Usov" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8p-3R-4AP">
                                                             <rect key="frame" x="0.0" y="0.0" width="111.33333333333333" height="21"/>
@@ -1581,13 +1581,13 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Following" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCo-AM-M0R">
-                                                    <rect key="frame" x="50.999999999999993" y="98" width="72.333333333333314" height="20.333333333333329"/>
+                                                    <rect key="frame" x="50.999999999999993" y="113" width="72.333333333333314" height="20.333333333333343"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1M-Or-lx0">
-                                                    <rect key="frame" x="272.66666666666669" y="66" width="41" height="34"/>
+                                                    <rect key="frame" x="272.66666666666669" y="81" width="41" height="34"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                                                     <state key="normal" title="1729">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1597,14 +1597,14 @@
                                                     </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CGy-IS-6GI">
-                                                    <rect key="frame" x="137.66666666666666" y="39" width="100" height="100"/>
+                                                    <rect key="frame" x="137.66666666666666" y="54" width="100" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="HMA-of-6Cy"/>
                                                         <constraint firstAttribute="height" constant="100" id="neH-Z3-NS1"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2I4-MQ-kAz">
-                                                    <rect key="frame" x="71.666666666666671" y="66" width="31" height="34"/>
+                                                    <rect key="frame" x="71.666666666666671" y="81" width="31" height="34"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                                                     <state key="normal" title="431">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1614,7 +1614,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Followers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brZ-VW-ZAm">
-                                                    <rect key="frame" x="257" y="98" width="72.333333333333314" height="20.333333333333329"/>
+                                                    <rect key="frame" x="257" y="113" width="72.333333333333314" height="20.333333333333343"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1637,7 +1637,7 @@
                                                 <constraint firstItem="BS1-fo-exm" firstAttribute="top" secondItem="CGy-IS-6GI" secondAttribute="bottom" constant="-139" id="jxv-9x-MB9"/>
                                                 <constraint firstAttribute="trailing" secondItem="BS1-fo-exm" secondAttribute="trailing" constant="15" id="mdZ-gR-WMX"/>
                                                 <constraint firstItem="Jew-w9-bOx" firstAttribute="centerX" secondItem="BS1-fo-exm" secondAttribute="centerX" id="wHk-1L-NMT"/>
-                                                <constraint firstItem="BS1-fo-exm" firstAttribute="top" secondItem="jzI-1X-gWX" secondAttribute="top" id="zUM-rh-f8I"/>
+                                                <constraint firstItem="BS1-fo-exm" firstAttribute="top" secondItem="jzI-1X-gWX" secondAttribute="top" constant="15" id="zUM-rh-f8I"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1792,6 +1792,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="WSO-un-8pn"/>
                                 </constraints>
+                                <connections>
+                                    <segue destination="F8P-Wl-1Yx" kind="embed" id="MfB-RI-FRk"/>
+                                </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2004,7 +2007,7 @@
         <image name="user_male" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="omI-de-2ul"/>
+        <segue reference="npa-2q-raI"/>
         <segue reference="ReD-vb-n90"/>
         <segue reference="gJS-Gs-XJH"/>
         <segue reference="PRy-BA-hLA"/>
