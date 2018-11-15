@@ -43,7 +43,7 @@ class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
         self.albumCover.image = image
         let transition = CATransition()
         transition.duration = 0.3
-        transition.type = kCATransitionFade
+        transition.type = CATransitionType.fade
         self.albumCover.layer.add(transition, forKey: "transition")
     }
     

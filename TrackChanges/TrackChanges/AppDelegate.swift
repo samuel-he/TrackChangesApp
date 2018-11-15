@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 var AccessToken = String()
 
@@ -42,7 +43,8 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
         }
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        
         let parameters = appRemote.authorizationParameters(from: url);
         
         if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
@@ -53,8 +55,10 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
             print(error_description)
         }
         
+//        FirebaseApp.configure()
         return true
     }
+    
     
     func applicationWillResignActive(_ application: UIApplication) {
         appRemote.disconnect()

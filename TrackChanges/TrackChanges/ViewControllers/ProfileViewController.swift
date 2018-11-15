@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var profileTitleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    var tapToTheTop: UITapGestureRecognizer!
+//    var tapToTheTop: UITapGestureRecognizer!
     @IBOutlet weak var nowPlayerView: UIView!
     @IBOutlet weak var nowPlayingImage: UIImageView!
     @IBOutlet weak var nowPlayingTitle: UILabel!
@@ -28,11 +28,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Do any additional setup after loading the view.
         
         // Add gesture recognizer to move to the top on click
-        tapToTheTop = UITapGestureRecognizer(target: self, action: #selector(scrollToTop))
-        profileTitleLabel.addGestureRecognizer(tapToTheTop)
+//        tapToTheTop = UITapGestureRecognizer(target: self, action: #selector(scrollToTop))
+//        profileTitleLabel.addGestureRecognizer(tapToTheTop)
         
         tableView.estimatedRowHeight = 365
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +59,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if indexPath.section == 0 {
             return 245
         } else {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
     }
     
@@ -101,7 +101,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.nowPlayingImage.image = image
         let transition = CATransition()
         transition.duration = 0.3
-        transition.type = kCATransitionFade
+        transition.type = CATransitionType.fade
         self.nowPlayingImage.layer.add(transition, forKey: "transition")
     }
     

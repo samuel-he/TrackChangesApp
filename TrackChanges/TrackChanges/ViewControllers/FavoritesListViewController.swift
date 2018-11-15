@@ -10,7 +10,7 @@ import UIKit
 
 class FavoritesListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var displayTitle: UILabel!
+//    @IBOutlet weak var displayTitle: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var nowPlayingImage: UIImageView!
@@ -36,11 +36,11 @@ class FavoritesListViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewWillAppear(_ animated: Bool) {
         // Check which category was selected on the previous screen
         if FavoritesDisplayCategory == 0 {
-            displayTitle.text = "Songs"
+            self.title = "Songs"
         } else if FavoritesDisplayCategory == 1 {
-            displayTitle.text = "Albums"
+            self.title = "Albums"
         } else {
-            displayTitle.text = "Shared"
+            self.title = "Shared"
         }
     }
     
@@ -91,7 +91,7 @@ class FavoritesListViewController: UIViewController, UITableViewDelegate, UITabl
         self.nowPlayingImage.image = image
         let transition = CATransition()
         transition.duration = 0.3
-        transition.type = kCATransitionFade
+        transition.type = CATransitionType.fade
         self.nowPlayingImage.layer.add(transition, forKey: "transition")
     }
     

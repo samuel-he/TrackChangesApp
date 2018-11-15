@@ -1,0 +1,6 @@
+framework module Pods_TrackChanges {
+  umbrella header "Pods-TrackChanges-umbrella.h"
+
+  export *
+  module * { export * }
+}

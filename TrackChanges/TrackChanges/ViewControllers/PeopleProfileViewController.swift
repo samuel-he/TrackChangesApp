@@ -48,7 +48,7 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
         if indexPath.section == 0 {
             return 280
         } else {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
     }
     
@@ -90,7 +90,7 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
         self.nowPlayingImage.image = image
         let transition = CATransition()
         transition.duration = 0.3
-        transition.type = kCATransitionFade
+        transition.type = CATransitionType.fade
         self.nowPlayingImage.layer.add(transition, forKey: "transition")
     }
     

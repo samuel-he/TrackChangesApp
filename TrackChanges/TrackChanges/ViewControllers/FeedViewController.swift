@@ -24,7 +24,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var feedTitleLabel: UILabel!
-    var tapToTheTop: UITapGestureRecognizer!
+//    var tapToTheTop: UITapGestureRecognizer!
     @IBOutlet weak var nowPlayerView: UIView!
     @IBOutlet weak var nowPlayingImage: UIImageView!
     @IBOutlet weak var nowPlayingTitle: UILabel!
@@ -33,15 +33,17 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    navigationController?.navigationBar.prefersLargeTitles = true
 
         // Do any additional setup after loading the view.
         
         // Add gesture recognizer to move to the top on click
-        tapToTheTop = UITapGestureRecognizer(target: self, action: #selector(scrollToTop))
-        feedTitleLabel.addGestureRecognizer(tapToTheTop)
+//        tapToTheTop = UITapGestureRecognizer(target: self, action: #selector(scrollToTop))
+//        feedTitleLabel.addGestureRecognizer(tapToTheTop)
         
-        tableView.estimatedRowHeight = 365
-        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.estimatedRowHeight = 365
+//        tableView.rowHeight = UITableViewAutomaticDimension
         
         
     }
@@ -121,7 +123,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.nowPlayingImage.image = image
         let transition = CATransition()
         transition.duration = 0.3
-        transition.type = kCATransitionFade
+        transition.type = CATransitionType.fade
         self.nowPlayingImage.layer.add(transition, forKey: "transition")
     }
     

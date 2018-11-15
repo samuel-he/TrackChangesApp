@@ -11,7 +11,7 @@ import UIKit
 
 class SearchResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+//    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var allButton: UIButton!
     @IBOutlet weak var songsButton: UIButton!
     @IBOutlet weak var albumsButton: UIButton!
@@ -31,16 +31,16 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         // Set tableView background color
-        tableView.backgroundView = nil
-        tableView.backgroundColor = UIColor.white
+//        tableView.backgroundView = nil
+//        tableView.backgroundColor = UIColor.white
         
         getPlayerState()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         // Change cancel button color
-        let cancelButtonAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
-        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+//        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+//        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
     }
  
     /****
@@ -493,7 +493,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         self.nowPlayingImage.image = image
         let transition = CATransition()
         transition.duration = 0.3
-        transition.type = kCATransitionFade
+        transition.type = CATransitionType.fade
         self.nowPlayingImage.layer.add(transition, forKey: "transition")
     }
     

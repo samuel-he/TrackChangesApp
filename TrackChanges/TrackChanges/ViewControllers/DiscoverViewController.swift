@@ -17,20 +17,32 @@ var DiscoverNewReleases = [Album]()
 
 var SelectedAlbum = Album()
 
-class DiscoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
+class DiscoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UISearchControllerDelegate {
+
+    
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+//    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var nowPlayingImage: UIImageView!
     @IBOutlet weak var nowPlayingTitle: UILabel!
     @IBOutlet weak var nowPlayingArtist: UILabel!
     @IBOutlet weak var playPauseButton: UIButton!
+    let search = UISearchController(searchResultsController: nil)
+
+    
+    
+    
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+//        tableView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        search.delegate = self
+        search.searchBar.delegate = self
+        self.navigationItem.searchController = search
         
     }
     
@@ -43,8 +55,8 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidAppear(_ animated: Bool) {
         // Change cancel button color
-        let cancelButtonAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
-        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+//        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+//        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -408,13 +420,13 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
             }
             
             DispatchQueue.main.async {
-                let cell = self.tableView.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! DiscoverTableViewCell
-                cell.collectionView.reloadData()
+                let cell = self.tableView.cellForRow(at: IndexPath.init(row: 1, section: 0)) as? DiscoverTableViewCell
+                cell?.collectionView.reloadData()
             }
             
             DispatchQueue.main.async {
-                let cell = self.tableView.cellForRow(at: IndexPath.init(row: 2, section: 0)) as! DiscoverTableViewCell
-                cell.collectionView.reloadData()
+                let cell = self.tableView.cellForRow(at: IndexPath.init(row: 2, section: 0)) as? DiscoverTableViewCell
+                cell?.collectionView.reloadData()
             }
         }
         
@@ -502,6 +514,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     // Base url for spotify search
     var searchUrl = "https://api.spotify.com/v1/search?q="
     
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 
         // Request accecssToken
@@ -527,7 +540,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
                         
                         DispatchQueue.main.async {
                             // Get search parameter
-                            self.searchUrl += searchBar.text!
+                            self.searchUrl += self.search.searchBar.text!
                             self.searchUrl += "&type=album,artist,track"
                             self.searchUrl += "&limit=25"
                             self.searchUrl = self.searchUrl.replacingOccurrences(of: " ", with: "%20")
@@ -566,14 +579,15 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
  
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = true
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
-        view.endEditing(true)
-    }
+ 
+//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//        searchBar.showsCancelButton = true
+//    }
+//
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        searchBar.showsCancelButton = false
+//        view.endEditing(true)
+//    }
     
     
     // MARK: Update now playing view
@@ -596,7 +610,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         self.nowPlayingImage.image = image
         let transition = CATransition()
         transition.duration = 0.3
-        transition.type = kCATransitionFade
+        transition.type = CATransitionType.fade
         self.nowPlayingImage.layer.add(transition, forKey: "transition")
     }
     

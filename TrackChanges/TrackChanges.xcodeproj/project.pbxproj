@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BD94F0E219E067E002CA9E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */; };
 		30127D392172E41C00F6E267 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D382172E41C00F6E267 /* FeedViewController.swift */; };
 		30127D432173E0FF00F6E267 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D422173E0FF00F6E267 /* DiscoverViewController.swift */; };
 		30127D452173E67800F6E267 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D442173E67800F6E267 /* ProfileViewController.swift */; };
@@ -40,9 +41,11 @@
 		30B3AA612172620B007CA413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30B3AA602172620B007CA413 /* Assets.xcassets */; };
 		30B3AA642172620B007CA413 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B3AA622172620B007CA413 /* LaunchScreen.storyboard */; };
 		30BA49E3219A7A85003838A2 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA49E2219A7A85003838A2 /* Classes.swift */; };
+		7BAA1874D182FEF62E2404D7 /* Pods_TrackChanges.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C742CF5097EB4C2ECECD56 /* Pods_TrackChanges.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30127D382172E41C00F6E267 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		30127D422173E0FF00F6E267 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		30127D442173E67800F6E267 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +81,9 @@
 		30B3AA632172620B007CA413 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30B3AA652172620B007CA413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30BA49E2219A7A85003838A2 /* Classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
+		4E499525F759ECD382C6F62B /* Pods-TrackChanges.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackChanges.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackChanges/Pods-TrackChanges.release.xcconfig"; sourceTree = "<group>"; };
+		7D22366C3A51F9DE04B29E1B /* Pods-TrackChanges.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackChanges.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrackChanges/Pods-TrackChanges.debug.xcconfig"; sourceTree = "<group>"; };
+		94C742CF5097EB4C2ECECD56 /* Pods_TrackChanges.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackChanges.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30250C3D219374C100FBA215 /* SpotifyiOS.framework in Frameworks */,
+				7BAA1874D182FEF62E2404D7 /* Pods_TrackChanges.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +144,8 @@
 				30B3AA5521726207007CA413 /* TrackChanges */,
 				30B3AA5421726207007CA413 /* Products */,
 				30250C3C219374C100FBA215 /* SpotifyiOS.framework */,
+				7B2DB9FF41FCA7857FD20B08 /* Pods */,
+				B53038602CCE9B1C226EFA4F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -153,6 +162,7 @@
 			children = (
 				30BA49E2219A7A85003838A2 /* Classes.swift */,
 				30B3AA5621726208007CA413 /* AppDelegate.swift */,
+				0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */,
 				30B3AA5821726208007CA413 /* ViewController.swift */,
 				30B3AA5A21726208007CA413 /* Main.storyboard */,
 				308C8FC2217D2DF600D6337C /* Prototype Cells */,
@@ -165,6 +175,23 @@
 			path = TrackChanges;
 			sourceTree = "<group>";
 		};
+		7B2DB9FF41FCA7857FD20B08 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7D22366C3A51F9DE04B29E1B /* Pods-TrackChanges.debug.xcconfig */,
+				4E499525F759ECD382C6F62B /* Pods-TrackChanges.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B53038602CCE9B1C226EFA4F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94C742CF5097EB4C2ECECD56 /* Pods_TrackChanges.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -172,9 +199,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30B3AA682172620B007CA413 /* Build configuration list for PBXNativeTarget "TrackChanges" */;
 			buildPhases = (
+				4DB8011BE3743257303F45DD /* [CP] Check Pods Manifest.lock */,
 				30B3AA4F21726207007CA413 /* Sources */,
 				30B3AA5021726207007CA413 /* Frameworks */,
 				30B3AA5121726207007CA413 /* Resources */,
+				5E00F0AA335840510D81A642 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -197,6 +226,7 @@
 				TargetAttributes = {
 					30B3AA5221726207007CA413 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -230,11 +260,61 @@
 			files = (
 				30B3AA642172620B007CA413 /* LaunchScreen.storyboard in Resources */,
 				30B3AA612172620B007CA413 /* Assets.xcassets in Resources */,
+				0BD94F0E219E067E002CA9E3 /* GoogleService-Info.plist in Resources */,
 				30B3AA5C21726208007CA413 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4DB8011BE3743257303F45DD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TrackChanges-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E00F0AA335840510D81A642 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TrackChanges/Pods-TrackChanges-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TrackChanges/Pods-TrackChanges-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		30B3AA4F21726207007CA413 /* Sources */ = {
@@ -411,6 +491,7 @@
 		};
 		30B3AA692172620B007CA413 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D22366C3A51F9DE04B29E1B /* Pods-TrackChanges.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -420,7 +501,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TrackChanges/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -429,13 +510,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.trackchanges.TrackChanges;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TrackChanges-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		30B3AA6A2172620B007CA413 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E499525F759ECD382C6F62B /* Pods-TrackChanges.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -445,7 +527,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TrackChanges/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -454,7 +536,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.trackchanges.TrackChanges;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TrackChanges-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

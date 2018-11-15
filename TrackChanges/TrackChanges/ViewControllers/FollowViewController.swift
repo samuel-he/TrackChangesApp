@@ -12,15 +12,15 @@ class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    var tapToTheTop: UITapGestureRecognizer!
+//    var tapToTheTop: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        tapToTheTop = UITapGestureRecognizer(target: self, action: #selector(scrollToTop))
-        titleLabel.addGestureRecognizer(tapToTheTop)
+//        tapToTheTop = UITapGestureRecognizer(target: self, action: #selector(scrollToTop))
+//        titleLabel.addGestureRecognizer(tapToTheTop)
     }
     
     /****
@@ -32,9 +32,9 @@ class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         if ViewFollowers {
-            titleLabel.text = "Followers"
+            title = "Followers"
         } else {
-            titleLabel.text = "Following"
+            title = "Following"
         }
     }
     

@@ -76,7 +76,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         self.nowPlayingImage.image = image
         let transition = CATransition()
         transition.duration = 0.3
-        transition.type = kCATransitionFade
+        transition.type = CATransitionType.fade
         self.nowPlayingImage.layer.add(transition, forKey: "transition")
     }
     
