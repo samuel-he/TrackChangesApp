@@ -10,8 +10,8 @@ import UIKit
 import StoreKit
 import MediaPlayer
 
-let PlayURI = "spotify:album:5uMfshtC2Jwqui0NUyUYIL"
-let TrackIdentifier = "spotify:track:32ftxJzxMPgUFCM6Km9WTS"
+let PlayURI = ""
+let TrackIdentifier = ""
 
 class ConnectViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
     
@@ -20,7 +20,9 @@ class ConnectViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
     }
     
     @IBOutlet weak var connectButton: UIButton!
-
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,9 +31,14 @@ class ConnectViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         // Edit connect button
-        connectButton.layer.cornerRadius = 20
-        let title = NSAttributedString.init(string: "CONNECT", attributes: [NSAttributedStringKey.kern: 2, NSAttributedStringKey.foregroundColor: UIColor.white])
-        connectButton.setAttributedTitle(title, for: .normal)
+//        connectButton.layer.cornerRadius = 20
+        let emailPlaceholder = NSAttributedString.init(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue", size: 16)])
+        let passwordPlaceholder = NSAttributedString.init(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue", size: 16)])
+//        connectButton.setAttributedTitle(title, for: .normal)
+        emailField.attributedPlaceholder = emailPlaceholder
+        passwordField.attributedPlaceholder = passwordPlaceholder
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

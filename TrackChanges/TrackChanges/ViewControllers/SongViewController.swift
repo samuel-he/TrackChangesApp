@@ -83,33 +83,40 @@ class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
     ****/
     
     @IBAction func postSong(_ sender: Any) {
-        SharePost = true
-        ShareTitle = (songTitle.text as? String)!
-        ShareAlbum = albumCover.image!
-        ShareArtist = (artist.text as? String)!
-//        ShareTrackID = TrackIdentifier
+        SharePost = 1
     }
     
     @IBAction func playAndPauseSong(_ sender: Any) {
-        if PlayerState!.isPaused {
-            AppRemote.playerAPI?.play(TrackIdentifier, callback: { (track, error) in
-                print(error?.localizedDescription)
-            })
-            playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
-        } else {
-            AppRemote.playerAPI?.pause({ (track, error) in
-                print(error?.localizedDescription)
-            })
-            playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
+        AppRemote.playerAPI?.getPlayerState { (result, error) -> Void in
+            guard error == nil else { return }
+            
+            let playerState = result as! SPTAppRemotePlayerState
+            if playerState.isPaused {
+                AppRemote.playerAPI?.play(TrackIdentifier, callback: { (track, error) in
+                    print(error?.localizedDescription)
+                })
+                self.playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
+            } else {
+                AppRemote.playerAPI?.pause({ (track, error) in
+                    print(error?.localizedDescription)
+                })
+                self.playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
+            }
         }
     }
     
     @IBAction func playNextSong(_ sender: Any) {
-        
+        AppRemote.playerAPI?.skip(toNext: { (track, error) in
+            print(error?.localizedDescription)
+        })
+        getPlayerState()
     }
     
     @IBAction func playPreviousSong(_ sender: Any) {
-     
+        AppRemote.playerAPI?.skip(toPrevious: { (track, error) in
+            print(error?.localizedDescription)
+        })
+        getPlayerState()
     }
     
     /*

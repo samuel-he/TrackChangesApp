@@ -7,10 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
-
-var AlbumSongs = [String]()
-var CurrentSongIndex = Int()
 
 class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -25,7 +21,10 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //////
     
     @IBAction func shareTrack(_ sender: Any) {
-        SharePost = true
+        let sender = sender as! UIButton
+        SharePost = 1
+        // Set track to share
+        ShareTrack = SelectedAlbum.tracks[sender.tag]
     }
     
     //////
@@ -33,12 +32,8 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //////
     
     @IBAction func shareAlbum(_ sender: Any) {
-        SharePost = true
-        
-        // Set info for share post
-//        ShareTitle = (songTitle.text as? String)!
-//        ShareAlbum = albumCover.image!
-//        ShareArtist = (artist.text as? String)!
+        SharePost = 2
+        ShareAlbum = SelectedAlbum
     }
     
     /*****
@@ -58,32 +53,51 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return SelectedAlbum.tracks.count + 1 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath) as! AlbumCoverTableViewCell
+            cell.albumTitle.text = SelectedAlbum.name
+            cell.artist.text = SelectedAlbum.artist.name
+            
+            cell.albumCover.contentMode = .scaleAspectFit
+            let url = URL.init(string: SelectedAlbum.image)!
+            do {
+                let data = try Data(contentsOf: url)
+                cell.albumCover.image = UIImage.init(data: data)
+            } catch {
+                print(error.localizedDescription)
+            }
+            
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as! AlbumSongTableViewCell
+            cell.trackNumber.text = String(describing: indexPath.row)
+            cell.songTitle.text = SelectedAlbum.tracks[indexPath.row - 1].name
             cell.postButton.tag = indexPath.row - 1
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if indexPath.row != 0 {
-//            do {
-//                let audioPath = Bundle.main.path(forResource: AlbumSongs[indexPath.row], ofType: ".mp3")
-//                try AudioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath!) as URL)
-//                AudioPlayer.play()
-//                // Set index of current song in album array 
-//                CurrentSongIndex = indexPath.row
-//            } catch {
-//                print(error.localizedDescription)
-//            }
-//        }
+        // Play selected song
+//        AppRemote.playerAPI?.play(SelectedAlbum.tracks[indexPath.row - 1].uri, callback: { (track, error) in
+//            print(error?.localizedDescription)
+//        })
+        
+        AppRemote.playerAPI?.play(SelectedAlbum.tracks[indexPath.row - 1].uri, callback: defaultCallback)
+    }
+    
+    var defaultCallback: SPTAppRemoteCallback {
+        get {
+            return {[weak self] _, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 
     /*

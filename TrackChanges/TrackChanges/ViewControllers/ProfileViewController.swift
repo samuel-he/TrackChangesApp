@@ -33,8 +33,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         tableView.estimatedRowHeight = 365
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        getPlayerState()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         getPlayerState()
     }
     
     /*****

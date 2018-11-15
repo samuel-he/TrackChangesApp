@@ -43,6 +43,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.estimatedRowHeight = 365
         tableView.rowHeight = UITableViewAutomaticDimension
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         // Get info about current playing song
         getPlayerState()
     }
@@ -54,8 +58,24 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.setContentOffset(.zero, animated: true)
     }
     
+    
     @IBAction func playAndPauseSong(_ sender: Any) {
-        let sender = sender as! PlayPauseButton
+        AppRemote.playerAPI?.getPlayerState { (result, error) -> Void in
+            guard error == nil else { return }
+            
+            let playerState = result as! SPTAppRemotePlayerState
+            if playerState.isPaused {
+                AppRemote.playerAPI?.play(TrackIdentifier, callback: { (track, error) in
+                    print(error?.localizedDescription)
+                })
+                self.playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
+            } else {
+                AppRemote.playerAPI?.pause({ (track, error) in
+                    print(error?.localizedDescription)
+                })
+                self.playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
+            }
+        }
     }
     
     // Create a post 

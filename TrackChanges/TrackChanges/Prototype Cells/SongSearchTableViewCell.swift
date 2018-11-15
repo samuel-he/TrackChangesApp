@@ -11,6 +11,7 @@ import UIKit
 class SongSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var songTitle: UILabel!
     @IBOutlet weak var artist: UILabel!
+    @IBOutlet weak var albumCover: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

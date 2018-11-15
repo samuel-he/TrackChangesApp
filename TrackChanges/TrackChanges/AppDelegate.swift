@@ -1,15 +1,16 @@
 import UIKit
 
+var AccessToken = String()
+
 @UIApplicationMain
 class AppDelegate: UIResponder,
 UIApplicationDelegate, SPTAppRemoteDelegate {
     
-    fileprivate let redirectUri = URL(string: "trackchanges://spotify-login-callback/")!
-    fileprivate let clientIdentifier = "4bebf0c82b774aaa99764eb7c5c58cc4"
-    fileprivate let name = "Now Playing View"
+    let redirectUri = URL(string: "trackchanges://spotify-login-callback/")!
+    let clientIdentifier = "4bebf0c82b774aaa99764eb7c5c58cc4"
     
     // keys
-    static fileprivate let kAccessTokenKey = "access-token-key"
+    static let kAccessTokenKey = "access-token-key"
     
     var accessToken = UserDefaults.standard.string(forKey: kAccessTokenKey) {
         didSet {
@@ -34,7 +35,7 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
         appRemote.delegate = self
         return appRemote
     }()
-    
+
     class var sharedInstance: AppDelegate {
         get {
             return UIApplication.shared.delegate as! AppDelegate
@@ -47,24 +48,19 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
         if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
             appRemote.connectionParameters.accessToken = access_token
             self.accessToken = access_token
+            AccessToken = access_token
         } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
-//            playerViewController.showError(error_description);
+            print(error_description)
         }
         
         return true
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-//        playerViewController.appRemoteDisconnect()
         appRemote.disconnect()
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        self.connect();
-    }
-    
-    func connect() {
-//        playerViewController.appRemoteConnecting()
         appRemote.connect()
     }
     
@@ -72,18 +68,15 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
     
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
         self.appRemote = appRemote
-//        playerViewController.appRemoteConnected()
         connectViewController.performSegue(withIdentifier: "GoToFeed", sender: nil)
     }
     
     func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
         print("didFailConnectionAttemptWithError")
-//        playerViewController.appRemoteDisconnect()
     }
     
     func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
         print("didDisconnectWithError")
-//        playerViewController.appRemoteDisconnect()
     }
     
 }

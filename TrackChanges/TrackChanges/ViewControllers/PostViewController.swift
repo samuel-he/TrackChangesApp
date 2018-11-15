@@ -8,12 +8,9 @@
 
 import UIKit
 
-var SharePost = Bool()
-
-var ShareTitle = String()
-var ShareAlbum = UIImage()
-var ShareArtist = String()
-var ShareTrackID = String() 
+var SharePost = Int()
+var ShareTrack = Track()
+var ShareAlbum = Album()
 
 class PostViewController: UIViewController, UITextViewDelegate {
 
@@ -34,25 +31,63 @@ class PostViewController: UIViewController, UITextViewDelegate {
     
     // Dismiss PostViewController
     @IBAction func exitPost(_ sender: Any) {
-        SharePost = false 
+        SharePost = Int()
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func sendPost(_ sender: Any) {
+        if SharePost == 1 {
+            
+        } else if SharePost == 2 {
+            
+        } else {
+            var newPost = Post(message: postText.text)
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // Check if someone is sharing music 
-        if SharePost {
+        if SharePost == 1 || SharePost == 2 {
             shareContent.isHidden = false
         } else {
             shareContent.isHidden = true 
         }
         
+        if SharePost == 2 {
+            playPauseButton.isHidden = true
+          
+            shareTitle.text = ShareAlbum.name
+            shareArtist.text = ShareAlbum.artist.name
+            
+            shareAlbumCover.contentMode = .scaleAspectFit
+            let url = URL.init(string: ShareAlbum.image)!
+            do {
+                let data = try Data(contentsOf: url)
+                shareAlbumCover.image = UIImage.init(data: data)
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+        } else if SharePost == 1 {
+            playPauseButton.isHidden = false
+            
+            shareTitle.text = ShareTrack.name
+            shareArtist.text = ShareTrack.album.artist.name
+            
+            shareAlbumCover.contentMode = .scaleAspectFit
+            let url = URL.init(string: ShareTrack.album.image)!
+            do {
+                let data = try Data(contentsOf: url)
+                shareAlbumCover.image = UIImage.init(data: data)
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+        }
+        
         postText.text = "What are you listening to?"
         postText.textColor = UIColor.lightGray
-        
-        shareArtist.text = ShareArtist
-        shareAlbumCover.image = ShareAlbum
-        shareTitle.text = ShareTitle
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,15 +122,7 @@ class PostViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    
-    // MARK: Update now playing view
-    
-    func updateViewWithPlayerState(_ playerState: SPTAppRemotePlayerState) {
-        self.shareTitle.text = playerState.track.name
-        self.shareArtist.text = playerState.track.artist.name
-        fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
-            self.updateAlbumArtWithImage(image)
-        }
+
         
 //        if playerState.isPaused {
 //            playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
@@ -104,44 +131,12 @@ class PostViewController: UIViewController, UITextViewDelegate {
 //        }
         
         // Check if the current song being shared is playing
-        if playerState.track.name == ShareTitle || playerState.track.album.name == ShareTitle {
-            playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
-        } else {
-            playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
-        }
-    }
-    
-    func updateAlbumArtWithImage(_ image: UIImage) {
-        self.shareAlbumCover.image = image
-        let transition = CATransition()
-        transition.duration = 0.3
-        transition.type = kCATransitionFade
-        self.shareAlbumCover.layer.add(transition, forKey: "transition")
-    }
-    
-    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-        //        self.PlayerState = playerState
-        PlayerState = playerState
-        updateViewWithPlayerState(playerState)
-    }
-    
-    func fetchAlbumArtForTrack(_ track: SPTAppRemoteTrack, callback: @escaping (UIImage) -> Void ) {
-        AppRemote.imageAPI?.fetchImage(forItem: track, with: CGSize(width: 80, height: 80), callback: { (image, error) -> Void in
-            guard error == nil else { return }
-            
-            let image = image as! UIImage
-            callback(image)
-        })
-    }
-    
-    func getPlayerState() {
-        AppRemote.playerAPI?.getPlayerState { (result, error) -> Void in
-            guard error == nil else { return }
-            
-            let playerState = result as! SPTAppRemotePlayerState
-            self.updateViewWithPlayerState(playerState)
-        }
-    }
+//        if playerState.track.name == ShareTitle || playerState.track.album.name == ShareTitle {
+//            playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
+//        } else {
+//            playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
+//        }
+//    }
 
     /*
     // MARK: - Navigation
