@@ -30,6 +30,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Add gesture recognizer to move to the top on click
 //        tapToTheTop = UITapGestureRecognizer(target: self, action: #selector(scrollToTop))
 //        profileTitleLabel.addGestureRecognizer(tapToTheTop)
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         tableView.estimatedRowHeight = 365
         tableView.rowHeight = UITableView.automaticDimension

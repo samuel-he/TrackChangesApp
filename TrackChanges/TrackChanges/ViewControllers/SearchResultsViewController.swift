@@ -69,8 +69,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func previous(_ sender: Any) {
         // Clear search results
-        TrackResults.removeAll()
-        AlbumResults.removeAll()
+        
         navigationController?.popViewController(animated: true)
     }
     

@@ -516,6 +516,9 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Clear search results
+        TrackResults.removeAll()
+        AlbumResults.removeAll()
 
         // Request accecssToken
         let client = "4bebf0c82b774aaa99764eb7c5c58cc4:3be8d087faf841ea805d6d9842c0cbf0"
@@ -528,13 +531,11 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         tokenRequest.httpBody = "grant_type=client_credentials".data(using: .utf8)
         tokenRequest.httpMethod = "POST"
         
-        var accessToken = String()
-        
         URLSession.shared.dataTask(with: tokenRequest) { (data, response, error) in
             if let data = data {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        accessToken = (json["access_token"] as? String)!
+                        let accessToken = (json["access_token"] as? String)!
                         
                         // MARK: SEARCH
                         

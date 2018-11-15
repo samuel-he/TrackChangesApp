@@ -1217,7 +1217,7 @@
             </objects>
             <point key="canvasLocation" x="801" y="1555"/>
         </scene>
-        <!--Favorites View Controller-->
+        <!--Favorites-->
         <scene sceneID="P7A-Me-9a4">
             <objects>
                 <viewController id="1ZB-HU-w4x" customClass="FavoritesViewController" customModule="TrackChanges" customModuleProvider="target" sceneMemberID="viewController">
@@ -1282,7 +1282,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lem-1l-Wke"/>
                     </view>
-                    <navigationItem key="navigationItem" id="CgS-Nb-jxf"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="CgS-Nb-jxf"/>
                     <connections>
                         <outlet property="tableView" destination="5IR-uV-swd" id="VOo-gh-iTi"/>
                         <segue destination="wXU-Cy-FFw" kind="show" identifier="FavoritesToList" id="Evj-MI-SSA"/>
@@ -2004,10 +2004,10 @@
         <image name="user_male" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uQo-WO-uSY"/>
+        <segue reference="omI-de-2ul"/>
         <segue reference="ReD-vb-n90"/>
         <segue reference="gJS-Gs-XJH"/>
         <segue reference="PRy-BA-hLA"/>
-        <segue reference="dZ0-AF-8NJ"/>
+        <segue reference="xNQ-DH-ffZ"/>
     </inferredMetricsTieBreakers>
 </document>
