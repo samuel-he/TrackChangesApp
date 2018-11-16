@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0BD94F0E219E067E002CA9E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */; };
+		0BFBB56D219E3A0400A609E6 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB56C219E3A0400A609E6 /* MiniPlayerViewController.swift */; };
+		0BFBB56F219E9FE600A609E6 /* Song+ImageLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB56E219E9FE600A609E6 /* Song+ImageLoad.swift */; };
+		0BFBB573219EB23500A609E6 /* UIView+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB572219EB23500A609E6 /* UIView+Snapshot.swift */; };
 		30127D392172E41C00F6E267 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D382172E41C00F6E267 /* FeedViewController.swift */; };
 		30127D432173E0FF00F6E267 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D422173E0FF00F6E267 /* DiscoverViewController.swift */; };
 		30127D452173E67800F6E267 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D442173E67800F6E267 /* ProfileViewController.swift */; };
@@ -35,7 +38,6 @@
 		308C8FC621814D8700D6337C /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FC521814D8700D6337C /* PostTableViewCell.swift */; };
 		308C8FC82181536700D6337C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FC72181536700D6337C /* ProfileTableViewCell.swift */; };
 		30B3AA5721726208007CA413 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B3AA5621726208007CA413 /* AppDelegate.swift */; };
-		30B3AA5921726208007CA413 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B3AA5821726208007CA413 /* ViewController.swift */; };
 		30B3AA5C21726208007CA413 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B3AA5A21726208007CA413 /* Main.storyboard */; };
 		30B3AA5F21726208007CA413 /* TrackChanges.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30B3AA5D21726208007CA413 /* TrackChanges.xcdatamodeld */; };
 		30B3AA612172620B007CA413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30B3AA602172620B007CA413 /* Assets.xcassets */; };
@@ -46,6 +48,9 @@
 
 /* Begin PBXFileReference section */
 		0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0BFBB56C219E3A0400A609E6 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
+		0BFBB56E219E9FE600A609E6 /* Song+ImageLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Song+ImageLoad.swift"; sourceTree = "<group>"; };
+		0BFBB572219EB23500A609E6 /* UIView+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Snapshot.swift"; sourceTree = "<group>"; };
 		30127D382172E41C00F6E267 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		30127D422173E0FF00F6E267 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		30127D442173E67800F6E267 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -74,7 +79,6 @@
 		308C8FCB2184000100D6337C /* TrackChanges-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrackChanges-Bridging-Header.h"; sourceTree = "<group>"; };
 		30B3AA5321726207007CA413 /* TrackChanges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackChanges.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B3AA5621726208007CA413 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		30B3AA5821726208007CA413 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		30B3AA5B21726208007CA413 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		30B3AA5E21726208007CA413 /* TrackChanges.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TrackChanges.xcdatamodel; sourceTree = "<group>"; };
 		30B3AA602172620B007CA413 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,23 +103,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		308C8FC1217D2DBF00D6337C /* ViewControllers */ = {
+		0BFBB574219F8A8200A609E6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				30BA49E2219A7A85003838A2 /* Classes.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0BFBB575219F8A9200A609E6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				30B3AA622172620B007CA413 /* LaunchScreen.storyboard */,
+				30B3AA5A21726208007CA413 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0BFBB576219F8A9900A609E6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				308C8FC2217D2DF600D6337C /* Prototype Cells */,
+				0BFBB56C219E3A0400A609E6 /* MiniPlayerViewController.swift */,
+				308C8FAC217BC12200D6337C /* SongViewController.swift */,
 				308179D321855AE600DCCC4F /* ConnectViewController.swift */,
+				30127D382172E41C00F6E267 /* FeedViewController.swift */,
+				30127D422173E0FF00F6E267 /* DiscoverViewController.swift */,
+				308C8FB2217BC28300D6337C /* SearchResultsViewController.swift */,
 				308179D6218FBEDD00DCCC4F /* FavoritesViewController.swift */,
 				308179D8218FBF5400DCCC4F /* FavoritesListViewController.swift */,
-				308C8FAC217BC12200D6337C /* SongViewController.swift */,
 				308C8FB4217BDC4C00D6337C /* PeopleProfileViewController.swift */,
 				30127D442173E67800F6E267 /* ProfileViewController.swift */,
-				308C8FB2217BC28300D6337C /* SearchResultsViewController.swift */,
-				30127D382172E41C00F6E267 /* FeedViewController.swift */,
 				308C8FAA217BC10100D6337C /* AlbumViewController.swift */,
-				30127D422173E0FF00F6E267 /* DiscoverViewController.swift */,
 				30127D4E21740AA200F6E267 /* FollowViewController.swift */,
 				30127D5221758D5300F6E267 /* PostViewController.swift */,
 			);
-			path = ViewControllers;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0BFBB577219F8AA200A609E6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				30B3AA5621726208007CA413 /* AppDelegate.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0BFBB578219F8AA800A609E6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0BFBB56E219E9FE600A609E6 /* Song+ImageLoad.swift */,
+				0BFBB572219EB23500A609E6 /* UIView+Snapshot.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		308C8FC2217D2DF600D6337C /* Prototype Cells */ = {
@@ -160,17 +200,15 @@
 		30B3AA5521726207007CA413 /* TrackChanges */ = {
 			isa = PBXGroup;
 			children = (
-				30BA49E2219A7A85003838A2 /* Classes.swift */,
-				30B3AA5621726208007CA413 /* AppDelegate.swift */,
-				0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */,
-				30B3AA5821726208007CA413 /* ViewController.swift */,
-				30B3AA5A21726208007CA413 /* Main.storyboard */,
-				308C8FC2217D2DF600D6337C /* Prototype Cells */,
-				308C8FC1217D2DBF00D6337C /* ViewControllers */,
-				30B3AA602172620B007CA413 /* Assets.xcassets */,
-				30B3AA622172620B007CA413 /* LaunchScreen.storyboard */,
+				0BFBB574219F8A8200A609E6 /* Model */,
+				0BFBB575219F8A9200A609E6 /* View */,
+				0BFBB576219F8A9900A609E6 /* Controller */,
+				0BFBB578219F8AA800A609E6 /* Helpers */,
+				0BFBB577219F8AA200A609E6 /* Supporting Files */,
 				30B3AA652172620B007CA413 /* Info.plist */,
+				0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */,
 				30B3AA5D21726208007CA413 /* TrackChanges.xcdatamodeld */,
+				30B3AA602172620B007CA413 /* Assets.xcassets */,
 			);
 			path = TrackChanges;
 			sourceTree = "<group>";
@@ -321,14 +359,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BFBB56F219E9FE600A609E6 /* Song+ImageLoad.swift in Sources */,
 				308179D7218FBEDD00DCCC4F /* FavoritesViewController.swift in Sources */,
 				308179D521855BF800DCCC4F /* TrackChanges-Bridging-Header.h in Sources */,
 				30127D4F21740AA200F6E267 /* FollowViewController.swift in Sources */,
-				30B3AA5921726208007CA413 /* ViewController.swift in Sources */,
 				308C8FAF217BC1D500D6337C /* AlbumSongTableViewCell.swift in Sources */,
 				30B3AA5721726208007CA413 /* AppDelegate.swift in Sources */,
 				308C8FBE217D29BF00D6337C /* SongSearchTableViewCell.swift in Sources */,
 				308C8FC42180E95500D6337C /* SearchResultsTitleTableViewCell.swift in Sources */,
+				0BFBB56D219E3A0400A609E6 /* MiniPlayerViewController.swift in Sources */,
 				308C8FB8217D26B300D6337C /* PeopleSearchTableViewCell.swift in Sources */,
 				30127D5321758D5300F6E267 /* PostViewController.swift in Sources */,
 				30127D4B2174002700F6E267 /* DiscoverTableViewCell.swift in Sources */,
@@ -336,6 +375,7 @@
 				30127D4D217403D100F6E267 /* DiscoverCollectionViewCell.swift in Sources */,
 				308179DB2190075D00DCCC4F /* FavoritesTableViewCell.swift in Sources */,
 				308C8FB3217BC28300D6337C /* SearchResultsViewController.swift in Sources */,
+				0BFBB573219EB23500A609E6 /* UIView+Snapshot.swift in Sources */,
 				308C8FAB217BC10100D6337C /* AlbumViewController.swift in Sources */,
 				30BA49E3219A7A85003838A2 /* Classes.swift in Sources */,
 				308C8FBA217D28D400D6337C /* AlbumSearchTableViewCell.swift in Sources */,

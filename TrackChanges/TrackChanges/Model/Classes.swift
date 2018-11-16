@@ -38,19 +38,25 @@ class Track {
     var uri: String
     var album: Album
     var id: String
+    var imageURL: URL?
+    var artist: String
+    var image: UIImage?
     
     init() {
         self.name = ""
         self.uri = ""
         self.album = Album()
         self.id = ""
+        self.artist = ""
     }
 
-    init(name: String, uri: String, album: Album, id: String) {
+    init(name: String, uri: String, album: Album, id: String,  image: URL, artist: String) {
         self.name = name
         self.uri = uri
         self.album = album
         self.id = id
+        self.imageURL = image
+        self.artist = artist
     }
 
 }

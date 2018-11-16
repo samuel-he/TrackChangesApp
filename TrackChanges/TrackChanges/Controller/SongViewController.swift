@@ -33,7 +33,7 @@ class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
         }
         
         if playerState.isPaused {
-            playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
+            playPauseButton.setImage(UIImage.init(named: "play"), for: .normal)
         } else {
             playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
         }
@@ -53,7 +53,7 @@ class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
     }
     
     func fetchAlbumArtForTrack(_ track: SPTAppRemoteTrack, callback: @escaping (UIImage) -> Void ) {
-        AppRemote.imageAPI?.fetchImage(forItem: track, with: CGSize(width: 250, height: 250), callback: { (image, error) -> Void in
+        AppRemote.imageAPI?.fetchImage(forItem: track, with: CGSize(width: 2000, height: 2000), callback: { (image, error) -> Void in
             guard error == nil else { return }
             
             let image = image as! UIImage

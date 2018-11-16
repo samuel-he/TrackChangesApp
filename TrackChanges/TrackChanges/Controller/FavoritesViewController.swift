@@ -60,17 +60,17 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: Update now playing view
     
     func updateViewWithPlayerState(_ playerState: SPTAppRemotePlayerState) {
-        self.nowPlayingTitle.text = playerState.track.name
-        self.nowPlayingArtist.text = playerState.track.artist.name
+//        self.nowPlayingTitle.text = playerState.track.name
+//        self.nowPlayingArtist.text = playerState.track.artist.name
         fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
-            self.updateAlbumArtWithImage(image)
+//            self.updateAlbumArtWithImage(image)
         }
         
-        if playerState.isPaused {
-            playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
-        } else {
-            playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
-        }
+//        if playerState.isPaused {
+//            playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
+//        } else {
+//            playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
+//        }
     }
     
     func updateAlbumArtWithImage(_ image: UIImage) {

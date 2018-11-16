@@ -54,10 +54,14 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
         } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
             print(error_description)
         }
-        
-//        FirebaseApp.configure()
         return true
     }
+    
+//    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+//        FirebaseApp.configure()
+//
+//        return true
+//    }
     
     
     func applicationWillResignActive(_ application: UIApplication) {
