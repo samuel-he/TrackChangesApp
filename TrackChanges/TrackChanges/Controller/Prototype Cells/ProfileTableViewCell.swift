@@ -15,7 +15,8 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var username: UILabel!
-
+    @IBOutlet weak var followButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

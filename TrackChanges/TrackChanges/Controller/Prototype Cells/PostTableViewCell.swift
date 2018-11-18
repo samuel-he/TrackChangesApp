@@ -18,6 +18,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var artist: UILabel!
     @IBOutlet weak var playPauseButton: PlayPauseButton!
+    @IBOutlet weak var shareContent: UIView!
     
     override func layoutSubviews() {
 //        self.profilePic.layer.cornerRadius = self.profilePic.frame.width / 2

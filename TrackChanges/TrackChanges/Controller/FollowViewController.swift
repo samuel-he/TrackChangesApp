@@ -8,6 +8,8 @@
 
 import UIKit
 
+var SelectedUser = User()
+
 class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -49,15 +51,63 @@ class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        if FollowFromProfile {
+            if ViewFollowers {
+                return currentUser.followers.count
+            } else {
+                return currentUser.following.count
+            }
+        } else {
+            if ViewFollowers {
+                return SelectedUser.followers.count
+            } else {
+                return SelectedUser.following.count
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if FollowFromProfile {
+            if ViewFollowers {
+                SelectedUser = currentUser.followers[indexPath.row]
+            } else {
+                SelectedUser = currentUser.following[indexPath.row]
+            }
+        } else {
+        
+            if ViewFollowers {
+                SelectedUser = SelectedUser.followers[indexPath.row]
+            } else {
+                SelectedUser = SelectedUser.following[indexPath.row]
+            }
+        }
+
         self.performSegue(withIdentifier: "FollowToProfile", sender: self)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FollowCell", for: indexPath) as! FollowTableViewCell
+        
+        if ViewFollowers  {
+            cell.name.text = currentUser.followers[indexPath.row].displayName
+            cell.username.text = currentUser.followers[indexPath.row].username
+            do {
+                let data = try Data(contentsOf: URL(string: currentUser.followers[indexPath.row].imageUrl)!)
+                cell.profilePic.image = UIImage.init(data: data)
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            cell.name.text = currentUser.following[indexPath.row].displayName
+            cell.username.text = currentUser.following[indexPath.row].username
+            do {
+                let data = try Data(contentsOf: URL(string: currentUser.following[indexPath.row].imageUrl)!)
+                    cell.profilePic.image = UIImage.init(data: data)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+
         return cell 
     }
     

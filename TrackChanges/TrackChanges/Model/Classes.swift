@@ -82,24 +82,26 @@ class Artist {
 class Post {
     var message: String
     var timestamp: String
+    var trackId: String?
+    var albumId: String?
     var track: Track?
-    var album: Album?
+    var album: Album? 
 
-    init(message: String, track: Track) {
+    init(message: String, trackId: String) {
         self.message = message
         self.timestamp = String(Date.timeIntervalSinceReferenceDate)
-        self.track = track
+        self.trackId = trackId
     }
     
-    init(message: String, album: Album) {
+    init(message: String, albumId: String) {
         self.message = message
-        self.timestamp = String(Date.timeIntervalSinceReferenceDate)
-        self.album = album
+        self.timestamp = String(NSDate().timeIntervalSince1970)
+        self.albumId = albumId
     }
     
     init(message: String) {
         self.message = message
-        self.timestamp = String(Date.timeIntervalSinceReferenceDate)
+        self.timestamp = String(NSDate().timeIntervalSince1970)
     }
 }
 
@@ -113,6 +115,7 @@ class User {
     var lastName: String?
     var following = [User]()
     var followers = [User]()
+    var posts = [Post]() 
     
     init() {
         self.displayName = ""

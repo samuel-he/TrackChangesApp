@@ -125,6 +125,8 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         // Check which kind of cell was tapped
         if let cell = tableView.cellForRow(at: indexPath) as? PeopleSearchTableViewCell {
             // Go to person's profile
+            SelectedUser = UserResults[indexPath.row] 
+            
             self.performSegue(withIdentifier: "SearchResultsToProfile", sender: nil)
         } else if let cell = tableView.cellForRow(at: indexPath) as? SongSearchTableViewCell {
             
@@ -234,6 +236,18 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
             return cell
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath) as! PeopleSearchTableViewCell
+            
+            cell.name.text = UserResults[indexPath.row].displayName
+            cell.username.text = UserResults[indexPath.row].username
+            
+            let url = URL.init(string: UserResults[indexPath.row].imageUrl)!
+            do {
+                let data = try Data(contentsOf: url)
+                cell.userImage.image = UIImage.init(data: data)
+            } catch {
+                print(error.localizedDescription)
+            }
+            
             return cell
         } else {
             return UITableViewCell()

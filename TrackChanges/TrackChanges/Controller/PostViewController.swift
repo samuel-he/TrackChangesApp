@@ -30,39 +30,15 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        // PJ
-//        var request2 = URLRequest(url: URL(string: "ws://172.20.10.3:8080/TrackChangesBackend/endpoint")!)
-//        request2.timeoutInterval = 5
-//        socket2 = WebSocket(request: request2)
-//        socket2.delegate = self
-//        socket2.connect()
+        // Setup a socket to backend
+        var request = URLRequest(url: URL(string: "ws://172.20.10.4:8080/TrackChangesBackend/endpoint")!)
+        request.timeoutInterval = 5
+        //        socket = WebSocket(request: request)
+        socket.delegate = self
         
     }
     
-    
-    
-//    func send(_ value: Any) {
-//
-//        guard JSONSerialization.isValidJSONObject(value) else {
-//            print("[WEBSOCKET] Value is not a valid JSON object.\n \(value)")
-//            return
-//        }
-//
-//        if JSONSerialization.isValidJSONObject(value) { // True
-//            do {
-//                let rawData = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
-//                print(rawData)
-////                print(value)
-//                socket.write(data: rawData)
-//
-//            } catch let error {
-//                print("[WEBSOCKET] Error serializing JSON:\n\(error)")
-//            }
-//        }
-//    }
-    
+
     func websocketDidConnect(socket: WebSocketClient) {
         print("websocket is connected")
     }
@@ -83,6 +59,12 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("Received data: \(data.count)")
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+            print(json)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     // Dismiss PostViewController
@@ -92,33 +74,64 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
     }
     
     @IBAction func sendPost(_ sender: Any) {
+ 
+        let newPost = Post(message: postText.text)
         
-        let json:NSMutableDictionary = NSMutableDictionary()
+        if SharePost == 1 {
+            let json:NSMutableDictionary = NSMutableDictionary()
+            
+            json.setValue("add_post", forKey: "request")
+            json.setValue(currentUser.username, forKey: "post_user_id")
+            json.setValue(newPost.timestamp, forKey: "post_timestamp")
+            json.setValue(newPost.message, forKey: "post_message")
+            json.setValue(ShareTrack.id, forKey: "post_song_id")
+            json.setValue("", forKey: "post_album_id")
+            json.setValue("song", forKey: "post_type")
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+            let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            
+            print(jsonString)
+            
+            socket.write(data: jsonData)
+        } else if SharePost == 2 {
+            let json:NSMutableDictionary = NSMutableDictionary()
+            
+            json.setValue("add_post", forKey: "request")
+            json.setValue(currentUser.username, forKey: "post_user_id")
+            json.setValue(newPost.timestamp, forKey: "post_timestamp")
+            json.setValue(newPost.message, forKey: "post_message")
+            json.setValue("", forKey: "post_song_id")
+            json.setValue(ShareAlbum.id, forKey: "post_album_id")
+            json.setValue("album", forKey: "post_type")
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+            let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            
+            print(jsonString)
+            
+            socket.write(data: jsonData)
+        } else {
+            
+            let json:NSMutableDictionary = NSMutableDictionary()
+            
+            json.setValue("add_post", forKey: "request")
+            json.setValue(currentUser.username, forKey: "post_user_id")
+            json.setValue(newPost.timestamp, forKey: "post_timestamp")
+            json.setValue(newPost.message, forKey: "post_message")
+            json.setValue("", forKey: "post_song_id")
+            json.setValue("", forKey: "post_album_id")
+            json.setValue("regular", forKey: "post_type") 
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+            let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            
+            print(jsonString)
+            
+            socket.write(data: jsonData)
+        }
         
-        let json1:NSMutableArray = NSMutableArray()
-        
-        json1.add("image")
-        json1.add("email")
-        
-        json.setValue("getFeed", forKey: "request")
-        json.setObject(json1, forKey: "items" as NSCopying)
-
-        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
-        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
-        
-        print(jsonString)
-        
-        socket.write(data: jsonData)
-        
-        
-//        if SharePost == 1 {
-//
-//        } else if SharePost == 2 {
-//
-//        } else {
-//            var newPost = Post(message: postText.text)
-//
-//        }
+        exitPost(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,9 +142,25 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
             shareContent.isHidden = true 
         }
         
-        if SharePost == 2 {
+        // Sharing a track
+        if SharePost == 1 {
+            playPauseButton.isHidden = false
+            
+            shareTitle.text = ShareTrack.name
+            shareArtist.text = ShareTrack.album.artist.name
+            
+            shareAlbumCover.contentMode = .scaleAspectFit
+            let url = URL.init(string: ShareTrack.album.image)!
+            do {
+                let data = try Data(contentsOf: url)
+                shareAlbumCover.image = UIImage.init(data: data)
+            } catch {
+                print(error.localizedDescription)
+            }
+            // Sharing an album
+        } else if SharePost == 2 {
             playPauseButton.isHidden = true
-          
+            
             shareTitle.text = ShareAlbum.name
             shareArtist.text = ShareAlbum.artist.name
             
@@ -143,22 +172,6 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
             } catch {
                 print(error.localizedDescription)
             }
-            
-        } else if SharePost == 1 {
-            playPauseButton.isHidden = false
-            
-            shareTitle.text = ShareTrack.name
-            shareArtist.text = ShareTrack.album.artist.name
-            
-            shareAlbumCover.contentMode = .scaleAspectFit
-//            let url = URL.init(string: ShareTrack.album.image)!
-//            do {
-//                let data = try Data(contentsOf: url)
-//                shareAlbumCover.image = UIImage.init(data: data)
-//            } catch {
-//                print(error.localizedDescription)
-//            }
-            
         }
         
         postText.text = "What are you listening to?"

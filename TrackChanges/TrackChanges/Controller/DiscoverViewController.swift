@@ -7,17 +7,19 @@
 //
 
 import UIKit
+import Starscream
 
 var SearchResults = [String: Any]()
 var TrackResults = [Track]()
 var AlbumResults = [Album]()
+var UserResults = [User]()
 
 var DiscoverRecommendations = [Track]()
 var DiscoverNewReleases = [Album]()
 
 var SelectedAlbum = Album()
 
-class DiscoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UISearchControllerDelegate {
+class DiscoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UISearchControllerDelegate, WebSocketDelegate {
     
     var miniPlayer: MiniPlayerViewController?
     
@@ -31,6 +33,11 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         search.searchBar.delegate = self
         self.navigationItem.searchController = search
         self.navigationItem.hidesSearchBarWhenScrolling = false
+        
+        var request = URLRequest(url: URL(string: "ws://172.20.10.5:8080/TrackChangesBackend/endpoint")!)
+        request.timeoutInterval = 5
+        //        socket = WebSocket(request: request)
+        socket.delegate = self
         
         getNewReleases()
         getRecommendations()
@@ -567,6 +574,62 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         }.resume()
         
         
+        // Send request to database to search for users
+        
+        let json:NSMutableDictionary = NSMutableDictionary()
+        
+        json.setValue("search_users", forKey: "request")
+        json.setValue(self.search.searchBar.text, forKey: "search_term")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        print(jsonString)
+        
+        socket.write(data: jsonData)
+        
+    }
+    
+    
+    // MARK: WebSocket Delegate functions
+    func websocketDidConnect(socket: WebSocketClient) {
+        
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        if let e = error as? WSError {
+            print("websocket is disconnected: \(e.message)")
+        } else if let e = error {
+            print("websocket is disconnected: \(e.localizedDescription)")
+        } else {
+            print("websocket disconnected")
+        }
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print("Received text: \(text)")
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print("Received data: \(data.count)")
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+            if json["response"] as? String == "search_users" {
+                let userResults = json["search_users"] as! [[String: Any]]
+                
+                for user in userResults {
+                    var userResult = User()
+                    userResult.imageUrl = user["user_imageurl"] as! String
+                    userResult.username = user["user_id"] as! String
+                    userResult.displayName = user["user_displayname"] as! String
+                    
+                    UserResults.append(userResult)
+                }
+            }
+            
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     // MARK: Spotify Browse to populate discover

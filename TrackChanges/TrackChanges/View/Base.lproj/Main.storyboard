@@ -214,6 +214,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="name" destination="V9x-ht-VoP" id="ZEO-Lg-8uA"/>
+                                            <outlet property="userImage" destination="CpK-y7-Abl" id="vdp-OK-bQm"/>
                                             <outlet property="username" destination="IiO-as-YF8" id="zJ4-V4-aSy"/>
                                         </connections>
                                     </tableViewCell>
@@ -880,6 +881,7 @@
                                             <outlet property="playPauseButton" destination="3tL-Db-MhQ" id="xSn-y2-9wy"/>
                                             <outlet property="postContent" destination="JlY-aD-AHP" id="hNQ-jl-QIg"/>
                                             <outlet property="profilePic" destination="i83-qb-2wY" id="Wth-JK-5dz"/>
+                                            <outlet property="shareContent" destination="3sb-0C-3Nw" id="inv-Mu-Y5d"/>
                                             <outlet property="title" destination="qg5-wh-uUA" id="48b-cW-ITo"/>
                                             <outlet property="username" destination="UHf-KO-2Lp" id="X3r-rP-V5v"/>
                                         </connections>
@@ -1467,55 +1469,54 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1b4-TU-o4Q">
-                                <rect key="frame" x="66" y="362" width="243" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aGh-rC-SCB">
-                                <rect key="frame" x="66" y="440" width="243" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afn-Kq-JVY">
-                                <rect key="frame" x="66" y="571" width="243" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
-                                <state key="normal" title="Sign Up">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Spotify_Logo_RGB_White" translatesAutoresizingMaskIntoConstraints="NO" id="2rb-fg-rey">
+                                <rect key="frame" x="102.66666666666669" y="381" width="170" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="8we-Ox-Kfk"/>
+                                    <constraint firstAttribute="width" constant="170" id="TGl-rS-Sc0"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPo-1k-mRI">
+                                <rect key="frame" x="100" y="457" width="175" height="40"/>
+                                <color key="backgroundColor" red="0.1176470588" green="0.84313725490000002" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="175" id="GIq-ja-S6p"/>
+                                    <constraint firstAttribute="height" constant="40" id="H6z-dQ-13Q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                <state key="normal" title="CONNECT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="connectToSpotify:" destination="ZJw-I7-OYw" eventType="touchUpInside" id="MOy-su-lnU"/>
+                                    <action selector="connectToSpotify:" destination="ZJw-I7-OYw" eventType="touchUpInside" id="MIz-PS-nsk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8t-0a-R6b">
-                                <rect key="frame" x="66" y="511" width="243" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
-                                <state key="normal" title="Login">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OE1-ac-nPF">
+                                <rect key="frame" x="106" y="534" width="166" height="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="Continue as Guest">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="connectToSpotify:" destination="ZJw-I7-OYw" eventType="touchUpInside" id="txS-hC-k5f"/>
+                                    <action selector="connectAsGuest:" destination="ZJw-I7-OYw" eventType="touchUpInside" id="C8S-Dj-OTR"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="OE1-ac-nPF" firstAttribute="centerX" secondItem="aaG-43-37a" secondAttribute="centerX" constant="1.5" id="H0q-Gs-YiH"/>
+                            <constraint firstItem="OE1-ac-nPF" firstAttribute="top" secondItem="MPo-1k-mRI" secondAttribute="bottom" constant="37" id="LQg-Zh-u9e"/>
+                            <constraint firstItem="2rb-fg-rey" firstAttribute="centerX" secondItem="aaG-43-37a" secondAttribute="centerX" id="QYP-6s-vjC"/>
+                            <constraint firstItem="MPo-1k-mRI" firstAttribute="centerX" secondItem="aaG-43-37a" secondAttribute="centerX" id="Wi9-0V-QtP"/>
                             <constraint firstItem="woN-Jq-hcW" firstAttribute="top" secondItem="aaG-43-37a" secondAttribute="top" constant="201" id="fxE-oP-8Vi"/>
+                            <constraint firstItem="MPo-1k-mRI" firstAttribute="top" secondItem="2rb-fg-rey" secondAttribute="bottom" constant="26" id="iu4-69-JPB"/>
                             <constraint firstItem="woN-Jq-hcW" firstAttribute="centerX" secondItem="aaG-43-37a" secondAttribute="centerX" id="tOL-LH-8KW"/>
+                            <constraint firstItem="2rb-fg-rey" firstAttribute="top" secondItem="woN-Jq-hcW" secondAttribute="bottom" constant="61" id="y63-gO-kdS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aaG-43-37a"/>
                     </view>
                     <connections>
-                        <outlet property="connectButton" destination="T8t-0a-R6b" id="JFj-MT-SMa"/>
-                        <outlet property="emailField" destination="1b4-TU-o4Q" id="lLT-ne-uvR"/>
-                        <outlet property="passwordField" destination="aGh-rC-SCB" id="2US-bx-qN5"/>
+                        <outlet property="connectButton" destination="MPo-1k-mRI" id="mwo-hF-Gbb"/>
                         <segue destination="cQO-9F-crO" kind="presentation" identifier="GoToFeed" id="hdO-27-5ov"/>
                     </connections>
                 </viewController>
@@ -1575,6 +1576,9 @@
                                                             <state key="normal" title="Follow">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="followUser:" destination="pjN-U1-MRS" eventType="touchUpInside" id="R8Q-FB-Rdw"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1668,6 +1672,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="followButton" destination="jUU-SH-qj6" id="uYj-OT-UAH"/>
                                             <outlet property="name" destination="d8p-3R-4AP" id="wbJ-d6-Gmh"/>
                                             <outlet property="profilePic" destination="CGy-IS-6GI" id="llf-9o-Umb"/>
                                             <outlet property="username" destination="cp0-jT-IH8" id="dhc-n1-qju"/>
@@ -1804,6 +1809,7 @@
                                             <outlet property="playPauseButton" destination="wkP-wj-bWn" id="KVN-U3-B2g"/>
                                             <outlet property="postContent" destination="5u5-aK-DIh" id="f2g-g4-et5"/>
                                             <outlet property="profilePic" destination="Oow-VF-cPu" id="9wq-qH-CPY"/>
+                                            <outlet property="shareContent" destination="7ut-Rd-MRl" id="eBr-5D-Qo2"/>
                                             <outlet property="title" destination="upE-We-N3W" id="wgt-po-69b"/>
                                             <outlet property="username" destination="ESA-Qn-WXY" id="y02-Z0-6gQ"/>
                                         </connections>
@@ -2041,16 +2047,17 @@
         <image name="Navigation_Rewind_2x" width="48" height="31"/>
         <image name="Navigation_Stop_2x" width="35" height="35"/>
         <image name="QuickActions_Home_2x" width="46" height="43"/>
+        <image name="Spotify_Logo_RGB_White" width="566.8800048828125" height="169.91999816894531"/>
         <image name="play" width="30" height="30"/>
         <image name="search" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>
         <image name="user_male" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="npa-2q-raI"/>
+        <segue reference="2CD-3s-Dfp"/>
         <segue reference="ReD-vb-n90"/>
-        <segue reference="gEO-3w-az6"/>
-        <segue reference="PRy-BA-hLA"/>
+        <segue reference="gJS-Gs-XJH"/>
+        <segue reference="5Md-6Z-B37"/>
         <segue reference="dZ0-AF-8NJ"/>
     </inferredMetricsTieBreakers>
 </document>

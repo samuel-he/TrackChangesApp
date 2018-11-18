@@ -25,7 +25,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         // Setup a socket to backend
-        var request = URLRequest(url: URL(string: "ws://172.20.10.5:8080/TrackChangesBackend/endpoint")!)
+        var request = URLRequest(url: URL(string: "ws://172.20.10.4:8080/TrackChangesBackend/endpoint")!)
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket.delegate = self
@@ -33,14 +33,15 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Will send a JSON to backend upson establishing a connection
         socket.connect()
         
-        // Retreive user information
-        Alamofire.request("https://api.spotify.com/v1/me", method: .get, parameters: ["type":"user"], encoding: URLEncoding.default, headers: ["Authorization": "Bearer " + AppRemote.connectionParameters.accessToken!]).responseJSON { response in
-            
-            // Parse user information into a global 'currrentUser' object
-            self.parseData(JSONData: response.data!)
-            self.addUserToDatabase()
+        if !GuestUser {
+            // Retreive user information
+            Alamofire.request("https://api.spotify.com/v1/me", method: .get, parameters: ["type":"user"], encoding: URLEncoding.default, headers: ["Authorization": "Bearer " + AppRemote.connectionParameters.accessToken!]).responseJSON { response in
+                
+                // Parse user information into a global 'currrentUser' object
+                self.parseData(JSONData: response.data!)
+                self.addUserToDatabase()
+            }
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -106,15 +107,15 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let json:NSMutableDictionary = NSMutableDictionary()
 
         json.setValue("add_user", forKey: "request")
-        json.setValue(currentUser.username, forKey: "id")
-        json.setValue(currentUser.displayName, forKey: "displayname")
-        json.setValue(currentUser.imageUrl, forKey: "imageurl")
+        json.setValue(currentUser.username, forKey: "user_id")
+        json.setValue(currentUser.displayName, forKey: "user_displayname")
+        json.setValue(currentUser.imageUrl, forKey: "user_imageurl")
         
         let timestamp = NSDate().timeIntervalSince1970
         let myTimeInterval = TimeInterval(timestamp)
         let time = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
         
-        json.setValue(String(time.description), forKey: "logintimestamp")
+        json.setValue(String(time.description), forKey: "user_logintimestamp")
         
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
         let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
