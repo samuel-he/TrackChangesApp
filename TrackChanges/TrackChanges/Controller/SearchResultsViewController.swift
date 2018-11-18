@@ -11,37 +11,29 @@ import UIKit
 
 class SearchResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     @IBOutlet weak var tableView: UITableView!
-//    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var allButton: UIButton!
     @IBOutlet weak var songsButton: UIButton!
     @IBOutlet weak var albumsButton: UIButton!
     @IBOutlet weak var peopleButton: UIButton!
-    
+
     @IBOutlet weak var nowPlayingImage: UIImageView!
     @IBOutlet weak var nowPlayingTitle: UILabel!
     @IBOutlet weak var nowPlayingArtist: UILabel!
     @IBOutlet weak var playPauseButton: UIButton!
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        // Set tableView background color
-//        tableView.backgroundView = nil
-//        tableView.backgroundColor = UIColor.white
-        
-        getPlayerState()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        // Change cancel button color
-//        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-//        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//    }
+//    
+//    override func viewDidAppear(_ animated: Bool) {
+//    }
  
     /****
     *** Filters search results
@@ -61,16 +53,6 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         default:
             return
         }
-    }
-    
-    /////
-    // Go back to the previous screen
-    /////
-    
-    @IBAction func previous(_ sender: Any) {
-        // Clear search results
-        
-        navigationController?.popViewController(animated: true)
     }
     
     func parseAlbum(json: [String: Any], selectedAlbum: Album) {
@@ -151,7 +133,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
                 print(error?.localizedDescription)
             })
             // Update the player
-            getPlayerState()
+            
             
         } else if let cell = tableView.cellForRow(at: indexPath) as? AlbumSearchTableViewCell {
             
@@ -403,6 +385,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     // Base url for spotify search
     var searchUrl = "https://api.spotify.com/v1/search?q="
     
+    /*
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // Clear search results
         TrackResults.removeAll()
@@ -461,73 +444,5 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
             }
         }.resume()
     }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = true
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
-        view.endEditing(true)
-    }
-    
-    
-    // MARK: Update now playing view
-    
-    func updateViewWithPlayerState(_ playerState: SPTAppRemotePlayerState) {
-        self.nowPlayingTitle.text = playerState.track.name
-        self.nowPlayingArtist.text = playerState.track.artist.name
-        fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
-            self.updateAlbumArtWithImage(image)
-        }
-        
-        if playerState.isPaused {
-            playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
-        } else {
-            playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
-        }
-    }
-    
-    func updateAlbumArtWithImage(_ image: UIImage) {
-        self.nowPlayingImage.image = image
-        let transition = CATransition()
-        transition.duration = 0.3
-        transition.type = CATransitionType.fade
-        self.nowPlayingImage.layer.add(transition, forKey: "transition")
-    }
-    
-    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-        //        self.PlayerState = playerState
-        PlayerState = playerState
-        updateViewWithPlayerState(playerState)
-    }
-    
-    func fetchAlbumArtForTrack(_ track: SPTAppRemoteTrack, callback: @escaping (UIImage) -> Void ) {
-        AppRemote.imageAPI?.fetchImage(forItem: track, with: CGSize(width: 50, height: 50), callback: { (image, error) -> Void in
-            guard error == nil else { return }
-            
-            let image = image as! UIImage
-            callback(image)
-        })
-    }
-    
-    func getPlayerState() {
-        AppRemote.playerAPI?.getPlayerState { (result, error) -> Void in
-            guard error == nil else { return }
-            
-            let playerState = result as! SPTAppRemotePlayerState
-            self.updateViewWithPlayerState(playerState)
-        }
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     */
 }

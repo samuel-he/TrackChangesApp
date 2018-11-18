@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import Starscream
 
 var SharePost = Int()
 var ShareTrack = Track()
 var ShareAlbum = Album()
 
-class PostViewController: UIViewController, UITextViewDelegate {
+class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegate {
 
+    
+//    var socket2: WebSocket!
+    
     @IBOutlet weak var postText: UITextView!
     @IBOutlet weak var shareContent: UIView!
     @IBOutlet weak var shareAlbumCover: UIImageView!
@@ -21,12 +25,64 @@ class PostViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var shareArtist: UILabel!
     @IBOutlet weak var playPauseButton: UIButton!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
-//        getPlayerState()
+        
+        
+        // PJ
+//        var request2 = URLRequest(url: URL(string: "ws://172.20.10.3:8080/TrackChangesBackend/endpoint")!)
+//        request2.timeoutInterval = 5
+//        socket2 = WebSocket(request: request2)
+//        socket2.delegate = self
+//        socket2.connect()
+        
+    }
+    
+    
+    
+//    func send(_ value: Any) {
+//
+//        guard JSONSerialization.isValidJSONObject(value) else {
+//            print("[WEBSOCKET] Value is not a valid JSON object.\n \(value)")
+//            return
+//        }
+//
+//        if JSONSerialization.isValidJSONObject(value) { // True
+//            do {
+//                let rawData = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
+//                print(rawData)
+////                print(value)
+//                socket.write(data: rawData)
+//
+//            } catch let error {
+//                print("[WEBSOCKET] Error serializing JSON:\n\(error)")
+//            }
+//        }
+//    }
+    
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("websocket is connected")
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        if let e = error as? WSError {
+            print("websocket is disconnected: \(e.message)")
+        } else if let e = error {
+            print("websocket is disconnected: \(e.localizedDescription)")
+        } else {
+            print("websocket disconnected")
+        }
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print("Received text: \(text)")
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print("Received data: \(data.count)")
     }
     
     // Dismiss PostViewController
@@ -36,14 +92,33 @@ class PostViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func sendPost(_ sender: Any) {
-        if SharePost == 1 {
-            
-        } else if SharePost == 2 {
-            
-        } else {
-            var newPost = Post(message: postText.text)
-            
-        }
+        
+        let json:NSMutableDictionary = NSMutableDictionary()
+        
+        let json1:NSMutableArray = NSMutableArray()
+        
+        json1.add("image")
+        json1.add("email")
+        
+        json.setValue("getFeed", forKey: "request")
+        json.setObject(json1, forKey: "items" as NSCopying)
+
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        print(jsonString)
+        
+        socket.write(data: jsonData)
+        
+        
+//        if SharePost == 1 {
+//
+//        } else if SharePost == 2 {
+//
+//        } else {
+//            var newPost = Post(message: postText.text)
+//
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,13 +151,13 @@ class PostViewController: UIViewController, UITextViewDelegate {
             shareArtist.text = ShareTrack.album.artist.name
             
             shareAlbumCover.contentMode = .scaleAspectFit
-            let url = URL.init(string: ShareTrack.album.image)!
-            do {
-                let data = try Data(contentsOf: url)
-                shareAlbumCover.image = UIImage.init(data: data)
-            } catch {
-                print(error.localizedDescription)
-            }
+//            let url = URL.init(string: ShareTrack.album.image)!
+//            do {
+//                let data = try Data(contentsOf: url)
+//                shareAlbumCover.image = UIImage.init(data: data)
+//            } catch {
+//                print(error.localizedDescription)
+//            }
             
         }
         
@@ -122,30 +197,4 @@ class PostViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-
-        
-//        if playerState.isPaused {
-//            playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
-//        } else {
-//            playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
-//        }
-        
-        // Check if the current song being shared is playing
-//        if playerState.track.name == ShareTitle || playerState.track.album.name == ShareTitle {
-//            playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
-//        } else {
-//            playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
-//        }
-//    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

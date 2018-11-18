@@ -7,5 +7,7 @@ target 'TrackChanges' do
 
   # Pods for TrackChanges
 pod 'Firebase/Core'
+pod 'Starscream', '~> 3.0.2'
+pod 'Alamofire', '~> 4.7'
 
 end

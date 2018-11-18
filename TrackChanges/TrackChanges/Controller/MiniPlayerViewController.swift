@@ -66,15 +66,34 @@ class MiniPlayerViewController: UIViewController, SPTAppRemotePlayerStateDelegat
             guard error == nil else { return }
             
             let playerState = result as! SPTAppRemotePlayerState
+            
             if playerState.isPaused {
-                AppRemote.playerAPI?.play(TrackIdentifier, callback: { (track, error) in
-                    print(error?.localizedDescription as Any)
-                })
+                
+//                AppRemote.playerAPI?.play(TrackIdentifier, callback: { (track, error) in
+//                    print(error?.localizedDescription as Any)
+//                })
+                
+//                AppRemote.playerAPI?.play(TrackIdentifier, callback: { (track, error) in
+//                    print(error?.localizedDescription as Any)
+//                })
+                
+                AppRemote.playerAPI?.resume()
+                
+                
+                
+                
+                
                 self.playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
-            } else {
+            } else if !playerState.isPaused {
+                
                 AppRemote.playerAPI?.pause({ (track, error) in
                     print(error?.localizedDescription as Any)
                 })
+                
+                
+                
+                
+                
                 self.playPauseButton.setImage(UIImage.init(named: "play"), for: .normal)
             }
         }
@@ -117,6 +136,9 @@ class MiniPlayerViewController: UIViewController, SPTAppRemotePlayerStateDelegat
     func updateViewWithPlayerState(_ playerState: SPTAppRemotePlayerState) {
         songTitle.text = playerState.track.name
         nowPlayingArtist.text = playerState.track.artist.name
+        
+        // IMPORTANT
+//        AppRemote.playerAPI?.play("spotify:album:6mLrBrgyQu0wLqsWBoN9j2")
         
         fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
             self.updateAlbumArtWithImage(image)

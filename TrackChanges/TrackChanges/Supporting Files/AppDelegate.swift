@@ -7,6 +7,14 @@ var AccessToken = String()
 class AppDelegate: UIResponder,
 UIApplicationDelegate, SPTAppRemoteDelegate {
     
+    var window: UIWindow?
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+//        FirebaseApp.configure()
+        return true
+    }
+    
     let redirectUri = URL(string: "trackchanges://spotify-login-callback/")!
     let clientIdentifier = "4bebf0c82b774aaa99764eb7c5c58cc4"
     
@@ -27,7 +35,7 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
         }
     }
     
-    var window: UIWindow?
+    
     
     lazy var appRemote: SPTAppRemote = {
         let configuration = SPTConfiguration(clientID: self.clientIdentifier, redirectURL: self.redirectUri)
@@ -43,6 +51,9 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
         }
     }
     
+    
+
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         
         let parameters = appRemote.authorizationParameters(from: url);
@@ -51,17 +62,18 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
             appRemote.connectionParameters.accessToken = access_token
             self.accessToken = access_token
             AccessToken = access_token
+            
+            
+            
         } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
             print(error_description)
         }
         return true
     }
     
-//    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//        FirebaseApp.configure()
-//
-//        return true
-//    }
+    
+    
+    
     
     
     func applicationWillResignActive(_ application: UIApplication) {

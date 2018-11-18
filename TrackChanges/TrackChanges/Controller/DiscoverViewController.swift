@@ -27,17 +27,20 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
         search.delegate = self
         search.searchBar.delegate = self
         self.navigationItem.searchController = search
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        
+        getNewReleases()
+        getRecommendations()
+//        miniPlayer?.getPlayerState()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getNewReleases()
-        getRecommendations()
-        miniPlayer?.getPlayerState()
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -565,65 +568,6 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         
         
     }
- 
- 
-//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//        searchBar.showsCancelButton = true
-//    }
-//
-//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        searchBar.showsCancelButton = false
-//        view.endEditing(true)
-//    }
-    
-    
-    // MARK: Update now playing view
-    
-//    func updateViewWithPlayerState(_ playerState: SPTAppRemotePlayerState) {
-////        self.nowPlayingTitle.text = playerState.track.name
-////        self.nowPlayingArtist.text = playerState.track.artist.name
-//        fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
-////            self.updateAlbumArtWithImage(image)
-//        }
-//
-////        if playerState.isPaused {
-////            playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
-////        } else {
-////            playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
-////        }
-//    }
-    
-//    func updateAlbumArtWithImage(_ image: UIImage) {
-//        self.nowPlayingImage.image = image
-//        let transition = CATransition()
-//        transition.duration = 0.3
-//        transition.type = CATransitionType.fade
-//        self.nowPlayingImage.layer.add(transition, forKey: "transition")
-//    }
-    
-//    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-//        //        self.PlayerState = playerState
-//        PlayerState = playerState
-//        updateViewWithPlayerState(playerState)
-//    }
-    
-//    func fetchAlbumArtForTrack(_ track: SPTAppRemoteTrack, callback: @escaping (UIImage) -> Void ) {
-//        AppRemote.imageAPI?.fetchImage(forItem: track, with: CGSize(width: 50, height: 50), callback: { (image, error) -> Void in
-//            guard error == nil else { return }
-//
-//            let image = image as! UIImage
-//            callback(image)
-//        })
-//    }
-//
-//    func getPlayerState() {
-//        AppRemote.playerAPI?.getPlayerState { (result, error) -> Void in
-//            guard error == nil else { return }
-//
-//            let playerState = result as! SPTAppRemotePlayerState
-//            self.updateViewWithPlayerState(playerState)
-//        }
-//    }
     
     // MARK: Spotify Browse to populate discover
     
@@ -717,15 +661,4 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }.resume()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

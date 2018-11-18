@@ -17,26 +17,7 @@ class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         getPlayerState()
-    }
-    
-    func updateViewWithPlayerState(_ playerState: SPTAppRemotePlayerState) {
-        songTitle.text = playerState.track.name
-        artist.text = playerState.track.artist.name
-        fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
-            self.updateAlbumArtWithImage(image)
-        }
-        
-        if playerState.isPaused {
-            playPauseButton.setImage(UIImage.init(named: "play"), for: .normal)
-        } else {
-            playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
-        }
     }
     
     func updateAlbumArtWithImage(_ image: UIImage) {
@@ -47,11 +28,13 @@ class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
         self.albumCover.layer.add(transition, forKey: "transition")
     }
     
+    // Delegate method that checks for a player state change and updates the mini player
     func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
         PlayerState = playerState
-        updateViewWithPlayerState(playerState)
+        getPlayerState()
     }
     
+    // Fetch album art for a certain track with a given width and height
     func fetchAlbumArtForTrack(_ track: SPTAppRemoteTrack, callback: @escaping (UIImage) -> Void ) {
         AppRemote.imageAPI?.fetchImage(forItem: track, with: CGSize(width: 2000, height: 2000), callback: { (image, error) -> Void in
             guard error == nil else { return }
@@ -61,12 +44,31 @@ class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
         })
     }
     
+    // Gets player state, updates playerState, and updates mini player
     func getPlayerState() {
         AppRemote.playerAPI?.getPlayerState { (result, error) -> Void in
             guard error == nil else { return }
             
             let playerState = result as! SPTAppRemotePlayerState
             self.updateViewWithPlayerState(playerState)
+        }
+    }
+    
+    func updateViewWithPlayerState(_ playerState: SPTAppRemotePlayerState) {
+        songTitle.text = playerState.track.name
+        artist.text = playerState.track.artist.name
+        
+        // IMPORTANT
+        //        AppRemote.playerAPI?.play("spotify:album:6mLrBrgyQu0wLqsWBoN9j2")
+        
+        fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
+            self.updateAlbumArtWithImage(image)
+        }
+        
+        if playerState.isPaused {
+            self.playPauseButton.setImage(UIImage.init(named: "play"), for: .normal)
+        } else if !playerState.isPaused {
+            self.playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
         }
     }
     
@@ -92,15 +94,16 @@ class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
             
             let playerState = result as! SPTAppRemotePlayerState
             if playerState.isPaused {
-                AppRemote.playerAPI?.play(TrackIdentifier, callback: { (track, error) in
-                    print(error?.localizedDescription)
-                })
+                AppRemote.playerAPI?.resume()
                 self.playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
             } else {
                 AppRemote.playerAPI?.pause({ (track, error) in
                     print(error?.localizedDescription)
                 })
-                self.playPauseButton.setImage(UIImage.init(named: "Navigation_Play_2x"), for: .normal)
+                self.playPauseButton.setImage(UIImage.init(named: "play"), for: .normal)
+//                UIView.animate(withDuration: 0.7, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+////                    self.albumCover.frame = CGRect(x: self.albumCover.frame.midY, y: self.albumCover.frame.midX, width: 100, height: 100)
+//                }, completion: nil)
             }
         }
     }
@@ -109,24 +112,20 @@ class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
         AppRemote.playerAPI?.skip(toNext: { (track, error) in
             print(error?.localizedDescription)
         })
+        
+        usleep(80000)
         getPlayerState()
+        
     }
     
     @IBAction func playPreviousSong(_ sender: Any) {
         AppRemote.playerAPI?.skip(toPrevious: { (track, error) in
             print(error?.localizedDescription)
         })
+        
+        usleep(80000)
         getPlayerState()
+        
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

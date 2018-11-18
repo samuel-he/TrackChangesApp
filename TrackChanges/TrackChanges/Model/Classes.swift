@@ -104,23 +104,24 @@ class Post {
 }
 
 class User {
-    var firstName: String
-    var lastName: String
+    var displayName: String
     var username: String
     var imageUrl: String
+    
+    var image: UIImage?
+    var firstName: String?
+    var lastName: String?
     var following = [User]()
     var followers = [User]()
     
     init() {
-        self.firstName = ""
-        self.lastName = ""
+        self.displayName = ""
         self.username = ""
         self.imageUrl = ""
     }
     
-    init(firstName: String, lastName: String, username: String, imageUrl: String) {
-        self.firstName = firstName
-        self.lastName = lastName
+    init(displayName: String, username: String, imageUrl: String) {
+        self.displayName = displayName
         self.username = username
         self.imageUrl = imageUrl
     }

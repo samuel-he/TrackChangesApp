@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import StoreKit
-import MediaPlayer
+
 
 let PlayURI = ""
 let TrackIdentifier = ""
@@ -26,24 +25,21 @@ class ConnectViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // Edit connect button
 //        connectButton.layer.cornerRadius = 20
-        let emailPlaceholder = NSAttributedString.init(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 16)])
-        let passwordPlaceholder = NSAttributedString.init(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 16)])
+//        let emailPlaceholder = NSAttributedString.init(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 16)])
+//        let passwordPlaceholder = NSAttributedString.init(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 16)])
 //        connectButton.setAttributedTitle(title, for: .normal)
-        emailField.attributedPlaceholder = emailPlaceholder
-        passwordField.attributedPlaceholder = passwordPlaceholder
+//        emailField.attributedPlaceholder = emailPlaceholder
+//        passwordField.attributedPlaceholder = passwordPlaceholder
         
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-       
-    }
     
     @IBAction func connectToSpotify(_ sender: Any) {
         if !AppRemote.isConnected {
