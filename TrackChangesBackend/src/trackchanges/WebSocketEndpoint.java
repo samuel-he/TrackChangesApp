@@ -1,3 +1,6 @@
+
+
+
 package trackchanges;
 
 import java.io.IOException;
@@ -114,6 +117,7 @@ public class WebSocketEndpoint {
 		public boolean handleRequest(String request, JSONObject json) {
 			Application app = new Application();
 			boolean handleSuccess = false;
+			
 			if(request.equals("add_user")) {
 				
 				if(clientSessionId.get((String)json.get("user_id")) == null) {
@@ -364,6 +368,8 @@ public class WebSocketEndpoint {
 			}
 
 		}
+		
+		
 
 		private void updateFeeds(ArrayList<User> followers, byte[] data) {
 

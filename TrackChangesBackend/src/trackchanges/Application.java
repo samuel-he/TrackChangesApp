@@ -287,7 +287,7 @@ public class Application {
 				if (rs != null) {
 					rs.close();
 				}
-				if (st != null) {
+				if (st != null) { 
 					st.close();
 				}
 				if (conn != null) {
