@@ -30,11 +30,11 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Setup a socket to backend
-        var request = URLRequest(url: URL(string: "ws://172.20.10.4:8080/TrackChangesBackend/endpoint")!)
-        request.timeoutInterval = 5
-        //        socket = WebSocket(request: request)
-        socket.delegate = self
+//        // Setup a socket to backend
+//        var request = URLRequest(url: URL(string: "ws://172.20.10.4:8080/TrackChangesBackend/endpoint")!)
+//        request.timeoutInterval = 5
+//        //        socket = WebSocket(request: request)
+//        socket.delegate = self
         
     }
     

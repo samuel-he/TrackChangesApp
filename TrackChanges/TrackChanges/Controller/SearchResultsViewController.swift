@@ -17,10 +17,6 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var albumsButton: UIButton!
     @IBOutlet weak var peopleButton: UIButton!
 
-    @IBOutlet weak var nowPlayingImage: UIImageView!
-    @IBOutlet weak var nowPlayingTitle: UILabel!
-    @IBOutlet weak var nowPlayingArtist: UILabel!
-    @IBOutlet weak var playPauseButton: UIButton!
     
     
     
@@ -28,16 +24,6 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//    }
-//    
-//    override func viewDidAppear(_ animated: Bool) {
-//    }
- 
-    /****
-    *** Filters search results
-    ****/
     
     @IBAction func switchTab(_ sender: UIButton) {
         switch sender.tag {
@@ -115,7 +101,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         } else if section == 1 {
             return AlbumResults.count
         } else if section == 2 {
-            return 1
+            return UserResults.count
         } else {
             return 1
         }

@@ -11,7 +11,6 @@ import Starscream
 import Alamofire
 
 var currentUser = User()
-var socket: WebSocket!
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, WebSocketDelegate {
     
@@ -25,7 +24,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         // Setup a socket to backend
-        var request = URLRequest(url: URL(string: "ws://172.20.10.4:8080/TrackChangesBackend/endpoint")!)
+        var request = URLRequest(url: URL(string: "ws://172.20.10.6:8080/TrackChangesBackend/endpoint")!)
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket.delegate = self
@@ -125,14 +124,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         socket.write(data: jsonData)
     }
     
-    // Segue for miniplayer
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "miniPlayer", let destination = segue.destination as? MiniPlayerViewController {
-//            miniPlayer = destination
-//            miniPlayer?.delegate = self as? MiniPlayerDelegate
-//        }
-//    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
@@ -153,7 +144,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func websocketDidConnect(socket: WebSocketClient) {
-        
+        print("websocket is connected")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
@@ -171,6 +162,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        let jsonString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
         print("Received data: \(data.count)")
     }
     

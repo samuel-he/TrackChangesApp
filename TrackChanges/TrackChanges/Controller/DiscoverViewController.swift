@@ -32,17 +32,15 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         search.delegate = self
         search.searchBar.delegate = self
         self.navigationItem.searchController = search
-        self.navigationItem.hidesSearchBarWhenScrolling = false
         
-        var request = URLRequest(url: URL(string: "ws://172.20.10.5:8080/TrackChangesBackend/endpoint")!)
+        var request = URLRequest(url: URL(string: "ws://172.20.10.6:8080/TrackChangesBackend/endpoint")!)
         request.timeoutInterval = 5
-        //        socket = WebSocket(request: request)
+        socket = WebSocket(request: request)
         socket.delegate = self
+        socket.connect()
         
         getNewReleases()
         getRecommendations()
-//        miniPlayer?.getPlayerState()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -539,7 +537,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
                             // Get search parameter
                             self.searchUrl += self.search.searchBar.text!
                             self.searchUrl += "&type=album,artist,track"
-                            self.searchUrl += "&limit=25"
+                            self.searchUrl += "&limit=10"
                             self.searchUrl = self.searchUrl.replacingOccurrences(of: " ", with: "%20")
                             
                             var searchRequest = URLRequest(url: URL.init(string: self.searchUrl)!)
@@ -614,9 +612,10 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         print("Received data: \(data.count)")
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-            if json["response"] as? String == "search_users" {
-                let userResults = json["search_users"] as! [[String: Any]]
-                
+            let jsonString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
+//            print(jsonString)
+            if json["response"] as? String == "search_results" {
+                let userResults = json["search_results"] as! [[String: Any]]
                 for user in userResults {
                     var userResult = User()
                     userResult.imageUrl = user["user_imageurl"] as! String

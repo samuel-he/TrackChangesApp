@@ -8,12 +8,8 @@ class AppDelegate: UIResponder,
 UIApplicationDelegate, SPTAppRemoteDelegate {
     
     var window: UIWindow?
+    var miniPlayer: MiniPlayerViewController?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-//        FirebaseApp.configure()
-        return true
-    }
     
     let redirectUri = URL(string: "trackchanges://spotify-login-callback/")!
     let clientIdentifier = "4bebf0c82b774aaa99764eb7c5c58cc4"
@@ -34,8 +30,12 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
             return self.window?.rootViewController as! ConnectViewController
         }
     }
-    
-    
+//
+//    var feedViewController: FeedViewController {
+//        get {
+//            return connectViewController.tabBarController?.selectedViewController
+//        }
+//    }
     
     lazy var appRemote: SPTAppRemote = {
         let configuration = SPTConfiguration(clientID: self.clientIdentifier, redirectURL: self.redirectUri)
@@ -51,9 +51,6 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
         }
     }
     
-    
-
-    
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         
         let parameters = appRemote.authorizationParameters(from: url);
@@ -63,21 +60,14 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
             self.accessToken = access_token
             AccessToken = access_token
             
-            
-            
         } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
             print(error_description)
         }
         return true
     }
-    
-    
-    
-    
-    
-    
+
     func applicationWillResignActive(_ application: UIApplication) {
-        appRemote.disconnect()
+//        appRemote.disconnect()
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -85,18 +75,20 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
     }
     
     // MARK: AppRemoteDelegate
-    
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
         self.appRemote = appRemote
+//        feedViewController.miniPlayer?.getPlayerState()
         connectViewController.performSegue(withIdentifier: "GoToFeed", sender: nil)
     }
     
     func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
         print("didFailConnectionAttemptWithError")
+        print(error as Any)
     }
     
     func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
         print("didDisconnectWithError")
+        print(error as Any)
     }
     
 }

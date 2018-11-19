@@ -7,27 +7,42 @@
 //
 
 import UIKit
+import Starscream
 
 var GuestUser = Bool()
 
 let PlayURI = ""
 let TrackIdentifier = ""
+var socket: WebSocket!
 
-class ConnectViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
-    
-    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-        PlayerState = playerState
+class ConnectViewController: UIViewController, WebSocketDelegate {
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("websocket connected")
     }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        if let e = error as? WSError {
+            print("websocket is disconnected: \(e.message)")
+        } else if let e = error {
+            print("websocket is disconnected: \(e.localizedDescription)")
+        } else {
+            print("websocket disconnected")
+        }
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print("Received text: \(text)")
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        let jsonString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
+//        print("Received data: \(data.count)")
+    }
+    
+
     
     @IBOutlet weak var connectButton: UIButton!
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         // Edit connect button

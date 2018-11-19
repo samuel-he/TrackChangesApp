@@ -16,25 +16,22 @@ var FollowFromProfile = Bool()
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WebSocketDelegate {
     
-    @IBOutlet weak var profileTitleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Setup a socket to backend
-        var request = URLRequest(url: URL(string: "ws://172.20.10.1:8080/TrackChangesBackend/endpoint")!)
+        var request = URLRequest(url: URL(string: "ws://172.20.10.6:8080/TrackChangesBackend/endpoint")!)
         request.timeoutInterval = 5
-//        socket = WebSocket(request: request)
+        socket = WebSocket(request: request)
         socket.delegate = self
-        
-        // Will send a JSON to backend upson establishing a connection
-//        socket.connect()
-        
+        socket.connect()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         getFollowers()
-        getFollowing()
+        getFollowings()
         getPosts()
-        
     }
     
     // MARK: WebSocket connection and handling
@@ -44,6 +41,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     ***/
     
     func getFollowers() {
+        currentUser.followers.removeAll()
         let json:NSMutableDictionary = NSMutableDictionary()
         
         json.setValue("get_followers", forKey: "request")
@@ -61,7 +59,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     ** Get current users following
     ***/
     
-    func getFollowing() {
+    func getFollowings() {
+        currentUser.following.removeAll()
         let json:NSMutableDictionary = NSMutableDictionary()
         
         json.setValue("get_followings", forKey: "request")
@@ -113,6 +112,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("Received data: \(data.count)")
+        
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
             
@@ -143,10 +143,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     currentUser.following.append(following)
                 }
             }
-            
             // User post response
-            if json["response"] as? String == "posts" {
-                let posts = json["posts"] as! [[String: Any]]
+            if json["response"] as? String == "feed" {
+                let posts = json["feed"] as! [[String: Any]]
+                for post in posts {
+                    if post["song_id"] as? String == "" {
+                        print("asdkhjasldkajsdlkasjdalk")
+                    }
+                    
+                }
             }
             
             tableView.reloadData()
@@ -176,7 +181,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -237,7 +242,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileTableViewCell
             
+            cell.profilePic.layer.borderWidth = 1
+            cell.profilePic.layer.masksToBounds = false
+            cell.profilePic.layer.borderColor = UIColor.black.cgColor
+            cell.profilePic.layer.cornerRadius = cell.profilePic.frame.height/2
+            cell.profilePic.clipsToBounds = true
             cell.profilePic.image = currentUser.image
+            
             cell.name.text = currentUser.displayName
             cell.username.text = "@" + currentUser.username
             cell.followersCount.setTitle("\(currentUser.followers.count)", for: .normal)
@@ -249,8 +260,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             cell.postContent.text = currentUser.posts[indexPath.row].message
             cell.name.text = currentUser.displayName
-            cell.profilePic.image = currentUser.image
             cell.username.text = currentUser.username
+            
+            
+            cell.profilePic.image = currentUser.image
+
             
             if currentUser.posts[indexPath.row].albumId == "" && currentUser.posts[indexPath.row].trackId == "" {
                 cell.shareContent.isHidden = true

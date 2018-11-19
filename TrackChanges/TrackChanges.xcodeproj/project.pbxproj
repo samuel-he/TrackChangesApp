@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B8FCD0321A25F4800C87E03 /* FollowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FCD0221A25F4800C87E03 /* FollowListViewController.swift */; };
 		0BD94F0E219E067E002CA9E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */; };
 		0BFBB56D219E3A0400A609E6 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB56C219E3A0400A609E6 /* MiniPlayerViewController.swift */; };
 		0BFBB56F219E9FE600A609E6 /* Song+ImageLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB56E219E9FE600A609E6 /* Song+ImageLoad.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B8FCD0221A25F4800C87E03 /* FollowListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FollowListViewController.swift; path = TrackChanges/Controller/FollowListViewController.swift; sourceTree = SOURCE_ROOT; };
 		0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0BFBB56C219E3A0400A609E6 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
 		0BFBB56E219E9FE600A609E6 /* Song+ImageLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Song+ImageLoad.swift"; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				30127D442173E67800F6E267 /* ProfileViewController.swift */,
 				308C8FAA217BC10100D6337C /* AlbumViewController.swift */,
 				30127D4E21740AA200F6E267 /* FollowViewController.swift */,
+				0B8FCD0221A25F4800C87E03 /* FollowListViewController.swift */,
 				30127D5221758D5300F6E267 /* PostViewController.swift */,
 			);
 			path = Controller;
@@ -396,6 +399,7 @@
 				30127D392172E41C00F6E267 /* FeedViewController.swift in Sources */,
 				308C8FB5217BDC4C00D6337C /* PeopleProfileViewController.swift in Sources */,
 				308C8FAD217BC12200D6337C /* SongViewController.swift in Sources */,
+				0B8FCD0321A25F4800C87E03 /* FollowListViewController.swift in Sources */,
 				30127D5121740AB600F6E267 /* FollowTableViewCell.swift in Sources */,
 				30B3AA5F21726208007CA413 /* TrackChanges.xcdatamodeld in Sources */,
 			);

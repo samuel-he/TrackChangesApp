@@ -1,19 +1,17 @@
 //
-//  FollowViewController.swift
+//  FollowListViewController.swift
 //  TrackChanges
 //
-//  Created by Nolan Earl on 10/14/18.
+//  Created by Pavly Habashy on 11/18/18.
 //  Copyright © 2018 TrackChanges. All rights reserved.
 //
 
 import UIKit
 import Starscream
 
-var SelectedUser = User()
-
-class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FollowListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -56,14 +54,14 @@ class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 SelectedUser = currentUser.following[indexPath.row]
             }
         } else {
-        
+            
             if ViewFollowers {
                 SelectedUser = SelectedUser.followers[indexPath.row]
             } else {
                 SelectedUser = SelectedUser.following[indexPath.row]
             }
         }
-
+        
         self.performSegue(withIdentifier: "FollowToProfile", sender: self)
     }
     
@@ -84,12 +82,13 @@ class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.username.text = currentUser.following[indexPath.row].username
             do {
                 let data = try Data(contentsOf: URL(string: currentUser.following[indexPath.row].imageUrl)!)
-                    cell.profilePic.image = UIImage.init(data: data)
+                cell.profilePic.image = UIImage.init(data: data)
             } catch {
                 print(error.localizedDescription)
             }
         }
-
-        return cell 
+        
+        return cell
     }
+
 }
