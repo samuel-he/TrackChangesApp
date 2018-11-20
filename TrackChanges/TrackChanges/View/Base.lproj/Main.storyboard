@@ -2054,7 +2054,7 @@
         <image name="user_male" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OHN-Qo-AKT"/>
+        <segue reference="MfB-RI-FRk"/>
         <segue reference="a2d-US-GiJ"/>
         <segue reference="ReD-vb-n90"/>
         <segue reference="gEO-3w-az6"/>

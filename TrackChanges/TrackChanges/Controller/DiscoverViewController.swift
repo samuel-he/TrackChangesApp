@@ -610,10 +610,12 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("Received data: \(data.count)")
+        let jsonString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
+        print(jsonString)
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
             let jsonString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
-//            print(jsonString)
+            print(jsonString)
             if json["response"] as? String == "search_results" {
                 let userResults = json["search_results"] as! [[String: Any]]
                 for user in userResults {

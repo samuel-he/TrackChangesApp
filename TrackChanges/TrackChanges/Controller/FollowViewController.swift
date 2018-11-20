@@ -9,7 +9,7 @@
 import UIKit
 import Starscream
 
-var SelectedUser = User()
+var SelectedUser: User?
 
 class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -18,6 +18,7 @@ class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SelectedUser = User()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,9 +42,9 @@ class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         } else {
             if ViewFollowers {
-                return SelectedUser.followers.count
+                return SelectedUser?.followers.count ?? 0
             } else {
-                return SelectedUser.following.count
+                return SelectedUser?.following.count ?? 0
             }
         }
     }
@@ -58,9 +59,9 @@ class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
         
             if ViewFollowers {
-                SelectedUser = SelectedUser.followers[indexPath.row]
+                SelectedUser = SelectedUser?.followers[indexPath.row]
             } else {
-                SelectedUser = SelectedUser.following[indexPath.row]
+                SelectedUser = SelectedUser?.following[indexPath.row]
             }
         }
 

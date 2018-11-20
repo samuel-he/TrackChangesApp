@@ -22,7 +22,7 @@ public class Application {
 	 * necessary for the application, for example:  
 	 * “jdbc:mysql://localhost:3306/CalendarApp?user=root&password=&useSSL=false”;
 	 */
-	private static final String DATABASE_CONNECTION_URL = "jdbc:mysql://localhost:3306/CSCI201ProjectDatabase?user=root&password=root&useSSL=false";
+	private static final String DATABASE_CONNECTION_URL = "jdbc:mysql://localhost:3306/CSCI201ProjectDatabase?user=root&password=23219731&useSSL=false";
 
 	// search
 	// check in user_id and user_displayname columns 

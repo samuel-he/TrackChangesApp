@@ -19,26 +19,72 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
         // Do any additional setup after loading the view.
         
         // Setup a socket to backend
-        var request = URLRequest(url: URL(string: "ws://172.20.10.1:8080/TrackChangesBackend/endpoint")!)
-        request.timeoutInterval = 5
+//        var request = URLRequest(url: URL(string: "ws://172.20.10.6:8080/TrackChangesBackend/endpoint")!)
+//        request.timeoutInterval = 5
 //        socket = WebSocket(request: request)
         socket.delegate = self
-        
-        // Will send a JSON to backend upson establishing a connection
-//        socket.connect()
+//        socket.connect( )
         
         getFollowers()
-        getFollowing()
+        getFollowings()
         getPosts()
     }
     
-    @IBAction func previous(_ sender: Any) {
-        navigationController?.popViewController(animated: true) 
+    /***
+     ** Get current users followers
+     ***/
+    
+    func getFollowers() {
+        SelectedUser?.followers.removeAll()
+        let json:NSMutableDictionary = NSMutableDictionary()
+        
+        json.setValue("get_followers", forKey: "request")
+        json.setValue(SelectedUser?.username, forKey: "user_id")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        print(jsonString)
+        
+        socket.write(data: jsonData)
     }
     
-    /****
-    *** View Following
-    ****/
+    /***
+     ** Get current users following
+     ***/
+    
+    func getFollowings() {
+        SelectedUser?.following.removeAll()
+        let json:NSMutableDictionary = NSMutableDictionary()
+        
+        json.setValue("get_followings", forKey: "request")
+        json.setValue(SelectedUser?.username, forKey: "user_id")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        print(jsonString)
+        
+        socket.write(data: jsonData)
+    }
+    
+    /***
+     ** Get current users posts
+     ***/
+    
+    func getPosts() {
+        let json:NSMutableDictionary = NSMutableDictionary()
+        
+        json.setValue("get_posts", forKey: "request")
+        json.setValue(SelectedUser?.username, forKey: "user_id")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        print(jsonString)
+        
+        socket.write(data: jsonData)
+    }
     
     @IBAction func viewFollowing(_ sender: Any) {
         FollowFromProfile = false
@@ -56,59 +102,7 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
         self.performSegue(withIdentifier: "PeopleProfileToFollow", sender: nil)
     }
     
-    /***
-    ** Get the followers of this user
-    ****/
     
-    func getFollowers() {
-        let json:NSMutableDictionary = NSMutableDictionary()
-        
-        json.setValue("get_followers", forKey: "request")
-        json.setValue(SelectedUser.username, forKey: "user_id")
-        
-        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
-        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
-        
-        print(jsonString)
-        
-        socket.write(data: jsonData)
-    }
-    
-    /***
-    ** Get following of this user
-    ****/
-    
-    func getFollowing() {
-        let json:NSMutableDictionary = NSMutableDictionary()
-        
-        json.setValue("get_following", forKey: "request")
-        json.setValue(SelectedUser.username, forKey: "user_id")
-        
-        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
-        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
-        
-        print(jsonString)
-        
-        socket.write(data: jsonData)
-    }
-    
-    /***
-    ** Get users posts
-    ****/
-    
-    func getPosts() {
-        let json:NSMutableDictionary = NSMutableDictionary()
-        
-        json.setValue("get_posts", forKey: "request")
-        json.setValue(currentUser.username, forKey: "user_id")
-        
-        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
-        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
-        
-        print(jsonString)
-        
-        socket.write(data: jsonData)
-    }
     
     /****
     *** Follow the user of the page
@@ -122,7 +116,7 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
             
             json.setValue("follow", forKey: "request")
             json.setValue(currentUser.username, forKey: "user_id")
-            json.setValue(SelectedUser.username, forKey: "user_to_follow_id")
+            json.setValue(SelectedUser?.username, forKey: "follower_id")
             
             let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
             let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
@@ -137,7 +131,7 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
             
             json.setValue("unfollow", forKey: "request")
             json.setValue(currentUser.username, forKey: "user_id")
-            json.setValue(SelectedUser.username, forKey: "user_to_unfollow_id")
+            json.setValue(SelectedUser?.username, forKey: "follower_id")
             
             let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
             let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
@@ -167,7 +161,7 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
         if section == 0 {
             return 1
         } else {
-            return SelectedUser.posts.count
+            return SelectedUser?.posts.count ?? 0
         }
     }
     
@@ -176,32 +170,57 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileTableViewCell
             
             do {
-                let data = try Data(contentsOf: URL(string: SelectedUser.imageUrl)!)
+                let data = try Data(contentsOf: URL(string: (SelectedUser?.imageUrl)!)!)
+                cell.profilePic.layer.borderWidth = 1
+                cell.profilePic.layer.masksToBounds = false
+                cell.profilePic.layer.borderColor = UIColor.black.cgColor
+                cell.profilePic.layer.cornerRadius = cell.profilePic.frame.height/2
+                cell.profilePic.clipsToBounds = true
+                cell.profilePic.image = currentUser.image
                 cell.profilePic.image = UIImage.init(data: data)
             } catch {
                 print(error.localizedDescription)
             }
-            cell.name.text = SelectedUser.displayName
-            cell.username.text = "@" + SelectedUser.username
-            cell.followersCount.setTitle("\(SelectedUser.followers.count)", for: .normal)
-            cell.followingCount.setTitle("\(SelectedUser.following.count)", for: .normal) 
+            cell.name.text = SelectedUser?.displayName
+            cell.username.text = "@" + (SelectedUser?.username)!
+            
+            if let count = SelectedUser?.followers.count {
+//                cell.followersCount.setTitle("\(count)", for: .normal)
+            } else {
+                cell.followersCount.setTitle("0", for: .normal)
+            }
+            
+            if let count = SelectedUser?.following.count {
+//                cell.followingCount.setTitle("\(count)", for: .normal)
+            } else {
+                cell.followingCount.setTitle("0", for: .normal)
+            }
+            
+//            cell.followersCount.setTitle("\(String(describing: SelectedUser?.followers.count))", for: .normal)
+//            cell.followingCount.setTitle("\(String(describing: SelectedUser?.following.count ))", for: .normal)
     
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
             return cell
             
-            cell.postContent.text = SelectedUser.posts[indexPath.row].message
-            cell.name.text = SelectedUser.displayName
+            cell.postContent.text = SelectedUser?.posts[indexPath.row].message
+            cell.name.text = SelectedUser?.displayName
             
             do {
-                let data = try Data(contentsOf: URL(string: SelectedUser.imageUrl)!)
+                let data = try Data(contentsOf: URL(string: (SelectedUser?.imageUrl)!)!)
+                cell.profilePic.layer.borderWidth = 1
+                cell.profilePic.layer.masksToBounds = false
+                cell.profilePic.layer.borderColor = UIColor.black.cgColor
+                cell.profilePic.layer.cornerRadius = cell.profilePic.frame.height/2
+                cell.profilePic.clipsToBounds = true
+                cell.profilePic.image = currentUser.image
                 cell.profilePic.image = UIImage.init(data: data)
             } catch {
                 print(error.localizedDescription)
             }
             
-            cell.username.text = SelectedUser.username
+            cell.username.text = SelectedUser?.username
             
         }
     }
@@ -229,32 +248,36 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
         print("Received data: \(data.count)")
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+            let jsonString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
+            print(jsonString)
             
             // User followers response
             if json["response"] as? String == "followers" {
                 let followers = json["followers"] as! [[String: Any]]
-                
-                for user in followers {
-                    var follower = User()
-                    follower.imageUrl = user["user_imageurl"] as! String
-                    follower.username = user["user_id"] as! String
-                    follower.displayName = user["user_displayname"] as! String
-                    
-                    SelectedUser.followers.append(follower)
+                if (!followers.isEmpty) {
+                    for user in followers {
+                        var follower = User()
+                        follower.imageUrl = user["user_imageurl"] as! String
+                        follower.username = user["user_id"] as! String
+                        follower.displayName = user["user_displayname"] as! String
+                        
+                        SelectedUser?.followers.append(follower)
+                    }
                 }
             }
             
             // User following response
             if json["response"] as? String == "followings" {
                 let following = json["followings"] as! [[String: Any]]
-                
-                for user in following {
-                    var following = User()
-                    following.imageUrl = user["user_imageurl"] as! String
-                    following.username = user["user_id"] as! String
-                    following.displayName = user["user_displayname"] as! String
-                    
-                    SelectedUser.following.append(following)
+                if (!following.isEmpty) {
+                    for user in following {
+                        var following = User()
+                        following.imageUrl = user["user_imageurl"] as! String
+                        following.username = user["user_id"] as! String
+                        following.displayName = user["user_displayname"] as! String
+                        
+                        SelectedUser?.following.append(following)
+                    }
                 }
             }
             
@@ -269,17 +292,4 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
             print(error.localizedDescription)
         }
     }
-    
-   
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

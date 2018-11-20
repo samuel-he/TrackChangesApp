@@ -44,32 +44,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let imageURL = URL(string: currentUser.imageUrl)!
-        
-        // Downloads profile image
-        let session = URLSession(configuration: .default)
-        let downloadPicTask = session.dataTask(with: imageURL) { (data, response, error) in
-            // The download has finished.
-            if let e = error {
-                print("Error downloading picture: \(e)")
-            } else {
-                // No errors found.
-                // It would be weird if we didn't have a response, so check for that too.
-                if let res = response as? HTTPURLResponse {
-                    print("Downloaded picture with response code \(res.statusCode)")
-                    if let imageData = data {
-                        // Finally convert that Data into an image and do what you wish with it.
-                        currentUser.image = UIImage(data: imageData)
-                    } else {
-                        print("Couldn't get image: Image is nil")
-                    }
-                } else {
-                    print("Couldn't get response code for some reason")
-                }
-            }
-        }
-        
-        downloadPicTask.resume()
+
     }
     
     // Parse spotify JSON
@@ -93,6 +68,14 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                             if let url = anotherArray["url"] as? String {
 //                                print(url)
                                 currentUser.imageUrl = url
+                                
+                                let url = URL.init(string: url)!
+                                do {
+                                    let data = try Data(contentsOf: url)
+                                    currentUser.image = UIImage.init(data: data)
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
                             }
                         }
                     }

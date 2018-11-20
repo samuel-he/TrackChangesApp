@@ -19,13 +19,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+//        super.viewDidLoad()
         
         var request = URLRequest(url: URL(string: "ws://172.20.10.6:8080/TrackChangesBackend/endpoint")!)
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket.delegate = self
         socket.connect()
+        
+        getFollowers()
+        getFollowings()
+        getPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {

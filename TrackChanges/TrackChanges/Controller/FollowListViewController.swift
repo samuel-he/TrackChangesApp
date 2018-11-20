@@ -39,9 +39,9 @@ class FollowListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         } else {
             if ViewFollowers {
-                return SelectedUser.followers.count
+                return (SelectedUser?.followers.count)!
             } else {
-                return SelectedUser.following.count
+                return (SelectedUser?.following.count)!
             }
         }
     }
@@ -56,9 +56,9 @@ class FollowListViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             
             if ViewFollowers {
-                SelectedUser = SelectedUser.followers[indexPath.row]
+                SelectedUser = SelectedUser?.followers[indexPath.row]
             } else {
-                SelectedUser = SelectedUser.following[indexPath.row]
+                SelectedUser = SelectedUser?.following[indexPath.row]
             }
         }
         
