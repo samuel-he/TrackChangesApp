@@ -140,7 +140,71 @@ public class Tester {
 			test.clear();
 		}
 		
- 
+		//Posts
+		test.put("request", "add_post");
+		test.put("post_timestamp", "test");
+		test.put("post_user_id", "1");
+		test.put("post_message", "Hello there");
+		test.put("post_song_id", "1");
+		test.put("post_album_id", "1");
+		if(handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("post_message") + " successfully posted with song " + test.get("post_song_id") + " and album " + test.get("post_album_id"));
+			test.clear();
+		}
+		
+		test.put("request", "get_posts");
+		test.put("user_id", "1");
+		if(handleRequest((String) test.get("request"), test)) {
+			test.clear();
+		}
+		
+		// Get Feed test
+		
+		test.put("request", "add_post");
+		test.put("post_timestamp", "test");
+		test.put("post_user_id", "1");
+		test.put("post_message", "This is a test");
+		test.put("post_song_id", "2");
+		test.put("post_album_id", "2");
+		if(handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("post_message") + " successfully posted with song " + test.get("post_song_id") + " and album " + test.get("post_album_id"));
+			test.clear();
+		}
+		
+		test.put("request", "like_post");
+		test.put("user_id", "2");
+		test.put("post_id", "1");
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("user_id") + " successfully liked the post " + test.get("post_id"));
+			test.clear();
+		}
+		
+		test.put("request", "unlike_post");
+		test.put("user_id", "2");
+		test.put("post_id", "1");
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("user_id") + " successfully unliked the post " + test.get("post_id"));
+			test.clear();
+		}
+		
+		//Post_id data type changed to int here - test misses this
+		test.put("request", "share_post");
+		test.put("user_id", "2");
+		test.put("post_id", 1);
+		test.put("timestamp", "test");
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("user_id") + " successfully shared the post " + test.get("post_id"));
+			test.clear();
+		}
+		
+		test.put("request", "delete_post");
+		test.put("user_id", "1");
+		test.put("post_id", "1");
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("user_id") + " successfully deleted the post " + test.get("post_id"));
+			test.clear();
+		}
+				
 	}
 	
 	public static boolean handleRequest(String request, JSONObject json) {
@@ -171,6 +235,7 @@ public class Tester {
 			
 			String user_id = (String)json.get("user_id");
 			ArrayList<User> followers = app.getFollowers(user_id);
+			System.out.print(json.get("user_id") + "'s followers: " );
 			for(User follower : followers) {
 				System.out.println(follower.getUserId());
 			}
@@ -248,9 +313,9 @@ public class Tester {
 			Post newPost = new Post();
 			newPost.setPostTimeStamp((String)json.get("post_timestamp"));
 			newPost.setPostUserId((String)json.get("post_user_id"));
-			System.out.println("1");
-			System.out.println((String)json.get("post_user_id"));
-			System.out.println("2");
+			//System.out.println("1");
+			//System.out.println((String)json.get("post_user_id"));
+			//System.out.println("2");
 			newPost.setPostMessage((String)json.get("post_message"));
 			newPost.setPostSongId((String)json.get("post_song_id"));
 			newPost.setPostAlbumId((String)json.get("post_album_id"));
@@ -274,21 +339,24 @@ public class Tester {
 			ArrayList<Post> posts = new ArrayList<Post>();
 			String user_id = (String)json.get("user_id");
 			posts = app.getPosts(user_id);
-			JSONArray jsonFeedArray = new JSONArray();
 			for(Post post : posts) {
-				JSONObject jsonPost = new JSONObject();
-				jsonPost.put("post_id", post.getPostId());
-				jsonPost.put("post_timestamp", post.getPostTimeStamp());
-				jsonPost.put("user_id", post.getPostUserId());
-				jsonPost.put("post_message", post.getPostMessage());
-				jsonPost.put("song_id", post.getPostSongId());
-				jsonPost.put("album_id", post.getPostAlbumId());
-				jsonFeedArray.add(jsonPost);
+				System.out.println(post.getPostMessage());
 			}
+//			JSONArray jsonFeedArray = new JSONArray();
+//			for(Post post : posts) {
+//				JSONObject jsonPost = new JSONObject();
+//				jsonPost.put("post_id", post.getPostId());
+//				jsonPost.put("post_timestamp", post.getPostTimeStamp());
+//				jsonPost.put("user_id", post.getPostUserId());
+//				jsonPost.put("post_message", post.getPostMessage());
+//				jsonPost.put("song_id", post.getPostSongId());
+//				jsonPost.put("album_id", post.getPostAlbumId());
+//				jsonFeedArray.add(jsonPost);
+//			}
 
-			JSONObject response = new JSONObject();
-			response.put("response", "feed");
-			response.put("feed", jsonFeedArray);
+		//	JSONObject response = new JSONObject();
+		//	response.put("response", "feed");
+			//response.put("feed", jsonFeedArray);
 			//sendToSession(this.clientSession, response.toString().getBytes());
 			handleSuccess = true;
 
@@ -334,15 +402,15 @@ public class Tester {
 			String timestamp = (String)json.get("timestamp");
 
 			handleSuccess = app.sharePost(post_id, user_id, timestamp);
-			Post post = app.getPost(post_id);
-			JSONObject response = new JSONObject();
-			response.put("response", "post_added");
-			response.put("post_id", post.getPostId());
-			response.put("post_timestamp", post.getPostTimeStamp());
-			response.put("user_id", post.getPostUserId());
-			response.put("post_message", post.getPostMessage());
-			response.put("song_id", post.getPostSongId());
-			response.put("album_id", post.getPostAlbumId());
+//			Post post = app.getPost(post_id);
+//			JSONObject response = new JSONObject();
+//			response.put("response", "post_added");
+//			response.put("post_id", post.getPostId());
+//			response.put("post_timestamp", post.getPostTimeStamp());
+//			response.put("user_id", post.getPostUserId());
+//			response.put("post_message", post.getPostMessage());
+//			response.put("song_id", post.getPostSongId());
+//			response.put("album_id", post.getPostAlbumId());
 			//updateFeeds(app.getFollowers(user_id), response.toString().getBytes());
 
 		} else if(request.equals("delete_post")) {

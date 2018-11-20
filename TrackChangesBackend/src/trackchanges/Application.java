@@ -772,17 +772,17 @@ public class Application {
 		PreparedStatement ps = null;
 		int result = -1;
 		try {
-			System.out.println(newPost.getPostId());
-			System.out.println(newPost.getPostMessage());
-			System.out.println(newPost.getPostUserId());
-			System.out.println(newPost.getPostTimeStamp());
-			System.out.println(newPost.getPostSongId());
-			System.out.println(newPost.getPostAlbumId());
-			Class.forName("com.mysql.jdbc.Driver");
+			//System.out.println(newPost.getPostId());
+			//System.out.println(newPost.getPostMessage());
+			//System.out.println(newPost.getPostUserId());
+			//System.out.println(newPost.getPostTimeStamp());
+			//System.out.println(newPost.getPostSongId());
+			//System.out.println(newPost.getPostAlbumId());
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
-			System.out.println("3");
-			System.out.println(newPost.getPostUserId());
-			System.out.println("4");
+			//System.out.println("3");
+			//System.out.println(newPost.getPostUserId());
+			//System.out.println("4");
 			ps = conn.prepareStatement(
 					"INSERT INTO Post ("
 							+ "post_timestamp, "
