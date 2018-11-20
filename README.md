@@ -5,7 +5,7 @@
 
 *TrackChanges* is a social media platform that is built on top of a music app, allowing users to listen to their favorite music, and share music content with other users.
 
-![TrackChanges logo](TrackChangesLogo.png)
+![TrackChanges logo](TrackChangesLogo.png =250x250)
 
 ## License
 
@@ -23,7 +23,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 
-# Progress after submitting Complete Code
+## Progress after submitting Complete Code
 What works:
 -Users can currently login
 -Users can add post
