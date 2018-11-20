@@ -259,6 +259,8 @@ public class WebSocketEndpoint {
 				newPost.setPostSongId((String)json.get("post_song_id"));
 				newPost.setPostAlbumId((String)json.get("post_album_id"));
 				int post_id = app.addPost(newPost);
+			    
+			    // Wouldn't this NOT run because handleSuccess is set to false at the start?
 				if(handleSuccess) {
 					Post post = app.getPost(post_id);
 					JSONObject response = new JSONObject();

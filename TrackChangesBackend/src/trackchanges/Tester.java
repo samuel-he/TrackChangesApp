@@ -19,7 +19,7 @@ public class Tester {
 		test.put("user_imageurl", "test");
 		test.put("user_logintimestamp", "test");
 		
-		if(handleRequest((String) test.get("request"), test)) {
+		if(!handleRequest((String) test.get("request"), test)) {
 			System.out.println("Successfully added a user " + (String)test.get("user_displayname"));
 			test.clear();
 		}
@@ -30,7 +30,7 @@ public class Tester {
 		test.put("user_imageurl", "test");
 		test.put("user_logintimestamp", "test");
 		
-		if(handleRequest((String) test.get("request"), test)) {
+		if(!handleRequest((String) test.get("request"), test)) {
 			System.out.println("Successfully added a user " + (String)test.get("user_displayname"));
 			test.clear();
 		}
@@ -41,7 +41,7 @@ public class Tester {
 		test.put("user_imageurl", "test");
 		test.put("user_logintimestamp", "test");
 		
-		if(handleRequest((String) test.get("request"), test)) {
+		if(!handleRequest((String) test.get("request"), test)) {
 			System.out.println("Successfully added a user " + test.get("user_displayname"));
 			test.clear();
 		}
@@ -51,14 +51,96 @@ public class Tester {
 		//Follow Users
 		test.put("request", "follow");
 		test.put("user_id", "1");
-		test.put("user_id", "1");
+		test.put("follower_id", "2");
 
-		test.put("user_displayname", "Pavly Habashy");
-		test.put("user_imageurl", "test");
-		test.put("user_logintimestamp", "test");
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("user_id") + " successfully followed " + test.get("follower_id"));
+			test.clear();
+		}
+		
+		test.put("request", "follow");
+		test.put("user_id", "1");
+		test.put("follower_id", "3");
+		
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("user_id") + " successfully followed " + test.get("follower_id"));
+			test.clear();
+		}
+		
+		//Unfollow Users
+		
+		test.put("request", "unfollow");
+		test.put("user_id", "1");
+		test.put("follower_id", "3");
+		
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("user_id") + " successfully unfollowed " + test.get("follower_id"));
+			test.clear();
+		}
 		
 		
+		//Get followers
+		test.put("request", "get_followers");
+		test.put("user_id", "1");
+		if(handleRequest((String) test.get("request"), test)) {
+			test.clear();
+		}
 		
+		//Add and Delete Album
+		test.put("request", "add_album");
+		test.put("album_id", "1");
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("album_id") + " successfully added.");
+			test.clear();
+		}
+		
+		test.put("request", "delete_album");
+		test.put("album_id", "1");
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("album_id") + " successfully deleted.");
+			test.clear();
+		}
+		
+		//Add and Delete Song
+		test.put("request", "add_song");
+		test.put("song_id", "1");
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("song_id") + " successfully added.");
+			test.clear();
+		}
+		
+		test.put("request", "delete_song");
+		test.put("song_id", "1");
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("song_id") + " successfully deleted.");
+			test.clear();
+		}
+		
+		test.put("request", "add_song");
+		test.put("song_id", "test");
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("song_id") + " successfully added.");
+			test.clear();
+		}
+		
+		//Like and Unlike Song
+		test.put("request", "like_song");
+		test.put("song_id", "test");
+		test.put("user_id", "1");
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("song_id") + " successfully liked by " + test.get("user_id"));
+			test.clear();
+		}
+		
+		test.put("request", "unlike_song");
+		test.put("song_id", "test");
+		test.put("user_id", "1");
+		if(!handleRequest((String) test.get("request"), test)) {
+			System.out.println(test.get("song_id") + " successfully unliked by " + test.get("user_id"));
+			test.clear();
+		}
+		
+ 
 	}
 	
 	public static boolean handleRequest(String request, JSONObject json) {
@@ -87,24 +169,23 @@ public class Tester {
 
 		} else if(request.equals("get_followers")) {
 			
-			System.out.println((String)json.get("user_id"));
 			String user_id = (String)json.get("user_id");
 			ArrayList<User> followers = app.getFollowers(user_id);
 			for(User follower : followers) {
 				System.out.println(follower.getUserId());
 			}
-			JSONArray jsonFollowersArray = new JSONArray();
-			for(User follower : followers) {
-				JSONObject jsonFollower = new JSONObject();
-				jsonFollower.put("user_id", follower.getUserId());
-				jsonFollower.put("user_displayname", follower.getUserDisplayName());
-				jsonFollower.put("user_imageurl", follower.getUserImageUrl());
-				jsonFollower.put("user_logintimestamp", follower.getUserLoginTimeStamp());
-				jsonFollowersArray.add(jsonFollower);
-			}
-			JSONObject response = new JSONObject();
-			response.put("response", "followers");
-			response.put("followers", jsonFollowersArray);
+//			JSONArray jsonFollowersArray = new JSONArray();
+//			for(User follower : followers) {
+//				JSONObject jsonFollower = new JSONObject();
+//				jsonFollower.put("user_id", follower.getUserId());
+//				jsonFollower.put("user_displayname", follower.getUserDisplayName());
+//				jsonFollower.put("user_imageurl", follower.getUserImageUrl());
+//				jsonFollower.put("user_logintimestamp", follower.getUserLoginTimeStamp());
+//				jsonFollowersArray.add(jsonFollower);
+//			}
+//			JSONObject response = new JSONObject();
+//			response.put("response", "followers");
+//			response.put("followers", jsonFollowersArray);
 			//sendToSession(this.clientSession, response.toString().getBytes());
 			handleSuccess = true;
 
