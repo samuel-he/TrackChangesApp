@@ -22,7 +22,7 @@ public class Application {
 	 * necessary for the application, for example:  
 	 * “jdbc:mysql://localhost:3306/CalendarApp?user=root&password=&useSSL=false”;
 	 */
-	private static final String DATABASE_CONNECTION_URL = "jdbc:mysql://localhost:3306/CSCI201ProjectDatabase?user=root&password=23219731&useSSL=false";
+	private static final String DATABASE_CONNECTION_URL = "jdbc:mysql://localhost:3306/CSCI201ProjectDatabase?user=root&password=root&useSSL=false";
 
 	// search
 	// check in user_id and user_displayname columns 
@@ -167,7 +167,45 @@ public class Application {
 		}
 		return result;
 	}
-
+	
+	
+	// isFollowing
+	public boolean isFollowing(String user_id, String follower_id) {
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		boolean result = false;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
+			ps = conn.prepareStatement(
+					"SELECT * FROM Follow WHERE user_id = '" + user_id + "' AND " + "follower_id = '" + follower_id + "';");
+			result = ps.execute();
+		} catch (SQLException sqle) {
+			System.out.println("sqle: " + sqle.getMessage());
+		} catch (ClassNotFoundException cnfe) {
+			System.out.println("cnfe: " + cnfe.getMessage());
+		} finally {
+			// You always need to close the connection to the database
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (st != null) {
+					st.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch(SQLException sqle) {
+				System.out.println("sqle closing error: " + sqle.getMessage());
+			}
+		}
+		return result;
+	}
+	
+	
 	/*
 	 * This function will be responsible for adding a new follower relationship 
 	 * into the database with “INSERT” statements after a connection using the 
@@ -186,7 +224,7 @@ public class Application {
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
 			ps = conn.prepareStatement(
 					"INSERT INTO Follow (user_id, "
-							+ "follow_id) VALUES ('" 
+							+ "follower_id) VALUES ('" 
 							+ user_id + "', '"  
 							+ follower_id + "');");
 			result = ps.execute();
@@ -230,8 +268,9 @@ public class Application {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
 			// not sure how to delete based off two parameters
+			
 			ps = conn.prepareStatement(
-					"DELETE FROM Follow WHERE user_id=" + user_id + " AND " + "follower_id=" + follower_id);
+					"DELETE FROM Follow WHERE user_id = '" + user_id + "' AND " + "follower_id = '" + follower_id + "';");
 			result = ps.execute();
 		} catch (SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
@@ -269,13 +308,19 @@ public class Application {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		ArrayList<String> result = new ArrayList<String>(); 
+		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
 			ps = conn.prepareStatement("SELECT f.follower_id FROM Follow f WHERE f.user_id = '" + user_id + "';");
 			rs = ps.executeQuery();
-			while(rs.next()){
-				result.add(rs.getString("follower_id"));
+			if(!rs.next()) {
+				return new ArrayList<User>();
+			} else {
+				rs.beforeFirst();
+				while(rs.next()) {
+					result.add(rs.getString("follower_id"));		
+				}
 			}
 		} catch (SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
@@ -287,7 +332,7 @@ public class Application {
 				if (rs != null) {
 					rs.close();
 				}
-				if (st != null) { 
+				if (st != null) {
 					st.close();
 				}
 				if (conn != null) {
@@ -363,8 +408,13 @@ public class Application {
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
 			ps = conn.prepareStatement("SELECT f.user_id FROM Follow f WHERE f.follower_id = '" + user_id + "';");
 			rs = ps.executeQuery();
-			while(rs.next()){
-				result.add(rs.getString("user_id"));
+			if(!rs.next()) {
+				return new ArrayList<User>();
+			} else {
+				rs.beforeFirst();
+				while(rs.next()) {
+					result.add(rs.getString("user_id"));		
+				}
 			}
 		} catch (SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
@@ -498,12 +548,6 @@ public class Application {
 			ps.setString(1,  album_id);
 			result = ps.execute();
 
-			ps = conn.prepareStatement(
-					"DELETE FROM PostAlbum WHERE album_id=?");
-			ps.setString(1,  album_id);
-			ps.execute();
-
-
 		} catch (SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
 		} catch (ClassNotFoundException cnfe) {
@@ -634,8 +678,9 @@ public class Application {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
 			// not sure how to delete based off two parameters
+			
 			ps = conn.prepareStatement(
-					"DELETE FROM SongLike WHERE song_id=" + song_id + " AND " + "user_id=" + user_id);
+					"DELETE FROM SongLike WHERE song_id = '" + song_id + "' AND " + "user_id = '" + user_id + "';");
 			result = ps.execute();
 		} catch (SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
@@ -681,11 +726,6 @@ public class Application {
 					"DELETE FROM Song WHERE song_id=?");
 			ps.setString(1,  song_id);
 			result = ps.execute();
-
-			ps = conn.prepareStatement(
-					"DELETE FROM PostSong WHERE song_id=?");
-			ps.setString(1,  song_id);
-			ps.execute();
 
 			ps = conn.prepareStatement(
 					"DELETE FROM SongLike WHERE song_id=?");
@@ -1060,10 +1100,11 @@ public class Application {
 		PreparedStatement ps = null;
 		boolean result = false;
 		try {
+			
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
 			ps = conn.prepareStatement(
-					"DELETE FROM PostLike WHERE post_id=" + post_id + " AND user_id=" + user_id);
+					"DELETE FROM PostLike WHERE post_id = '" + post_id + "' AND user_id = '" + user_id + "';");
 			result = ps.execute();
 		} catch (SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
@@ -1109,10 +1150,8 @@ public class Application {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
 			ps = conn.prepareStatement(
-					"SELECT * from Post WHERE user_id LIKE?");
-			ps.setString(1, "%" + post_id + "%");
-			rs = ps.executeQuery(); // check for exception here?
-
+					"SELECT * from Post WHERE post_id = '" + post_id + "';");
+			rs = ps.executeQuery(); 
 
 			String postMessage = rs.getString("post_message");
 
@@ -1228,15 +1267,15 @@ public class Application {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
 			ps = conn.prepareStatement(
-					"DELETE FROM Post WHERE post_id=" + post_id);
+					"DELETE FROM Post WHERE post_id = '" + post_id + "';");
 			result = ps.execute();
 
 			ps = conn.prepareStatement(
-					"DELETE FROM PostLike WHERE post_id=" + post_id);
+					"DELETE FROM PostLike WHERE post_id = '" + post_id + "';");
 			ps.execute();
 
 			ps = conn.prepareStatement(
-					"DELETE FROM PostShare WHERE post_id=" + post_id);
+					"DELETE FROM PostShare WHERE post_id = '" + post_id + "';");
 			ps.execute();
 
 			/*

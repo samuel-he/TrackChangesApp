@@ -1,6 +1,3 @@
-
-
-
 package trackchanges;
 
 import java.io.IOException;
@@ -117,7 +114,6 @@ public class WebSocketEndpoint {
 		public boolean handleRequest(String request, JSONObject json) {
 			Application app = new Application();
 			boolean handleSuccess = false;
-			
 			if(request.equals("add_user")) {
 				
 				if(clientSessionId.get((String)json.get("user_id")) == null) {
@@ -134,16 +130,43 @@ public class WebSocketEndpoint {
 				newUser.setUserLoginTimeStamp((String)json.get("user_logintimestamp"));
 				handleSuccess = app.addUser(newUser);
 
-			} else if(request.equals("follow")) {
-
+			} else if(request.equals("is_following")) {
+				
 				String user_id = (String)json.get("user_id");
 				String follower_id = (String)json.get("follower_id");
+				
+				// debugging 
+				System.out.println("1");
+				System.out.println(user_id);
+				System.out.println(follower_id);
+				System.out.println("2");
+				
+				handleSuccess = app.isFollowing(user_id, follower_id);
+				JSONObject response = new JSONObject();
+				
+				// check this jeff
+				response.put("response", "is_following");
+				response.put("is_following", handleSuccess);
+				sendToSession(this.clientSession, response.toString().getBytes());
+
+			}else if(request.equals("follow")) {
+				
+				String user_id = (String)json.get("follower_id");
+				String follower_id = (String)json.get("user_id");
+				System.out.println("1");
+				System.out.println(user_id);
+				System.out.println(follower_id);
+				System.out.println("2");
 				handleSuccess = app.follow(user_id, follower_id);
 
 			} else if(request.equals("unfollow")) {
-
+				// check logic here
 				String user_id = (String)json.get("user_id");
 				String follower_id = (String)json.get("follower_id");
+				System.out.println("1");
+				System.out.println(user_id);
+				System.out.println(follower_id);
+				System.out.println("2");
 				handleSuccess = app.unfollow(user_id, follower_id);
 
 			} else if(request.equals("get_followers")) {
@@ -166,6 +189,7 @@ public class WebSocketEndpoint {
 				JSONObject response = new JSONObject();
 				response.put("response", "followers");
 				response.put("followers", jsonFollowersArray);
+				//System.out.println(x);
 				sendToSession(this.clientSession, response.toString().getBytes());
 				handleSuccess = true;
 
@@ -368,8 +392,6 @@ public class WebSocketEndpoint {
 			}
 
 		}
-		
-		
 
 		private void updateFeeds(ArrayList<User> followers, byte[] data) {
 
