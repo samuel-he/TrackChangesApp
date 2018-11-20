@@ -59,7 +59,7 @@ CREATE TABLE Post (
 
 /* Stores the number of shares of each post */
 CREATE TABLE PostShare (
-	post_id VARCHAR(100) NOT NULL,
+	post_id INT(100) NOT NULL,
 	user_id VARCHAR(100) NOT NULL,
 	PRIMARY KEY (post_id, user_id),
 	FOREIGN KEY (post_id) REFERENCES Post(post_id),
@@ -68,7 +68,7 @@ CREATE TABLE PostShare (
 
 /* Stores the number of likes of each post */
 CREATE TABLE PostLike (
-	post_id VARCHAR(100) NOT NULL,
+	post_id INT(100) NOT NULL,
 	user_id VARCHAR(100) NOT NULL,
 	PRIMARY KEY (post_id, user_id),
 	FOREIGN KEY (post_id) REFERENCES Post(post_id),
