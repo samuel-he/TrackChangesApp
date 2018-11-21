@@ -2,9 +2,9 @@
 -- CSCI 201L TrackChanges 
 -- Database 
 */
-DROP DATABASE IF EXISTS CSCI201ProjectDatabase;
-CREATE DATABASE CSCI201ProjectDatabase;
-USE CSCI201ProjectDatabase;
+DROP DATABASE IF EXISTS CSCI201;
+CREATE DATABASE CSCI201;
+USE CSCI201;
 
 /* --------------------------- Users Data --------------------------- */
 /* Stores user's personal details */
@@ -48,7 +48,7 @@ CREATE TABLE SongLike (
 /* --------------------------- Post Data --------------------------- */
 /* Stores the content of each post and creator of post */
 CREATE TABLE Post (
-	post_id INT(11) AUTO_INCREMENT  PRIMARY KEY,
+	post_id INT(11) AUTO_INCREMENT PRIMARY KEY,
    	post_timestamp VARCHAR(100) NOT NULL,
 	user_id VARCHAR(100) NOT NULL,
 	post_message VARCHAR(500) NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE Post (
 
 /* Stores the number of shares of each post */
 CREATE TABLE PostShare (
-	post_id INT(100) NOT NULL,
+	post_id INT(11) NOT NULL,
 	user_id VARCHAR(100) NOT NULL,
 	PRIMARY KEY (post_id, user_id),
 	FOREIGN KEY (post_id) REFERENCES Post(post_id),
@@ -68,7 +68,7 @@ CREATE TABLE PostShare (
 
 /* Stores the number of likes of each post */
 CREATE TABLE PostLike (
-	post_id INT(100) NOT NULL,
+	post_id INT(11) NOT NULL,
 	user_id VARCHAR(100) NOT NULL,
 	PRIMARY KEY (post_id, user_id),
 	FOREIGN KEY (post_id) REFERENCES Post(post_id),

@@ -151,8 +151,8 @@ public class WebSocketEndpoint {
 
 			}else if(request.equals("follow")) {
 				
-				String user_id = (String)json.get("follower_id");
-				String follower_id = (String)json.get("user_id");
+				String user_id = (String)json.get("user_id");
+				String follower_id = (String)json.get("follower_id");
 				System.out.println("1");
 				System.out.println(user_id);
 				System.out.println(follower_id);
@@ -259,8 +259,6 @@ public class WebSocketEndpoint {
 				newPost.setPostSongId((String)json.get("post_song_id"));
 				newPost.setPostAlbumId((String)json.get("post_album_id"));
 				int post_id = app.addPost(newPost);
-			    
-			    // Wouldn't this NOT run because handleSuccess is set to false at the start?
 				if(handleSuccess) {
 					Post post = app.getPost(post_id);
 					JSONObject response = new JSONObject();
@@ -359,6 +357,7 @@ public class WebSocketEndpoint {
 			}else if(request.equals("search_users")) {
 
 				String search_input = (String)json.get("search_term");
+				System.out.println(search_input);
 				ArrayList<User> searchResults = app.search(search_input);
 				JSONArray jsonSearchResults = new JSONArray();
 				for(User user : searchResults) {
@@ -374,6 +373,7 @@ public class WebSocketEndpoint {
 				response.put("search_results", jsonSearchResults);
 				sendToSession(this.clientSession, response.toString().getBytes());
 				handleSuccess = true;
+				System.out.println(search_input);
 
 			}
 			
