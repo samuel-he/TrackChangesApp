@@ -19,17 +19,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-//        super.viewDidLoad()
+        super.viewDidLoad()
         
-        var request = URLRequest(url: URL(string: "ws://172.20.10.6:8080/TrackChangesBackend/endpoint")!)
-        request.timeoutInterval = 5
-        socket = WebSocket(request: request)
         socket.delegate = self
-        socket.connect()
         
-        getFollowers()
-        getFollowings()
-        getPosts()
+//        getFollowers()
+//        getFollowings()
+//        getPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,7 +41,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     ***/
     
     func getFollowers() {
-        currentUser.followers.removeAll()
+        currentUser.followers?.removeAll()
         let json:NSMutableDictionary = NSMutableDictionary()
         
         json.setValue("get_followers", forKey: "request")
@@ -64,7 +60,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     ***/
     
     func getFollowings() {
-        currentUser.following.removeAll()
+        currentUser.following?.removeAll()
         let json:NSMutableDictionary = NSMutableDictionary()
         
         json.setValue("get_followings", forKey: "request")
@@ -130,7 +126,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     follower.username = user["user_id"] as! String
                     follower.displayName = user["user_displayname"] as! String
                     
-                    currentUser.followers.append(follower)
+                    currentUser.followers?.append(follower)
                 }
             }
             
@@ -144,7 +140,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     following.username = user["user_id"] as! String
                     following.displayName = user["user_displayname"] as! String
                     
-                    currentUser.following.append(following)
+                    currentUser.following?.append(following)
                 }
             }
             // User post response
@@ -255,8 +251,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             cell.name.text = currentUser.displayName
             cell.username.text = "@" + currentUser.username
-            cell.followersCount.setTitle("\(currentUser.followers.count)", for: .normal)
-            cell.followingCount.setTitle("\(currentUser.following.count)", for: .normal)
+            cell.followersCount.setTitle("\(currentUser.followers?.count ?? 0)", for: .normal)
+            cell.followingCount.setTitle("\(currentUser.following?.count ?? 0)", for: .normal)
 
             return cell
         } else {

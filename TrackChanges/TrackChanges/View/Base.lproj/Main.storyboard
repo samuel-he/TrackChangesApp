@@ -1590,6 +1590,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="followButton" destination="jUU-SH-qj6" id="uYj-OT-UAH"/>
+                                            <outlet property="followersCount" destination="y1M-Or-lx0" id="Xp4-rN-p27"/>
+                                            <outlet property="followingCount" destination="2I4-MQ-kAz" id="FPi-BP-nMp"/>
                                             <outlet property="name" destination="d8p-3R-4AP" id="wbJ-d6-Gmh"/>
                                             <outlet property="profilePic" destination="CGy-IS-6GI" id="llf-9o-Umb"/>
                                             <outlet property="username" destination="cp0-jT-IH8" id="dhc-n1-qju"/>

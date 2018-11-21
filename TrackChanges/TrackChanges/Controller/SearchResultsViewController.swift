@@ -8,21 +8,40 @@
 //
 
 import UIKit
+import Starscream
 
-class SearchResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class SearchResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, WebSocketDelegate {
+    func websocketDidConnect(socket: WebSocketClient) {
+        
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print("In Search results")
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var allButton: UIButton!
     @IBOutlet weak var songsButton: UIButton!
     @IBOutlet weak var albumsButton: UIButton!
     @IBOutlet weak var peopleButton: UIButton!
-
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        var request = URLRequest(url: URL(string: "ws://172.20.10.6:8080/TrackChangesBackend/endpoint")!)
+//        request.timeoutInterval = 5
+//        socket = WebSocket(request: request)
+        socket.delegate = self
+//        socket.connect()
     }
     
     @IBAction func switchTab(_ sender: UIButton) {
@@ -111,7 +130,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         // Check which kind of cell was tapped
         if let cell = tableView.cellForRow(at: indexPath) as? PeopleSearchTableViewCell {
             // Go to person's profile
-            SelectedUser = UserResults[indexPath.row] 
+            SelectedUser = UserResults[indexPath.row]
             
             self.performSegue(withIdentifier: "SearchResultsToProfile", sender: nil)
         } else if let cell = tableView.cellForRow(at: indexPath) as? SongSearchTableViewCell {
@@ -120,8 +139,9 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
             AppRemote.playerAPI?.play(TrackResults[indexPath.row].uri, callback: { (track, error) in
                 print(error?.localizedDescription)
             })
-            // Update the player
             
+            // Update the player
+            // TODO
             
         } else if let cell = tableView.cellForRow(at: indexPath) as? AlbumSearchTableViewCell {
             
@@ -384,65 +404,4 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     var tokenUrl = "https://accounts.spotify.com/api/token"
     // Base url for spotify search
     var searchUrl = "https://api.spotify.com/v1/search?q="
-    
-    /*
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // Clear search results
-        TrackResults.removeAll()
-        AlbumResults.removeAll()
-        
-        // Request accecssToken
-        let client = "4bebf0c82b774aaa99764eb7c5c58cc4:3be8d087faf841ea805d6d9842c0cbf0"
-        let base64 = client.data(using: String.Encoding.utf8)?.base64EncodedString() ?? ""
-        
-        
-        // Request access token to make search requests
-        var tokenRequest = URLRequest(url: URL.init(string: tokenUrl)!)
-        tokenRequest.addValue("Basic \(base64)", forHTTPHeaderField: "Authorization")
-        tokenRequest.httpBody = "grant_type=client_credentials".data(using: .utf8)
-        tokenRequest.httpMethod = "POST"
-        
-        URLSession.shared.dataTask(with: tokenRequest) { (data, response, error) in
-            if let data = data {
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        let accessToken = (json["access_token"] as? String)!
-                        
-                        // MARK: SEARCH
-                        
-                        DispatchQueue.main.async {
-                            // Get search parameter
-                            self.searchUrl += searchBar.text!
-                            self.searchUrl += "&type=album,artist,track"
-                            self.searchUrl += "&limit=25"
-                            self.searchUrl = self.searchUrl.replacingOccurrences(of: " ", with: "%20")
-                            
-                            var searchRequest = URLRequest(url: URL.init(string: self.searchUrl)!)
-                            
-                            searchRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-                            
-                            URLSession.shared.dataTask(with: searchRequest) { (data, response, error) in
-                                if let data = data {
-                                    do {
-                                        if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                                            self.parseTracks(json: json)
-                                            self.parseAlbums(json: json)
-                                        }
-                                    } catch {
-                                        print(error.localizedDescription)
-                                    }
-                                }
-                            }.resume()
-                        }
-                        
-                        
-                        
-                    }
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        }.resume()
-    }
-     */
 }

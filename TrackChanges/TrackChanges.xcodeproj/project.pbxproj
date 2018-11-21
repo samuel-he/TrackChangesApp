@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0B8FCD0321A25F4800C87E03 /* FollowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FCD0221A25F4800C87E03 /* FollowListViewController.swift */; };
+		0BD93DAC21A4CDC8008E1CC0 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD93DAB21A4CDC8008E1CC0 /* GlobalVariables.swift */; };
 		0BD94F0E219E067E002CA9E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */; };
 		0BFBB56D219E3A0400A609E6 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB56C219E3A0400A609E6 /* MiniPlayerViewController.swift */; };
-		0BFBB56F219E9FE600A609E6 /* Song+ImageLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB56E219E9FE600A609E6 /* Song+ImageLoad.swift */; };
 		0BFBB573219EB23500A609E6 /* UIView+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB572219EB23500A609E6 /* UIView+Snapshot.swift */; };
 		0BFBB57C21A0D24300A609E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB57B21A0D24300A609E6 /* Constants.swift */; };
 		30127D392172E41C00F6E267 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30127D382172E41C00F6E267 /* FeedViewController.swift */; };
@@ -50,9 +50,9 @@
 
 /* Begin PBXFileReference section */
 		0B8FCD0221A25F4800C87E03 /* FollowListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FollowListViewController.swift; path = TrackChanges/Controller/FollowListViewController.swift; sourceTree = SOURCE_ROOT; };
+		0BD93DAB21A4CDC8008E1CC0 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0BFBB56C219E3A0400A609E6 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
-		0BFBB56E219E9FE600A609E6 /* Song+ImageLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Song+ImageLoad.swift"; sourceTree = "<group>"; };
 		0BFBB572219EB23500A609E6 /* UIView+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Snapshot.swift"; sourceTree = "<group>"; };
 		0BFBB57B21A0D24300A609E6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = TrackChanges/Helpers/Constants.swift; sourceTree = SOURCE_ROOT; };
 		30127D382172E41C00F6E267 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -134,9 +134,9 @@
 				30127D382172E41C00F6E267 /* FeedViewController.swift */,
 				30127D422173E0FF00F6E267 /* DiscoverViewController.swift */,
 				308C8FB2217BC28300D6337C /* SearchResultsViewController.swift */,
+				308C8FB4217BDC4C00D6337C /* PeopleProfileViewController.swift */,
 				308179D6218FBEDD00DCCC4F /* FavoritesViewController.swift */,
 				308179D8218FBF5400DCCC4F /* FavoritesListViewController.swift */,
-				308C8FB4217BDC4C00D6337C /* PeopleProfileViewController.swift */,
 				30127D442173E67800F6E267 /* ProfileViewController.swift */,
 				308C8FAA217BC10100D6337C /* AlbumViewController.swift */,
 				30127D4E21740AA200F6E267 /* FollowViewController.swift */,
@@ -157,9 +157,9 @@
 		0BFBB578219F8AA800A609E6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				0BFBB56E219E9FE600A609E6 /* Song+ImageLoad.swift */,
 				0BFBB572219EB23500A609E6 /* UIView+Snapshot.swift */,
 				0BFBB57B21A0D24300A609E6 /* Constants.swift */,
+				0BD93DAB21A4CDC8008E1CC0 /* GlobalVariables.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -369,13 +369,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BFBB56F219E9FE600A609E6 /* Song+ImageLoad.swift in Sources */,
 				308179D7218FBEDD00DCCC4F /* FavoritesViewController.swift in Sources */,
 				308179D521855BF800DCCC4F /* TrackChanges-Bridging-Header.h in Sources */,
 				30127D4F21740AA200F6E267 /* FollowViewController.swift in Sources */,
 				308C8FAF217BC1D500D6337C /* AlbumSongTableViewCell.swift in Sources */,
 				0BFBB57C21A0D24300A609E6 /* Constants.swift in Sources */,
 				30B3AA5721726208007CA413 /* AppDelegate.swift in Sources */,
+				0BD93DAC21A4CDC8008E1CC0 /* GlobalVariables.swift in Sources */,
 				308C8FBE217D29BF00D6337C /* SongSearchTableViewCell.swift in Sources */,
 				308C8FC42180E95500D6337C /* SearchResultsTitleTableViewCell.swift in Sources */,
 				0BFBB56D219E3A0400A609E6 /* MiniPlayerViewController.swift in Sources */,

@@ -33,11 +33,11 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         search.searchBar.delegate = self
         self.navigationItem.searchController = search
         
-        var request = URLRequest(url: URL(string: "ws://172.20.10.6:8080/TrackChangesBackend/endpoint")!)
-        request.timeoutInterval = 5
-        socket = WebSocket(request: request)
+//        var request = URLRequest(url: URL(string: "ws://172.20.10.6:8080/TrackChangesBackend/endpoint")!)
+//        request.timeoutInterval = 5
+//        socket = WebSocket(request: request)
         socket.delegate = self
-        socket.connect()
+//        socket.connect()
         
         getNewReleases()
         getRecommendations()
@@ -85,7 +85,9 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverContentCell", for: indexPath) as! DiscoverCollectionViewCell
+        
         // Use correct list based on the collectionview
         if collectionView.tag == 1 {
             cell.artistName.text = DiscoverNewReleases[indexPath.row].artist.name
@@ -513,6 +515,26 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         // Clear search results
         TrackResults.removeAll()
         AlbumResults.removeAll()
+        UserResults.removeAll()
+        SearchResults.removeAll()
+        
+        tokenUrl = "https://accounts.spotify.com/api/token"
+        searchUrl = "https://api.spotify.com/v1/search?q="
+        
+        
+        // Send request to database to search for users
+        
+        let json:NSMutableDictionary = NSMutableDictionary()
+        
+        json.setValue("search_users", forKey: "request")
+        json.setValue(self.search.searchBar.text, forKey: "search_term")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        print(jsonString)
+        
+        socket.write(data: jsonData)
 
         // Request accecssToken
         let client = "4bebf0c82b774aaa99764eb7c5c58cc4:3be8d087faf841ea805d6d9842c0cbf0"
@@ -570,21 +592,6 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
         }.resume()
-        
-        
-        // Send request to database to search for users
-        
-        let json:NSMutableDictionary = NSMutableDictionary()
-        
-        json.setValue("search_users", forKey: "request")
-        json.setValue(self.search.searchBar.text, forKey: "search_term")
-        
-        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
-        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
-        
-        print(jsonString)
-        
-        socket.write(data: jsonData)
         
     }
     

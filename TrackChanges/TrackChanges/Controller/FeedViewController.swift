@@ -11,6 +11,7 @@ import Starscream
 import Alamofire
 
 var currentUser = User()
+var SelectedUser: User?
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, WebSocketDelegate {
     
@@ -22,6 +23,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SelectedUser = User()
         
         // Setup a socket to backend
         var request = URLRequest(url: URL(string: "ws://172.20.10.6:8080/TrackChangesBackend/endpoint")!)

@@ -9,11 +9,6 @@
 import UIKit
 import Starscream
 
-var GuestUser = Bool()
-
-let PlayURI = ""
-let TrackIdentifier = ""
-var socket: WebSocket!
 
 class ConnectViewController: UIViewController, WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
@@ -37,7 +32,6 @@ class ConnectViewController: UIViewController, WebSocketDelegate {
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         let jsonString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
         print(jsonString)
-//        print("Received data: \(data.count)")
     }
     
 

@@ -113,14 +113,16 @@ class User {
     var image: UIImage?
     var firstName: String?
     var lastName: String?
-    var following = [User]()
-    var followers = [User]()
+    var following: [User]?
+    var followers: [User]?
     var posts = [Post]() 
     
     init() {
         self.displayName = ""
         self.username = ""
         self.imageUrl = ""
+        following = [User]()
+        followers = [User]()
     }
     
     init(displayName: String, username: String, imageUrl: String) {

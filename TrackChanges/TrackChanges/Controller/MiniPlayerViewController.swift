@@ -8,24 +8,6 @@
 
 import UIKit
 
-// TODO: Put all this in one file
-protocol MiniPlayerDelegate: class {
-    func expandSong(song: Track)
-}
-
-class PlayPauseButton: UIButton {
-    var isPlaying = false
-}
-
-var AppRemote: SPTAppRemote {
-    get {
-        return AppDelegate.sharedInstance.appRemote
-    }
-}
-
-var PlayerState: SPTAppRemotePlayerState?
-// END OF TODO
-
 class MiniPlayerViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
     
     @IBOutlet weak var thumbImage: UIImageView!
