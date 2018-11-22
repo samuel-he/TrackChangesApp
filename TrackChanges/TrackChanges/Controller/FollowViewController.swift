@@ -70,25 +70,48 @@ class FollowViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FollowCell", for: indexPath) as! FollowTableViewCell
         
-        if ViewFollowers  {
-            cell.name.text = currentUser.followers?[indexPath.row].displayName
-            cell.username.text = currentUser.followers?[indexPath.row].username
-            do {
-                let data = try Data(contentsOf: URL(string: (currentUser.followers?[indexPath.row].imageUrl)!)!)
-                cell.profilePic.image = UIImage.init(data: data)
-            } catch {
-                print(error.localizedDescription)
+        if FollowFromProfile {
+            if ViewFollowers  {
+                cell.name.text = currentUser.followers?[indexPath.row].displayName
+                cell.username.text = currentUser.followers?[indexPath.row].username
+                do {
+                    let data = try Data(contentsOf: URL(string: (currentUser.followers?[indexPath.row].imageUrl)!)!)
+                    cell.profilePic.image = UIImage.init(data: data)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            } else {
+                cell.name.text = currentUser.following?[indexPath.row].displayName
+                cell.username.text = currentUser.following?[indexPath.row].username
+                do {
+                    let data = try Data(contentsOf: URL(string: (currentUser.following?[indexPath.row].imageUrl)!)!)
+                    cell.profilePic.image = UIImage.init(data: data)
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
         } else {
-            cell.name.text = currentUser.following?[indexPath.row].displayName
-            cell.username.text = currentUser.following?[indexPath.row].username
-            do {
-                let data = try Data(contentsOf: URL(string: (currentUser.following?[indexPath.row].imageUrl)!)!)
+            if ViewFollowers  {
+                cell.name.text = SelectedUser?.followers?[indexPath.row].displayName
+                cell.username.text = SelectedUser?.followers?[indexPath.row].username
+                do {
+                    let data = try Data(contentsOf: URL(string: (SelectedUser?.followers?[indexPath.row].imageUrl)!)!)
                     cell.profilePic.image = UIImage.init(data: data)
-            } catch {
-                print(error.localizedDescription)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            } else {
+                cell.name.text = SelectedUser?.following?[indexPath.row].displayName
+                cell.username.text = SelectedUser?.following?[indexPath.row].username
+                do {
+                    let data = try Data(contentsOf: URL(string: (SelectedUser?.following?[indexPath.row].imageUrl)!)!)
+                    cell.profilePic.image = UIImage.init(data: data)
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
         }
+        
 
         return cell 
     }
