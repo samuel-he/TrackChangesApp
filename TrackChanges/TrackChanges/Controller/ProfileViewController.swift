@@ -29,6 +29,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        socket.delegate = self
+        
         getFollowers()
         getFollowings()
         getPosts()
@@ -143,8 +145,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     currentUser.following?.append(following)
                 }
             }
+            
             // User post response
             if json["response"] as? String == "feed" {
+//                print(json["feed"])
                 let posts = json["feed"] as! [[String: Any]]
                 for post in posts {
                     if post["song_id"] as? String == "" {
@@ -188,7 +192,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if section == 0 {
             return 1
         } else {
-            return currentUser.posts.count
+            return 1
         }
     }
     
@@ -258,6 +262,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
             
+            /*
             cell.postContent.text = currentUser.posts[indexPath.row].message
             cell.name.text = currentUser.displayName
             cell.username.text = currentUser.username
@@ -322,6 +327,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     makeRequest(url: "https://api.spotify.com/v1/albums/", id: currentUser.posts[indexPath.row].albumId!)
                 }
             }
+            */
             
             return cell
         }

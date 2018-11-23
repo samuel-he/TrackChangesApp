@@ -44,6 +44,10 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
 //        socket.connect()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        socket.delegate = self
+    }
+    
     @IBAction func switchTab(_ sender: UIButton) {
         switch sender.tag {
             

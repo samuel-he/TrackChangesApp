@@ -34,7 +34,7 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
 //        var request = URLRequest(url: URL(string: "ws://172.20.10.4:8080/TrackChangesBackend/endpoint")!)
 //        request.timeoutInterval = 5
 //        //        socket = WebSocket(request: request)
-//        socket.delegate = self
+        socket.delegate = self
         
     }
     
@@ -135,6 +135,9 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        socket.delegate = self
+        
         // Check if someone is sharing music 
         if SharePost == 1 || SharePost == 2 {
             shareContent.isHidden = false

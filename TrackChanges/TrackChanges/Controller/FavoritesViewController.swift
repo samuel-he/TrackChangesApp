@@ -42,6 +42,10 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         socket.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        socket.delegate = self
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }

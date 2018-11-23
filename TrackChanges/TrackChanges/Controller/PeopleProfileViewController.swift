@@ -32,6 +32,8 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        socket.delegate = self
+        
         getFollowers()
         getFollowings()
         getPosts()
@@ -95,6 +97,10 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
             sender.setTitle("Follow", for: .normal)
         }
         
+        getFollowers()
+        getFollowings()
+        getFollowingState()
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -131,16 +137,17 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
                 cell.profilePic.image = currentUser.image
                 cell.profilePic.image = UIImage.init(data: data)
                 
-                if (globalState ?? true)  {
-                    cell.followButton.setTitle("Following", for: .normal)
-                } else {
-                    cell.followButton.setTitle("Follow", for: .normal)
-                }
             } catch {
                 print(error.localizedDescription)
             }
             cell.name.text = SelectedUser?.displayName
             cell.username.text = "@" + (SelectedUser?.username)!
+            
+            if globalState == true {
+                cell.followButton.setTitle("Following", for: .normal)
+            } else {
+                cell.followButton.setTitle("Follow", for: .normal)
+            }
             
             if let count = SelectedUser?.followers?.count {
                 cell.followersCount.setTitle("\(count)", for: .normal)

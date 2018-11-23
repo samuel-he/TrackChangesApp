@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B8FCD0321A25F4800C87E03 /* FollowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FCD0221A25F4800C87E03 /* FollowListViewController.swift */; };
 		0BD93DAC21A4CDC8008E1CC0 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD93DAB21A4CDC8008E1CC0 /* GlobalVariables.swift */; };
 		0BD94F0E219E067E002CA9E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */; };
 		0BFBB56D219E3A0400A609E6 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB56C219E3A0400A609E6 /* MiniPlayerViewController.swift */; };
@@ -25,7 +24,6 @@
 		308179D421855AE600DCCC4F /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308179D321855AE600DCCC4F /* ConnectViewController.swift */; };
 		308179D521855BF800DCCC4F /* TrackChanges-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FCB2184000100D6337C /* TrackChanges-Bridging-Header.h */; };
 		308179D7218FBEDD00DCCC4F /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308179D6218FBEDD00DCCC4F /* FavoritesViewController.swift */; };
-		308179D9218FBF5500DCCC4F /* FavoritesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308179D8218FBF5400DCCC4F /* FavoritesListViewController.swift */; };
 		308179DB2190075D00DCCC4F /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308179DA2190075C00DCCC4F /* FavoritesTableViewCell.swift */; };
 		308C8FAB217BC10100D6337C /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FAA217BC10100D6337C /* AlbumViewController.swift */; };
 		308C8FAD217BC12200D6337C /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308C8FAC217BC12200D6337C /* SongViewController.swift */; };
@@ -49,7 +47,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B8FCD0221A25F4800C87E03 /* FollowListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FollowListViewController.swift; path = TrackChanges/Controller/FollowListViewController.swift; sourceTree = SOURCE_ROOT; };
 		0BD93DAB21A4CDC8008E1CC0 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0BFBB56C219E3A0400A609E6 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
@@ -66,7 +63,6 @@
 		30250C3C219374C100FBA215 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		308179D321855AE600DCCC4F /* ConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		308179D6218FBEDD00DCCC4F /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		308179D8218FBF5400DCCC4F /* FavoritesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListViewController.swift; sourceTree = "<group>"; };
 		308179DA2190075C00DCCC4F /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		308C8FAA217BC10100D6337C /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		308C8FAC217BC12200D6337C /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
@@ -136,11 +132,9 @@
 				308C8FB2217BC28300D6337C /* SearchResultsViewController.swift */,
 				308C8FB4217BDC4C00D6337C /* PeopleProfileViewController.swift */,
 				308179D6218FBEDD00DCCC4F /* FavoritesViewController.swift */,
-				308179D8218FBF5400DCCC4F /* FavoritesListViewController.swift */,
 				30127D442173E67800F6E267 /* ProfileViewController.swift */,
 				308C8FAA217BC10100D6337C /* AlbumViewController.swift */,
 				30127D4E21740AA200F6E267 /* FollowViewController.swift */,
-				0B8FCD0221A25F4800C87E03 /* FollowListViewController.swift */,
 				30127D5221758D5300F6E267 /* PostViewController.swift */,
 			);
 			path = Controller;
@@ -395,11 +389,9 @@
 				308C8FC621814D8700D6337C /* PostTableViewCell.swift in Sources */,
 				30127D452173E67800F6E267 /* ProfileViewController.swift in Sources */,
 				308C8FB1217BC21400D6337C /* AlbumCoverTableViewCell.swift in Sources */,
-				308179D9218FBF5500DCCC4F /* FavoritesListViewController.swift in Sources */,
 				30127D392172E41C00F6E267 /* FeedViewController.swift in Sources */,
 				308C8FB5217BDC4C00D6337C /* PeopleProfileViewController.swift in Sources */,
 				308C8FAD217BC12200D6337C /* SongViewController.swift in Sources */,
-				0B8FCD0321A25F4800C87E03 /* FollowListViewController.swift in Sources */,
 				30127D5121740AB600F6E267 /* FollowTableViewCell.swift in Sources */,
 				30B3AA5F21726208007CA413 /* TrackChanges.xcdatamodeld in Sources */,
 			);

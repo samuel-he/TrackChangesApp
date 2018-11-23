@@ -30,12 +30,6 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
             return self.window?.rootViewController as! ConnectViewController
         }
     }
-//
-//    var feedViewController: FeedViewController {
-//        get {
-//            return connectViewController.tabBarController?.selectedViewController
-//        }
-//    }
     
     lazy var appRemote: SPTAppRemote = {
         let configuration = SPTConfiguration(clientID: self.clientIdentifier, redirectURL: self.redirectUri)
@@ -71,6 +65,10 @@ UIApplicationDelegate, SPTAppRemoteDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        appRemote.connect()
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
         appRemote.connect()
     }
     

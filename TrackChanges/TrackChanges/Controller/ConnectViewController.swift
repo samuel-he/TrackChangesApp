@@ -61,7 +61,10 @@ class ConnectViewController: UIViewController, WebSocketDelegate {
     }
     
     @IBAction func connectAsGuest(_ sender: Any) {
-        GuestUser = true 
+        GuestUser = true
+//        self.appRemote = appRemote
+        //        feedViewController.miniPlayer?.getPlayerState()
+        self.performSegue(withIdentifier: "GoToFeed", sender: nil)
     }
     
     fileprivate func startPlayback() {

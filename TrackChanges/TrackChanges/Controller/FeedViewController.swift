@@ -15,6 +15,7 @@ var SelectedUser: User?
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, WebSocketDelegate {
     
+    
     @IBOutlet weak var tableView: UITableView!
     
     // Mini player stuff
@@ -27,7 +28,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         SelectedUser = User()
         
         // Setup a socket to backend
-        var request = URLRequest(url: URL(string: "ws://172.20.10.6:8080/TrackChangesBackend/endpoint")!)
+        var request = URLRequest(url: URL(string: "ws://192.168.0.16:8080/TrackChangesBackend/endpoint")!)
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket.delegate = self
@@ -43,11 +44,15 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.parseData(JSONData: response.data!)
                 self.addUserToDatabase()
             }
+        } else {
+            tabBarController?.viewControllers?.removeLast()
+            tabBarController?.viewControllers?.removeLast()
         }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-
+        socket.delegate = self
     }
     
     // Parse spotify JSON

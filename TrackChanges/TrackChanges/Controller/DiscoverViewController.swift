@@ -21,9 +21,11 @@ var SelectedAlbum = Album()
 
 class DiscoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UISearchControllerDelegate, WebSocketDelegate {
     
+    
     var miniPlayer: MiniPlayerViewController?
     
     @IBOutlet weak var tableView: UITableView!
+    
     let search = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
@@ -33,23 +35,14 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         search.searchBar.delegate = self
         self.navigationItem.searchController = search
         
-//        var request = URLRequest(url: URL(string: "ws://172.20.10.6:8080/TrackChangesBackend/endpoint")!)
-//        request.timeoutInterval = 5
-//        socket = WebSocket(request: request)
         socket.delegate = self
-//        socket.connect()
         
         getNewReleases()
         getRecommendations()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
+        socket.delegate = self
     }
     
     
