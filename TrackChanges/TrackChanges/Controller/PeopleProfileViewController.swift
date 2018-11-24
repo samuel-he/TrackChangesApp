@@ -28,7 +28,8 @@ class PeopleProfileViewController: UIViewController, UITableViewDelegate, UITabl
         socket.delegate = self
 //        socket.connect()
         
-        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     override func viewWillAppear(_ animated: Bool) {

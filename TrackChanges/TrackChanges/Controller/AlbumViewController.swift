@@ -26,6 +26,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func shareTrack(_ sender: Any) {
         let sender = sender as! UIButton
         SharePost = 1
+        ShareFromSongView = false
         // Set track to share
         ShareTrack = SelectedAlbum.tracks[sender.tag]
     }
@@ -79,7 +80,13 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as! AlbumSongTableViewCell
             cell.trackNumber.text = String(describing: indexPath.row)
             cell.songTitle.text = SelectedAlbum.tracks[indexPath.row - 1].name
-            cell.postButton.tag = indexPath.row - 1
+            if GuestUser {
+                cell.postButton.isHidden = true
+            } else {
+                cell.postButton.isHidden = false 
+                cell.postButton.tag = indexPath.row - 1
+            }
+            
             return cell
         }
     }
@@ -110,6 +117,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             SharePost = 1
             // Set track to share
             ShareTrack = SelectedAlbum.tracks[indexPath.row - 1]
+            ShareFromSongView = false
             
             self.performSegue(withIdentifier: "ShareTrackFromAlbum", sender: nil)
             

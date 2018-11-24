@@ -61,9 +61,20 @@ class ConnectViewController: UIViewController, WebSocketDelegate {
     }
     
     @IBAction func connectAsGuest(_ sender: Any) {
+        if !AppRemote.isConnected {
+            if !AppRemote.authorizeAndPlayURI(PlayURI) {
+                // The Spotify app is not installed, present the user with an App Store page
+                //                showAppStoreInstall()
+            }
+        } else if PlayerState == nil || PlayerState!.isPaused {
+            startPlayback()
+        } else {
+            pausePlayback()
+        }
         GuestUser = true
 //        self.appRemote = appRemote
         //        feedViewController.miniPlayer?.getPlayerState()
+        
         self.performSegue(withIdentifier: "GoToFeed", sender: nil)
     }
     

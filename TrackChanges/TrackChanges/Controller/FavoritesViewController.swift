@@ -40,6 +40,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         
         socket.delegate = self
+        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     override func viewWillAppear(_ animated: Bool) {

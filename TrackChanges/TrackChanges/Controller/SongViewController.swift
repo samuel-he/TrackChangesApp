@@ -8,6 +8,8 @@
 
 import UIKit
 
+var ShareFromSongView = false
+
 class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
 
     @IBOutlet weak var albumCover: UIImageView!
@@ -90,6 +92,7 @@ class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
     ****/
     
     @IBAction func closeSongView(_ sender: Any) {
+        ShareFromSongView = true
         dismiss(animated: true, completion: nil)
     }
     
@@ -99,6 +102,29 @@ class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
     
     @IBAction func postSong(_ sender: Any) {
         SharePost = 1
+        ShareFromSongView = true
+        
+        AppRemote.playerAPI?.getPlayerState({ (result, error) in
+            guard error == nil else { return }
+            
+            let playerState = result as! SPTAppRemotePlayerState
+            
+            
+            var currentTrack = Track()
+            currentTrack.name = playerState.track.name
+            currentTrack.album.artist.name = playerState.track.artist.name
+            currentTrack.uri = playerState.track.uri
+     
+            AppRemote.imageAPI?.fetchImage(forItem: playerState.track, with: CGSize(width: 80, height: 80), callback: { (image, error) -> Void in
+                guard error == nil else { return }
+                
+                let image = image as! UIImage
+                currentTrack.image = image
+            })
+            
+            ShareTrack = currentTrack
+            
+        })
     }
     
     @IBAction func playAndPauseSong(_ sender: Any) {

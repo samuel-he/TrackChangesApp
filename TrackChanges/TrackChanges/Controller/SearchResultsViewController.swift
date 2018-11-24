@@ -28,6 +28,9 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
 //        socket = WebSocket(request: request)
         socket.delegate = self
 //        socket.connect()
+        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -314,7 +317,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
                         
                         // Get album cover
                         if let images = album["images"] as? [[String: Any]] {
-                            if let url = images[0]["url"] as? String {
+                            if let url = images[1]["url"] as? String {
                                 albumForTrack.image = url
                             }
                         }
@@ -376,7 +379,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
                     albumResult.artist = artistForAlbum
                     
                     if let images = album["images"] as? [[String: Any]] {
-                        if let url = images[0]["url"] as? String {
+                        if let url = images[1]["url"] as? String {
                             albumResult.image = url
                         }
                     }

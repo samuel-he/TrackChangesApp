@@ -41,6 +41,9 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         
         getNewReleases()
         getRecommendations()
+        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -289,7 +292,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
  
                         // Get album cover
                         if let images = album["images"] as? [[String: Any]] {
-                            if let url = images[0]["url"] as? String {
+                            if let url = images[1]["url"] as? String {
                                 albumForTrack.image = url
                             }
                         }
@@ -347,7 +350,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
                     albumResult.artist = artistForAlbum
                     
                     if let images = album["images"] as? [[String: Any]] {
-                        if let url = images[0]["url"] as? String {
+                        if let url = images[1]["url"] as? String {
                             albumResult.image = url
                         }
                     }
@@ -400,7 +403,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
                     albumResult.artist = artistForAlbum
                     
                     if let images = album["images"] as? [[String: Any]] {
-                        if let url = images[0]["url"] as? String {
+                        if let url = images[1]["url"] as? String {
                             albumResult.image = url
                         }
                     }
@@ -483,7 +486,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
                     albumForTrack.artist = artistForAlbum
                     
                     if let images = album["images"] as? [[String: Any]] {
-                        if let url = images[0]["url"] as? String {
+                        if let url = images[1]["url"] as? String {
                             albumForTrack.image = url
                         }
                     }

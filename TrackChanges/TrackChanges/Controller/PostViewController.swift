@@ -35,6 +35,7 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
     // Dismiss PostViewController
     @IBAction func exitPost(_ sender: Any) {
         SharePost = Int()
+        ShareFromSongView = false   
         dismiss(animated: true, completion: nil)
     }
     
@@ -118,14 +119,19 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
             shareTitle.text = ShareTrack.name
             shareArtist.text = ShareTrack.album.artist.name
             
-            shareAlbumCover.contentMode = .scaleAspectFit
-            let url = URL.init(string: ShareTrack.album.image)!
-            do {
-                let data = try Data(contentsOf: url)
-                shareAlbumCover.image = UIImage.init(data: data)
-            } catch {
-                print(error.localizedDescription)
+            if !ShareFromSongView {
+                shareAlbumCover.contentMode = .scaleAspectFit
+                let url = URL.init(string: ShareTrack.album.image)!
+                do {
+                    let data = try Data(contentsOf: url)
+                    shareAlbumCover.image = UIImage.init(data: data)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            } else {
+                shareAlbumCover.image = ShareTrack.image
             }
+            
             // Sharing an album
         } else if SharePost == 2 {
             playPauseButton.isHidden = true

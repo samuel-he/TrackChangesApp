@@ -17,6 +17,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var postButton: UIBarButtonItem!
     
     // Mini player stuff
     var miniPlayer: MiniPlayerViewController?
@@ -28,7 +29,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         SelectedUser = User()
         
         // Setup a socket to backend
-        var request = URLRequest(url: URL(string: "ws://172.20.10.4:8080/TrackChangesBackend/endpoint")!)
+        var request = URLRequest(url: URL(string: "ws://172.20.10.2:8080/TrackChangesBackend/endpoint")!)
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket.delegate = self
@@ -47,7 +48,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             tabBarController?.viewControllers?.removeLast()
             tabBarController?.viewControllers?.removeLast()
+            navigationItem.rightBarButtonItem?.isEnabled = false    
         }
+        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
         
     }
     

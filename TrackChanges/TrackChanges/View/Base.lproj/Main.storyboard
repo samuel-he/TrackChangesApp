@@ -21,6 +21,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKa-GB-Q37">
                                 <rect key="frame" x="62" y="550" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="Navigation_Rewind_2x"/>
                                 <connections>
                                     <action selector="playPreviousSong:" destination="c5j-Q1-scs" eventType="touchUpInside" id="Df7-p0-dXF"/>
@@ -29,6 +30,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Si-9G-HDs">
                                 <rect key="frame" x="172" y="550" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="play"/>
                                 <connections>
                                     <action selector="playAndPauseSong:" destination="c5j-Q1-scs" eventType="touchUpInside" id="aSZ-es-MLd"/>
@@ -53,6 +55,7 @@
                                     <constraint firstAttribute="height" constant="35" id="mmG-MM-5Pv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="Navigation_Stop_2x"/>
                                 <connections>
                                     <action selector="closeSongView:" destination="c5j-Q1-scs" eventType="touchUpInside" id="4EY-BZ-gS2"/>
@@ -64,6 +67,7 @@
                                     <constraint firstAttribute="height" constant="45" id="C6X-mm-EPp"/>
                                     <constraint firstAttribute="width" constant="33" id="Zp8-h1-AtP"/>
                                 </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="share"/>
                                 <connections>
                                     <action selector="postSong:" destination="c5j-Q1-scs" eventType="touchUpInside" id="CLr-mS-GZC"/>
@@ -73,6 +77,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Lu-eB-5Ds">
                                 <rect key="frame" x="264" y="550" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="Navigation_FastForward_2x"/>
                                 <connections>
                                     <action selector="playNextSong:" destination="c5j-Q1-scs" eventType="touchUpInside" id="H8n-me-ffO"/>
@@ -407,7 +412,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ne-BN-Dbv">
-                                                    <rect key="frame" x="63" y="44" width="249.99999999999997" height="250"/>
+                                                    <rect key="frame" x="63" y="44" width="250" height="250"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="250" id="kqK-sx-1CX"/>
                                                         <constraint firstAttribute="width" constant="250" id="sCl-jE-Qiw"/>
@@ -879,7 +884,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="A21-2b-3Jk"/>
                     <navigationItem key="navigationItem" title="Profile" largeTitleDisplayMode="always" id="fSf-Hc-ZCB">
-                        <barButtonItem key="rightBarButtonItem" title="Profile Settings" image="settings" id="acp-QZ-Uoh"/>
+                        <barButtonItem key="rightBarButtonItem" title="Profile Settings" image="settings" id="acp-QZ-Uoh">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -1112,12 +1119,14 @@
                     </view>
                     <navigationItem key="navigationItem" title="Feed" id="7Pt-Dg-qZo">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="MVb-M6-3w9">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="rxu-hJ-1Nd" kind="presentation" id="gJS-Gs-XJH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="postButton" destination="MVb-M6-3w9" id="ZOv-sS-KeH"/>
                         <outlet property="tableView" destination="1DY-cI-juC" id="MJE-6s-kqc"/>
                     </connections>
                 </viewController>
@@ -1142,6 +1151,7 @@
                                             <constraint firstAttribute="width" constant="86" id="q9t-Ov-pGb"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Post"/>
                                         <connections>
                                             <action selector="sendPost:" destination="rxu-hJ-1Nd" eventType="touchUpInside" id="He9-0z-iaQ"/>
@@ -1153,7 +1163,10 @@
                                             <constraint firstAttribute="width" constant="56" id="6uh-fG-rkA"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" image="Navigation_Stop_2x"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="Navigation_Stop_2x">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="exitPost:" destination="rxu-hJ-1Nd" eventType="touchUpInside" id="gip-fT-ivg"/>
                                         </connections>
@@ -1482,19 +1495,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="74.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Songs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1G-6C-YJT">
-                                                    <rect key="frame" x="90" y="23" width="244" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Songs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1G-6C-YJT">
+                                                    <rect key="frame" x="90" y="23" width="237" height="29"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="song" translatesAutoresizingMaskIntoConstraints="NO" id="b2B-XY-TKX">
-                                                    <rect key="frame" x="15" y="17" width="40" height="40"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="song" translatesAutoresizingMaskIntoConstraints="NO" id="b2B-XY-TKX">
+                                                    <rect key="frame" x="15" y="17.333333333333329" width="40" height="40"/>
                                                     <color key="tintColor" red="0.1647637784" green="0.1684046984" blue="0.18039399389999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="79h-L8-1Do"/>
+                                                        <constraint firstAttribute="width" constant="40" id="Pdj-Ib-jwf"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="e1G-6C-YJT" firstAttribute="leading" secondItem="b2B-XY-TKX" secondAttribute="trailing" constant="35" id="8ro-9t-3l0"/>
+                                                <constraint firstItem="b2B-XY-TKX" firstAttribute="leading" secondItem="hHa-Dl-HeX" secondAttribute="leading" constant="15" id="fmO-Jr-ktE"/>
+                                                <constraint firstItem="e1G-6C-YJT" firstAttribute="centerY" secondItem="b2B-XY-TKX" secondAttribute="centerY" id="g0l-WU-rBO"/>
+                                                <constraint firstItem="b2B-XY-TKX" firstAttribute="centerY" secondItem="hHa-Dl-HeX" secondAttribute="centerY" id="uN6-AB-tjs"/>
+                                                <constraint firstAttribute="trailing" secondItem="e1G-6C-YJT" secondAttribute="trailing" constant="15" id="xQp-Fg-PF5"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="categoryTitle" destination="e1G-6C-YJT" id="gMe-tb-0Iy"/>
@@ -1539,10 +1561,10 @@
             </objects>
             <point key="canvasLocation" x="1760.8" y="1554.6798029556651"/>
         </scene>
-        <!--Favorites View Controller-->
+        <!--Favorites List View Controller-->
         <scene sceneID="t5T-rS-Tr3">
             <objects>
-                <viewController id="wXU-Cy-FFw" customClass="FavoritesViewController" customModule="TrackChanges" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wXU-Cy-FFw" customClass="FavoritesListViewController" customModule="TrackChanges" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0DH-va-wdS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1669,7 +1691,7 @@
                         <viewLayoutGuide key="safeArea" id="AbS-1s-vLi"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="Xya-px-DbE" id="m16-3U-KOQ"/>
+                        <outlet property="tableView" destination="Xya-px-DbE" id="dsT-S3-1S1"/>
                         <segue destination="xR9-oV-cUs" kind="show" identifier="FavoritesListToAlbum" id="Bl2-yC-hUY"/>
                     </connections>
                 </viewController>
@@ -2237,6 +2259,7 @@
                                             <constraint firstAttribute="width" constant="57" id="Wtk-rg-9VX"/>
                                             <constraint firstAttribute="height" constant="60" id="kdc-bX-d8i"/>
                                         </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="play"/>
                                         <connections>
                                             <action selector="playPauseButtonPressed:" destination="F8P-Wl-1Yx" eventType="touchUpInside" id="dpY-P3-b9N"/>
@@ -2445,9 +2468,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2CD-3s-Dfp"/>
-        <segue reference="a2d-US-GiJ"/>
+        <segue reference="tdk-Bb-CWb"/>
         <segue reference="ReD-vb-n90"/>
-        <segue reference="gJS-Gs-XJH"/>
-        <segue reference="smA-wF-jFS"/>
+        <segue reference="gEO-3w-az6"/>
+        <segue reference="dZ0-AF-8NJ"/>
     </inferredMetricsTieBreakers>
 </document>
