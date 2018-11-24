@@ -14,7 +14,7 @@
         <scene sceneID="QXe-sm-O9U">
             <objects>
                 <viewController id="c5j-Q1-scs" customClass="SongViewController" customModule="TrackChanges" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="RUK-do-yIX">
+                    <view key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="RUK-do-yIX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -137,12 +137,12 @@
         <scene sceneID="jcJ-yq-aI0">
             <objects>
                 <viewController id="90L-5V-mcJ" customClass="SearchResultsViewController" customModule="TrackChanges" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Bes-tE-VDO">
+                    <view key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="Bes-tE-VDO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="GdV-7J-fyg">
-                                <rect key="frame" x="0.0" y="88" width="375" height="581"/>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="GdV-7J-fyg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="669"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -264,7 +264,7 @@
                                             <outlet property="songTitle" destination="BN4-J8-ppe" id="9yV-Vg-Quq"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AlbumCell" rowHeight="100" id="I6a-zy-Coa" customClass="AlbumSearchTableViewCell" customModule="TrackChanges" customModuleProvider="target">
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AlbumCell" rowHeight="100" id="I6a-zy-Coa" customClass="AlbumSearchTableViewCell" customModule="TrackChanges" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="315.33333333333337" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I6a-zy-Coa" id="yXp-VZ-1cH">
@@ -328,13 +328,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="GdV-7J-fyg" firstAttribute="trailing" secondItem="dv0-9a-Lkz" secondAttribute="trailing" id="5xV-J9-uBJ"/>
                             <constraint firstItem="Mxg-9l-rQT" firstAttribute="trailing" secondItem="dv0-9a-Lkz" secondAttribute="trailing" id="7UG-mL-sU9"/>
+                            <constraint firstItem="Mxg-9l-rQT" firstAttribute="top" secondItem="GdV-7J-fyg" secondAttribute="bottom" id="FF1-u6-h2F"/>
+                            <constraint firstItem="GdV-7J-fyg" firstAttribute="top" secondItem="Bes-tE-VDO" secondAttribute="top" id="Hbk-Ia-da2"/>
                             <constraint firstItem="Mxg-9l-rQT" firstAttribute="bottom" secondItem="dv0-9a-Lkz" secondAttribute="bottom" id="LHZ-Aj-ByF"/>
-                            <constraint firstItem="GdV-7J-fyg" firstAttribute="top" secondItem="dv0-9a-Lkz" secondAttribute="top" id="P1T-vU-47u"/>
-                            <constraint firstItem="Mxg-9l-rQT" firstAttribute="top" secondItem="GdV-7J-fyg" secondAttribute="bottom" id="V2e-sc-SSh"/>
-                            <constraint firstItem="GdV-7J-fyg" firstAttribute="leading" secondItem="dv0-9a-Lkz" secondAttribute="leading" id="cjU-uz-kdJ"/>
+                            <constraint firstItem="GdV-7J-fyg" firstAttribute="trailing" secondItem="dv0-9a-Lkz" secondAttribute="trailing" id="VZ9-Ex-1ha"/>
                             <constraint firstItem="Mxg-9l-rQT" firstAttribute="leading" secondItem="dv0-9a-Lkz" secondAttribute="leading" id="r4b-Os-6YK"/>
+                            <constraint firstItem="GdV-7J-fyg" firstAttribute="leading" secondItem="dv0-9a-Lkz" secondAttribute="leading" id="x4C-Ub-NB7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dv0-9a-Lkz"/>
                     </view>
@@ -346,7 +346,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13g-a8-FRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2646" y="859"/>
+            <point key="canvasLocation" x="2645.5999999999999" y="858.62068965517244"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="mT4-66-tNS">
@@ -356,12 +356,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iEt-Uf-xDb">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iEt-Uf-xDb">
+                                <rect key="frame" x="0.0" y="88" width="375" height="581"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AlbumCell" rowHeight="390" id="e5v-FQ-DtC" customClass="AlbumCoverTableViewCell" customModule="TrackChanges" customModuleProvider="target">
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AlbumCell" rowHeight="390" id="e5v-FQ-DtC" customClass="AlbumCoverTableViewCell" customModule="TrackChanges" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="390"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e5v-FQ-DtC" id="bV8-HC-ajJ">
@@ -467,13 +467,25 @@
                                     <outlet property="delegate" destination="xR9-oV-cUs" id="SoL-wF-qWo"/>
                                 </connections>
                             </tableView>
+                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A0d-SN-jcw">
+                                <rect key="frame" x="0.0" y="669" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ISY-Zy-Q3h"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="F8P-Wl-1Yx" kind="embed" id="MFH-vr-tL2"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="iEt-Uf-xDb" firstAttribute="trailing" secondItem="Khg-Fu-hdm" secondAttribute="trailing" id="2nT-cg-Kfw"/>
-                            <constraint firstItem="iEt-Uf-xDb" firstAttribute="bottom" secondItem="Khg-Fu-hdm" secondAttribute="bottom" id="49R-TF-bGp"/>
-                            <constraint firstItem="iEt-Uf-xDb" firstAttribute="leading" secondItem="Khg-Fu-hdm" secondAttribute="leading" id="OyR-yq-JKy"/>
-                            <constraint firstItem="iEt-Uf-xDb" firstAttribute="top" secondItem="Khg-Fu-hdm" secondAttribute="top" id="jMq-fX-jIZ"/>
+                            <constraint firstItem="A0d-SN-jcw" firstAttribute="top" secondItem="iEt-Uf-xDb" secondAttribute="bottom" id="4ph-dn-yNJ"/>
+                            <constraint firstItem="iEt-Uf-xDb" firstAttribute="top" secondItem="4su-JI-uVm" secondAttribute="topMargin" id="FIv-Pj-mJ9"/>
+                            <constraint firstItem="iEt-Uf-xDb" firstAttribute="leading" secondItem="Khg-Fu-hdm" secondAttribute="leading" id="R5e-4y-zaA"/>
+                            <constraint firstItem="iEt-Uf-xDb" firstAttribute="trailing" secondItem="Khg-Fu-hdm" secondAttribute="trailing" id="ajf-R7-XNW"/>
+                            <constraint firstItem="A0d-SN-jcw" firstAttribute="bottom" secondItem="Khg-Fu-hdm" secondAttribute="bottom" id="bP2-cB-UOL"/>
+                            <constraint firstItem="A0d-SN-jcw" firstAttribute="trailing" secondItem="Khg-Fu-hdm" secondAttribute="trailing" id="xHw-Ed-Fiy"/>
+                            <constraint firstItem="A0d-SN-jcw" firstAttribute="leading" secondItem="Khg-Fu-hdm" secondAttribute="leading" id="xmy-62-owD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Khg-Fu-hdm"/>
                     </view>
@@ -1124,7 +1136,7 @@
                                     <segue destination="F8P-Wl-1Yx" kind="embed" id="OHN-Qo-AKT"/>
                                 </connections>
                             </containerView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="250" estimatedRowHeight="250" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ew6-E3-udm">
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="250" estimatedRowHeight="250" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ew6-E3-udm">
                                 <rect key="frame" x="0.0" y="140" width="375" height="529"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -2184,10 +2196,10 @@
         <image name="user_male" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="npa-2q-raI"/>
+        <segue reference="MFH-vr-tL2"/>
         <segue reference="tdk-Bb-CWb"/>
         <segue reference="ReD-vb-n90"/>
-        <segue reference="gJS-Gs-XJH"/>
+        <segue reference="gEO-3w-az6"/>
         <segue reference="Bl2-yC-hUY"/>
     </inferredMetricsTieBreakers>
 </document>

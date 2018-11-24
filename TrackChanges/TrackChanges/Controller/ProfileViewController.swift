@@ -9,11 +9,6 @@
 import UIKit
 import Starscream
 
-// Variable that determines the title of the FollowViewController 
-var ViewFollowers = Bool()
-
-var FollowFromProfile = Bool()
-
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WebSocketDelegate {
     
     @IBOutlet weak var tableView: UITableView!
@@ -123,7 +118,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let followers = json["followers"] as! [[String: Any]]
      
                 for user in followers {
-                    var follower = User()
+                    let follower = User()
                     follower.imageUrl = user["user_imageurl"] as! String
                     follower.username = user["user_id"] as! String
                     follower.displayName = user["user_displayname"] as! String
@@ -137,7 +132,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let following = json["followings"] as! [[String: Any]]
 
                 for user in following {
-                    var following = User()
+                    let following = User()
                     following.imageUrl = user["user_imageurl"] as! String
                     following.username = user["user_id"] as! String
                     following.displayName = user["user_displayname"] as! String
@@ -148,17 +143,48 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             // User post response
             if json["response"] as? String == "feed" {
-//                print(json["feed"])
+                currentUser.posts.removeAll()
                 let posts = json["feed"] as! [[String: Any]]
                 for post in posts {
-                    if post["song_id"] as? String == "" {
-                        print("asdkhjasldkajsdlkasjdalk")
+                    let newPost = Post()
+                    newPost.user = currentUser
+                    if post["post_song_id"] as? String != nil {
+                        let id = post["post_song_id"] as! String
+                        newPost.trackId = id
                     }
                     
+                    if post["post_id"] as? String != nil {
+                        let id = post["post_id"] as! String
+                        newPost.id = id
+                    }
+                    
+                    if post["post_message"] as? String != nil {
+                        let id = post["post_message"] as! String
+                        newPost.message = id
+                    }
+                    
+                    if post["post_timestamp"] as? String != nil {
+                        let id = post["post_timestamp"] as! String
+                        newPost.timestamp = id
+                    }
+                    
+                    if post["post_album_id"] as? String != nil {
+                        let id = post["post_album_id"] as! String
+                        newPost.albumId = id
+                    }
+                    
+                    if post["post_type"] as? String != nil {
+                        let id = post["post_type"] as! String
+                        newPost.type = id
+                    }
+                    currentUser.posts.append(newPost)
+                    
+                    self.tableView.reloadData()
                 }
+                currentUser.posts = currentUser.posts.reversed()
             }
             
-            tableView.reloadData()
+            
         } catch {
             print(error.localizedDescription)
         }
@@ -192,7 +218,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if section == 0 {
             return 1
         } else {
-            return 1
+            return currentUser.posts.count
         }
     }
     
@@ -225,7 +251,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                         URLSession.shared.dataTask(with: request) { (data, response, error) in
                             if let data = data {
                                 do {
-                                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                                    if (try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]) != nil {
                                         
                                     }
                                 } catch {
@@ -262,12 +288,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
             
-            /*
+            
             cell.postContent.text = currentUser.posts[indexPath.row].message
             cell.name.text = currentUser.displayName
             cell.username.text = currentUser.username
             
-            
+            cell.profilePic.layer.borderWidth = 0.5
+            cell.profilePic.layer.masksToBounds = false
+            cell.profilePic.layer.borderColor = UIColor.black.cgColor
+            cell.profilePic.layer.cornerRadius = cell.profilePic.frame.height/2
+            cell.profilePic.clipsToBounds = true
             cell.profilePic.image = currentUser.image
 
             
@@ -327,7 +357,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     makeRequest(url: "https://api.spotify.com/v1/albums/", id: currentUser.posts[indexPath.row].albumId!)
                 }
             }
-            */
+            
             
             return cell
         }

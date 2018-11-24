@@ -29,42 +29,7 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        // Setup a socket to backend
-//        var request = URLRequest(url: URL(string: "ws://172.20.10.4:8080/TrackChangesBackend/endpoint")!)
-//        request.timeoutInterval = 5
-//        //        socket = WebSocket(request: request)
         socket.delegate = self
-        
-    }
-    
-
-    func websocketDidConnect(socket: WebSocketClient) {
-        print("websocket is connected")
-    }
-    
-    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        if let e = error as? WSError {
-            print("websocket is disconnected: \(e.message)")
-        } else if let e = error {
-            print("websocket is disconnected: \(e.localizedDescription)")
-        } else {
-            print("websocket disconnected")
-        }
-    }
-    
-    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("Received text: \(text)")
-    }
-    
-    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        print("Received data: \(data.count)")
-        do {
-            let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-            print(json)
-        } catch {
-            print(error.localizedDescription)
-        }
     }
     
     // Dismiss PostViewController
@@ -75,7 +40,8 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
     
     @IBAction func sendPost(_ sender: Any) {
  
-        let newPost = Post(message: postText.text)
+        let newPost = Post()
+        newPost.message = postText.text
         
         if SharePost == 1 {
             let json:NSMutableDictionary = NSMutableDictionary()
@@ -183,8 +149,11 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
     
     override func viewDidAppear(_ animated: Bool) {
         postText.becomeFirstResponder()
-        
         postText.selectedTextRange = postText.textRange(from: postText.beginningOfDocument, to: postText.beginningOfDocument)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        postText.resignFirstResponder()
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -211,6 +180,34 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
             if postText.textColor == UIColor.lightGray {
                 postText.selectedTextRange = postText.textRange(from: postText.beginningOfDocument, to: postText.beginningOfDocument)
             }
+        }
+    }
+    
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("websocket is connected")
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        if let e = error as? WSError {
+            print("websocket is disconnected: \(e.message)")
+        } else if let e = error {
+            print("websocket is disconnected: \(e.localizedDescription)")
+        } else {
+            print("websocket disconnected")
+        }
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print("Received text: \(text)")
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print("Received data: \(data.count)")
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+            print(json)
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }

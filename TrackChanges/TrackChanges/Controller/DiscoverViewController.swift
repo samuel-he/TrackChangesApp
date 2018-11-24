@@ -28,6 +28,8 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     
     let search = UISearchController(searchResultsController: nil)
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

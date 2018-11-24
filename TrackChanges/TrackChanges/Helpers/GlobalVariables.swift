@@ -31,3 +31,9 @@ var GuestUser = Bool()
 let PlayURI = ""
 let TrackIdentifier = ""
 var socket: WebSocket!
+
+
+// Variable that determines the title of the FollowViewController
+var ViewFollowers = Bool()
+
+var FollowFromProfile = Bool()

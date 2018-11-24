@@ -82,11 +82,24 @@ class Artist {
 class Post {
     var message: String
     var timestamp: String
+    var user: User
+    var id: String
+    var type: String
+    
     var trackId: String?
     var albumId: String?
     var track: Track?
-    var album: Album? 
+    var album: Album?
+    
+    init() {
+        message = ""
+        timestamp = ""
+        user = User()
+        id = ""
+        type = ""
+    }
 
+    /*
     init(message: String, trackId: String) {
         self.message = message
         self.timestamp = String(Date.timeIntervalSinceReferenceDate)
@@ -103,6 +116,7 @@ class Post {
         self.message = message
         self.timestamp = String(NSDate().timeIntervalSince1970)
     }
+    */
 }
 
 class User {

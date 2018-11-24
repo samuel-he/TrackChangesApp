@@ -21,6 +21,15 @@ class SongViewController: UIViewController, SPTAppRemotePlayerStateDelegate {
     }
     
     func updateAlbumArtWithImage(_ image: UIImage) {
+        // Add shadow to the album cover art in the mini player
+        self.albumCover.layer.shadowColor = UIColor.black.cgColor
+        self.albumCover.layer.shadowOpacity = 0.5
+        self.albumCover.layer.shadowOffset = CGSize.zero
+        self.albumCover.layer.shadowRadius = 5
+        self.albumCover.layer.shouldRasterize = true
+        
+        // Add a top border to the mini player
+        self.view.addTopBorder(color: UIColor.lightGray, width: 0.2)
         self.albumCover.image = image
         let transition = CATransition()
         transition.duration = 0.3

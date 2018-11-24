@@ -28,7 +28,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         SelectedUser = User()
         
         // Setup a socket to backend
-        var request = URLRequest(url: URL(string: "ws://192.168.0.16:8080/TrackChangesBackend/endpoint")!)
+        var request = URLRequest(url: URL(string: "ws://172.20.10.4:8080/TrackChangesBackend/endpoint")!)
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket.delegate = self
