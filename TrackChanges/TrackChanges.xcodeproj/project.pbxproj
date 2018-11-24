@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B32A87C21A94B6A00C10BC4 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B32A87B21A94B6900C10BC4 /* LineView.swift */; };
 		0BD93DAC21A4CDC8008E1CC0 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD93DAB21A4CDC8008E1CC0 /* GlobalVariables.swift */; };
 		0BD94F0E219E067E002CA9E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */; };
 		0BFBB56D219E3A0400A609E6 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB56C219E3A0400A609E6 /* MiniPlayerViewController.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B32A87B21A94B6900C10BC4 /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		0BD93DAB21A4CDC8008E1CC0 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		0BD94F0D219E067E002CA9E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0BFBB56C219E3A0400A609E6 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				308C8FAA217BC10100D6337C /* AlbumViewController.swift */,
 				30127D4E21740AA200F6E267 /* FollowViewController.swift */,
 				30127D5221758D5300F6E267 /* PostViewController.swift */,
+				0B32A87B21A94B6900C10BC4 /* LineView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TrackChanges/Pods-TrackChanges-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ARNTransitionAnimator/ARNTransitionAnimator.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
@@ -346,6 +350,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ARNTransitionAnimator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
@@ -375,6 +380,7 @@
 				0BFBB56D219E3A0400A609E6 /* MiniPlayerViewController.swift in Sources */,
 				308C8FB8217D26B300D6337C /* PeopleSearchTableViewCell.swift in Sources */,
 				30127D5321758D5300F6E267 /* PostViewController.swift in Sources */,
+				0B32A87C21A94B6A00C10BC4 /* LineView.swift in Sources */,
 				30127D4B2174002700F6E267 /* DiscoverTableViewCell.swift in Sources */,
 				308C8FC82181536700D6337C /* ProfileTableViewCell.swift in Sources */,
 				30127D4D217403D100F6E267 /* DiscoverCollectionViewCell.swift in Sources */,

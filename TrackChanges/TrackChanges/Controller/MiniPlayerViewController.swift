@@ -16,6 +16,7 @@ class MiniPlayerViewController: UIViewController, SPTAppRemotePlayerStateDelegat
     @IBOutlet weak var playPauseButton: UIButton!
     
     
+    
     var currentSong: Track?
     weak var delegate: MiniPlayerDelegate?
     
@@ -28,11 +29,11 @@ class MiniPlayerViewController: UIViewController, SPTAppRemotePlayerStateDelegat
         getPlayerState()
         
         // Add shadow to the album cover art in the mini player
-        self.thumbImage.layer.shadowColor = UIColor.black.cgColor
-        self.thumbImage.layer.shadowOpacity = 0.5
-        self.thumbImage.layer.shadowOffset = CGSize.zero
-        self.thumbImage.layer.shadowRadius = 2
-        self.thumbImage.layer.shouldRasterize = true
+//        self.thumbImage.layer.shadowColor = UIColor.black.cgColor
+//        self.thumbImage.layer.shadowOpacity = 0.5
+//        self.thumbImage.layer.shadowOffset = CGSize.zero
+//        self.thumbImage.layer.shadowRadius = 2
+//        self.thumbImage.layer.shouldRasterize = true
         
         // Add a top border to the mini player
         self.view.addTopBorder(color: UIColor.lightGray, width: 0.2)
@@ -132,25 +133,10 @@ class MiniPlayerViewController: UIViewController, SPTAppRemotePlayerStateDelegat
             self.playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
         }
     }
-}
-
-// MARK: - Internal
-extension MiniPlayerViewController {
-    /*
-    func configure(song: Track?) {
-        
-        if let song = song {
-            songTitle.text = song.name
-            nowPlayingArtist.text = song.artist
-            thumbImage.image = song.image
-        } else {
-            songTitle.text = nil
-            nowPlayingArtist.text = nil
-            thumbImage.image = nil
-        }
-        currentSong = song
+    
+    @IBAction func swipedUp(_ sender: Any) {
+        self.performSegue(withIdentifier: "miniPlayerToSongView", sender: sender)
     }
-    */
 }
 
 

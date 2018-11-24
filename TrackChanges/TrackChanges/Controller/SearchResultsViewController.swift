@@ -11,28 +11,14 @@ import UIKit
 import Starscream
 
 class SearchResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, WebSocketDelegate {
-    func websocketDidConnect(socket: WebSocketClient) {
-        
-    }
     
-    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        
-    }
-    
-    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        
-    }
-    
-    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        print("In Search results")
-    }
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var allButton: UIButton!
-    @IBOutlet weak var songsButton: UIButton!
-    @IBOutlet weak var albumsButton: UIButton!
-    @IBOutlet weak var peopleButton: UIButton!
+//    @IBOutlet weak var searchBar: UISearchBar!
+//    @IBOutlet weak var allButton: UIButton!
+//    @IBOutlet weak var songsButton: UIButton!
+//    @IBOutlet weak var albumsButton: UIButton!
+//    @IBOutlet weak var peopleButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,29 +34,29 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         socket.delegate = self
     }
     
-    @IBAction func switchTab(_ sender: UIButton) {
-        switch sender.tag {
-            
-        case 1:
-            allButton.setTitleColor(UIColor.black, for: .normal)
-        case 2:
-            songsButton.setTitleColor(UIColor.black, for: .normal)
-        case 3:
-            albumsButton.setTitleColor(UIColor.black, for: .normal)
-        case 4:
-            peopleButton.setTitleColor(UIColor.black, for: .normal)
-        default:
-            return
-        }
-    }
-    
+//    @IBAction func switchTab(_ sender: UIButton) {
+//        switch sender.tag {
+//
+//        case 1:
+//            allButton.setTitleColor(UIColor.black, for: .normal)
+//        case 2:
+//            songsButton.setTitleColor(UIColor.black, for: .normal)
+//        case 3:
+//            albumsButton.setTitleColor(UIColor.black, for: .normal)
+//        case 4:
+//            peopleButton.setTitleColor(UIColor.black, for: .normal)
+//        default:
+//            return
+//        }
+//    }
+//
     func parseAlbum(json: [String: Any], selectedAlbum: Album) {
         var albumTracks = [Track]()
         
         if let items = json["items"] as? [[String: Any]] {
             for item in items {
                 
-                var trackInAlbum = Track()
+                let trackInAlbum = Track()
                 
                 //  Get track
                 if let trackName = item["name"] as? String {
@@ -132,22 +118,22 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Check which kind of cell was tapped
-        if let cell = tableView.cellForRow(at: indexPath) as? PeopleSearchTableViewCell {
+        if (tableView.cellForRow(at: indexPath) as? PeopleSearchTableViewCell) != nil {
             // Go to person's profile
             SelectedUser = UserResults[indexPath.row]
             
             self.performSegue(withIdentifier: "SearchResultsToProfile", sender: nil)
-        } else if let cell = tableView.cellForRow(at: indexPath) as? SongSearchTableViewCell {
+        } else if (tableView.cellForRow(at: indexPath) as? SongSearchTableViewCell) != nil {
             
             // Play the song selected
             AppRemote.playerAPI?.play(TrackResults[indexPath.row].uri, callback: { (track, error) in
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
             })
             
             // Update the player
             // TODO
             
-        } else if let cell = tableView.cellForRow(at: indexPath) as? AlbumSearchTableViewCell {
+        } else if (tableView.cellForRow(at: indexPath) as? AlbumSearchTableViewCell) != nil {
             
             // Set the selected album for the album screen
             SelectedAlbum = AlbumResults[indexPath.row]
@@ -408,4 +394,20 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     var tokenUrl = "https://accounts.spotify.com/api/token"
     // Base url for spotify search
     var searchUrl = "https://api.spotify.com/v1/search?q="
+    
+    func websocketDidConnect(socket: WebSocketClient) {
+        
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print("In Search results")
+    }
 }

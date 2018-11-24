@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "216D5123E6844806076CBF5D41F275C9"
-               BlueprintName = "Starscream"
+               BlueprintIdentifier = "0AE70D332B1ABFF49E2DE21720303DC3"
+               BlueprintName = "ARNTransitionAnimator"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Starscream.framework">
+               BuildableName = "ARNTransitionAnimator.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

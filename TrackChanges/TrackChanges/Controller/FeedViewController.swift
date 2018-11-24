@@ -122,6 +122,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
         
+        
+        
+        
         // Set the image for the play/pause button
         if cell.playPauseButton.isPlaying {
             cell.playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
@@ -157,6 +160,4 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print(jsonString)
         print("Received data: \(data.count)")
     }
-    
 }
-

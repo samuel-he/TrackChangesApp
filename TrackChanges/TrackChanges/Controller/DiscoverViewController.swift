@@ -621,7 +621,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
             if json["response"] as? String == "search_results" {
                 let userResults = json["search_results"] as! [[String: Any]]
                 for user in userResults {
-                    var userResult = User()
+                    let userResult = User()
                     userResult.imageUrl = user["user_imageurl"] as! String
                     userResult.username = user["user_id"] as! String
                     userResult.displayName = user["user_displayname"] as! String

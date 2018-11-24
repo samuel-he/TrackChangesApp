@@ -10,8 +10,13 @@ import UIKit
 
 class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var table: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.table.reloadData()
     }
     
     //////
@@ -87,6 +92,34 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         AppRemote.playerAPI?.play(SelectedAlbum.tracks[indexPath.row - 1].uri, callback: defaultCallback)
     }
+    
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let action = UIContextualAction(style: .normal, title: "Like") { (action, view, handler) in
+            // TODO
+        }
+        action.backgroundColor = UIColor.orange
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        return configuration
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let action = UIContextualAction(style: .normal, title: "Share") { (action, view, handler) in
+            SharePost = 1
+            // Set track to share
+            ShareTrack = SelectedAlbum.tracks[indexPath.row - 1]
+            
+            self.performSegue(withIdentifier: "ShareTrackFromAlbum", sender: nil)
+            
+        }
+        
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        return configuration
+    }
+    
+    
     
     var defaultCallback: SPTAppRemoteCallback {
         get {

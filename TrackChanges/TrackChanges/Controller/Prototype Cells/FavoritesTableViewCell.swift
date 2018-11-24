@@ -11,6 +11,8 @@ import UIKit
 class FavoritesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var categoryTitle: UILabel!
+    @IBOutlet weak var cellImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

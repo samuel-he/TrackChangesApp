@@ -58,10 +58,14 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoritesCell", for: indexPath) as! FavoritesTableViewCell
         if indexPath.row == 0 {
             cell.categoryTitle.text = "Songs"
+            cell.cellImage.image = UIImage(named: "song")
+            
         } else if indexPath.row == 1 {
             cell.categoryTitle.text = "Albums"
+            cell.cellImage.image = UIImage(named: "album")
         } else {
-            cell.categoryTitle.text = "Shared" 
+            cell.categoryTitle.text = "Shared"
+            cell.cellImage.image = UIImage(named: "shared")
         }
         return cell
     }
