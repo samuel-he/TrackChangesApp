@@ -9,25 +9,29 @@ public class Post {
 	@Expose
 	private String post_id;
 	
+	@SerializedName("Post_Type")
+	@Expose
+	private String post_type;
+	
 	@SerializedName("Post_Timestamp")
 	@Expose
-	private String post_timeStamp;
+	private String post_timestamp;
 	
-	@SerializedName("Post_UserId")
+	@SerializedName("Post_User_Id")
 	@Expose
-	private String post_userId;
+	private String post_user_id;
 	
 	@SerializedName("Post_Message")
 	@Expose
 	private String post_message;
 	
-	@SerializedName("Post_Song")
+	@SerializedName("Post_Song_Id")
 	@Expose
-	private String post_songId;
+	private String post_song_id;
 	
-	@SerializedName("Post_Album")
+	@SerializedName("Post_Album_Id")
 	@Expose
-	private String post_albumId;
+	private String post_album_id;
 	
 	public String getPostId() {
 		return post_id;
@@ -37,20 +41,28 @@ public class Post {
 		this.post_id = post_id;
 	}
 	
+	public String getPostType() {
+		return post_type;
+	}
+	
+	public void setPostType(String post_type) {
+		this.post_type = post_type;
+	}
+	
 	public String getPostTimeStamp() {
-		return post_timeStamp;
+		return post_timestamp;
 	}
 	
 	public void setPostTimeStamp(String post_timeStamp) {
-		this.post_timeStamp = post_timeStamp;
+		this.post_timestamp = post_timeStamp;
 	}
 	
 	public String getPostUserId() {
-		return post_userId;
+		return post_user_id;
 	}
 	
 	public void setPostUserId(String post_userId) {
-		this.post_userId = post_userId;
+		this.post_user_id = post_userId;
 	}
 	
 	public String getPostMessage() {
@@ -62,19 +74,19 @@ public class Post {
 	}
 	
 	public String getPostSongId() {
-		return post_songId;
+		return post_song_id;
 	}
 	
 	public void setPostSongId(String post_songId) {
-		this.post_songId = post_songId;
+		this.post_song_id = post_songId;
 	}
 	
 	public String getPostAlbumId() {
-		return post_albumId;
+		return post_album_id;
 	}
 	
 	public void setPostAlbumId(String post_albumId) {
-		this.post_albumId = post_albumId;
+		this.post_album_id = post_albumId;
 	}
 	
 }
