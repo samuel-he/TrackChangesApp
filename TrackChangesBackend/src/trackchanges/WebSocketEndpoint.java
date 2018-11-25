@@ -373,7 +373,9 @@ public class WebSocketEndpoint {
 					jsonPost.put("post_type", post.getPostType());
 					jsonPost.put("post_timestamp", post.getPostTimeStamp());
 					jsonPost.put("post_user_id", post.getPostUserId());
-					jsonPost.put("post_user", post.getPostUser());
+					jsonPost.put("post_user_displayname", post.getPostUserDisplayname());
+					jsonPost.put("post_user_imageurl", post.getPostUserImageurl());
+					jsonPost.put("post_user_logintimestamp", post.getPostUserLogintimestamp());
 					jsonPost.put("post_message", post.getPostMessage());
 					jsonPost.put("post_song_id", post.getPostSongId());
 					jsonPost.put("post_album_id", post.getPostAlbumId());

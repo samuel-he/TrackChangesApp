@@ -986,7 +986,6 @@ public class Application {
 					String tempPostSongId = rs.getString("song_id");
 					String tempPostAlbumId = rs.getString("album_id");
 
-					User tempPostUser = new User();
 					ResultSet userRs = null;
 					PreparedStatement userPs = null;
 					Connection userConn = null;
@@ -998,10 +997,10 @@ public class Application {
 								"SELECT * from User u WHERE u.user_id= '" + tempUserId + "';");
 						userRs = userPs.executeQuery();
 						while(userRs.next()) {
-							tempPostUser.setUserId(rs.getString("user_id"));
-							tempPostUser.setUserDisplayName(rs.getString("user_displayname"));
-							tempPostUser.setUserImageUrl(rs.getString("user_imageurl"));
-							tempPostUser.setUserLoginTimeStamp(rs.getString("user_logintimestamp"));
+
+							tempPost.setPostUserDisplayname(rs.getString("user_displayname"));
+							tempPost.setPostUserImageurl(rs.getString("user_imageurl"));
+							tempPost.setPostUserLogintimestamp(rs.getString("user_logintimestamp"));
 						}
 					} catch (SQLException sqle) {
 						System.out.println("sqle: " + sqle.getMessage());
@@ -1028,7 +1027,6 @@ public class Application {
 					tempPost.setPostType(tempPostType);
 					tempPost.setPostTimeStamp(tempPostTimeStamp);
 					tempPost.setPostUserId(tempUserId);
-					tempPost.setPostUser(tempPostUser);
 					tempPost.setPostMessage(tempPostMessage);
 					tempPost.setPostSongId(tempPostSongId);
 					tempPost.setPostAlbumId(tempPostAlbumId);
