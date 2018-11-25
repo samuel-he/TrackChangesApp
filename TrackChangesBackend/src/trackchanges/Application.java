@@ -957,8 +957,7 @@ public class Application {
 			Class.forName(SQL_DRIVER_CLASS);
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
 			// first select the users that the target user is following
-			ps = conn.prepareStatement(
-					"SELECT * FROM Follow f WHERE f.follower_id = '" + user_id + "';");
+			ps = conn.prepareStatement("SELECT * FROM Follow f WHERE f.follower_id = '" + user_id + "';");
 			//ps.setString(1, "%" + user_id + "%");
 
 			rs = ps.executeQuery();
@@ -970,9 +969,14 @@ public class Application {
 			// do we have to reset rs, ps, etc. as null
 			// iterate through the users that the target user is following 
 			// add posts accordingly
-			for(int i = 0; i < following.size(); ++i) {
-				ps = conn.prepareStatement(
-						"SELECT * from Post WHERE user_id= '" + following.get(i) + "';");
+			for(int i = 0; i < following.size() + 1; ++i) {
+				if(i == following.size()) {
+					ps = conn.prepareStatement(
+							"SELECT * from Post WHERE user_id= '" + user_id + "';");
+				} else {
+					ps = conn.prepareStatement(
+							"SELECT * from Post WHERE user_id= '" + following.get(i) + "';");
+				}
 				//ps.setString(1, "%" + following.get(i) + "%");
 				rs = ps.executeQuery();
 				while(rs.next()){

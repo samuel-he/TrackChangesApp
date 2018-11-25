@@ -350,7 +350,7 @@ public class WebSocketEndpoint {
 				}
 
 				JSONObject response = new JSONObject();
-				response.put("response", "feed");
+				response.put("response", "posts");
 				response.put("posts", jsonFeedArray);
 				
 				// Debug output
