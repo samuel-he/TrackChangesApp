@@ -236,6 +236,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                                             }
                                                         }
                                                         
+                                                        currentUser.posts.append(newPost)
+                                                        
                                                     }
                                                 } catch {
                                                     print(error.localizedDescription)
@@ -301,6 +303,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                                             }
                                                         }
                                                     }
+                                                    
+                                                    
+                                                    currentUser.posts.append(newPost)
+                                                    
                                                 } catch {
                                                     print(error.localizedDescription)
                                                 }
@@ -313,8 +319,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                             }
                         }.resume()
                     }
-                    
-                    currentUser.posts.append(newPost)
                     
                     self.tableView.reloadData()
                 }
@@ -410,7 +414,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     cell.playPauseButton.isHidden = false
                     
                     cell.title.text = currentUser.posts[indexPath.row].track?.name
-                    cell.artist.text = currentUser.posts[indexPath.row].track?.album.artist.name    
+                    cell.artist.text = currentUser.posts[indexPath.row].track?.album.artist.name
                     do {
                         let data = try Data(contentsOf: URL.init(string: (currentUser.posts[indexPath.row].track?.album.image)!)!)
                         cell.coverImage.image = UIImage.init(data: data)
