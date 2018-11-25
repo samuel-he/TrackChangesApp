@@ -223,7 +223,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                                         if let artists = json["artists"] as? [[String: Any]] {
                                                             if let artist = artists[0] as? [String: Any] {
                                                                 if let artistName = artist["name"] as? String {
-                                                                    newPost.album?.artist.name = artistName
+                                                                    newPost.track?.album.artist.name = artistName
                                                                 }
                                                             }
                                                         }
@@ -231,7 +231,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                                         if let album = json["album"] as? [String: Any] {
                                                             if let images = album["images"] as? [[String: Any]] {
                                                                 if let imageUrl = images[1]["url"] as? String {
-                                                                    newPost.album?.image = imageUrl
+                                                                    newPost.track?.album.image = imageUrl
                                                                 }
                                                             }
                                                         }
@@ -410,9 +410,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     cell.playPauseButton.isHidden = false
                     
                     cell.title.text = currentUser.posts[indexPath.row].track?.name
-                    cell.artist.text = currentUser.posts[indexPath.row].album?.artist.name
+                    cell.artist.text = currentUser.posts[indexPath.row].track?.album.artist.name    
                     do {
-                        let data = try Data(contentsOf: URL.init(string: (currentUser.posts[indexPath.row].album?.image)!)!)
+                        let data = try Data(contentsOf: URL.init(string: (currentUser.posts[indexPath.row].track?.album.image)!)!)
                         cell.coverImage.image = UIImage.init(data: data)
                     } catch {
                         print(error.localizedDescription)
