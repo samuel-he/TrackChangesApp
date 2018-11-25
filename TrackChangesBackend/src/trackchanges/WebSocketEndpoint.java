@@ -351,7 +351,7 @@ public class WebSocketEndpoint {
 
 				JSONObject response = new JSONObject();
 				response.put("response", "feed");
-				response.put("feed", jsonFeedArray);
+				response.put("posts", jsonFeedArray);
 				
 				// Debug output
 				JsonElement je = jp.parse(response.toJSONString());
@@ -373,6 +373,7 @@ public class WebSocketEndpoint {
 					jsonPost.put("post_type", post.getPostType());
 					jsonPost.put("post_timestamp", post.getPostTimeStamp());
 					jsonPost.put("post_user_id", post.getPostUserId());
+					jsonPost.put("post_user", post.getPostUser());
 					jsonPost.put("post_message", post.getPostMessage());
 					jsonPost.put("post_song_id", post.getPostSongId());
 					jsonPost.put("post_album_id", post.getPostAlbumId());

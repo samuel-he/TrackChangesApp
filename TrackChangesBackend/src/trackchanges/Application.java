@@ -956,9 +956,6 @@ public class Application {
 		try {
 			Class.forName(SQL_DRIVER_CLASS);
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
-
-
-
 			// first select the users that the target user is following
 			ps = conn.prepareStatement(
 					"SELECT * FROM Follow f WHERE f.follower_id = '" + user_id + "';");
@@ -989,11 +986,49 @@ public class Application {
 					String tempPostSongId = rs.getString("song_id");
 					String tempPostAlbumId = rs.getString("album_id");
 
+					User tempPostUser = new User();
+					ResultSet userRs = null;
+					PreparedStatement userPs = null;
+					Connection userConn = null;
+
+					try {
+						Class.forName(SQL_DRIVER_CLASS);
+						userConn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
+						userPs = userConn.prepareStatement(
+								"SELECT * from User u WHERE u.user_id= '" + tempUserId + "';");
+						userRs = userPs.executeQuery();
+						while(userRs.next()) {
+							tempPostUser.setUserId(rs.getString("user_id"));
+							tempPostUser.setUserDisplayName(rs.getString("user_displayname"));
+							tempPostUser.setUserImageUrl(rs.getString("user_imageurl"));
+							tempPostUser.setUserLoginTimeStamp(rs.getString("user_logintimestamp"));
+						}
+					} catch (SQLException sqle) {
+						System.out.println("sqle: " + sqle.getMessage());
+					} catch (ClassNotFoundException cnfe) {
+						System.out.println("cnfe: " + cnfe.getMessage());
+					} finally {
+						// You always need to close the connection to the database
+						try {
+							if (userRs != null) {
+								userRs.close();
+							}
+							if (userPs != null) {
+								userPs.close();
+							}
+							if (userConn != null) {
+								userConn.close();
+							}
+						} catch(SQLException sqle) {
+							System.out.println("sqle closing error: " + sqle.getMessage());
+						}
+					}
 
 					tempPost.setPostId(tempPostId);
 					tempPost.setPostType(tempPostType);
 					tempPost.setPostTimeStamp(tempPostTimeStamp);
 					tempPost.setPostUserId(tempUserId);
+					tempPost.setPostUser(tempPostUser);
 					tempPost.setPostMessage(tempPostMessage);
 					tempPost.setPostSongId(tempPostSongId);
 					tempPost.setPostAlbumId(tempPostAlbumId);

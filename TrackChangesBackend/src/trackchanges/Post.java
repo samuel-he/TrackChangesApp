@@ -21,6 +21,10 @@ public class Post {
 	@Expose
 	private String post_user_id;
 	
+	@SerializedName("Post_User")
+	@Expose
+	private User post_user;
+	
 	@SerializedName("Post_Message")
 	@Expose
 	private String post_message;
@@ -63,6 +67,14 @@ public class Post {
 	
 	public void setPostUserId(String post_userId) {
 		this.post_user_id = post_userId;
+	}
+	
+	public User getPostUser() {
+		return post_user;
+	}
+	
+	public void setPostUser(User post_user) {
+		this.post_user = post_user;
 	}
 	
 	public String getPostMessage() {
