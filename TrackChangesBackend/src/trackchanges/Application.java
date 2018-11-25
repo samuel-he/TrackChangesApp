@@ -801,11 +801,57 @@ public class Application {
 					+ newPost.getPostAlbumId() + "', '" 
 					+ newPost.getPostMessage() + "');");
 			ps.execute();
+			
+			ResultSet userRs = null;
+			PreparedStatement userPs = null;
+			Connection userConn = null;
 
-			ps = conn.prepareStatement("select max(post_id) as postID from Post");
-			rs = ps.executeQuery();
-			rs.next();
-			result = rs.getInt("postID");
+			try {
+				Class.forName(SQL_DRIVER_CLASS);
+				userConn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
+				userPs = userConn.prepareStatement(
+						"SELECT p.post_id from Post p WHERE "
+						+ "p.user_id = '" + newPost.getPostUserId() 
+						+ "' AND p.post_timestamp = '" + newPost.getPostTimeStamp().toString()
+						+ "' AND p.post_message = '" + newPost.getPostMessage() + "';");
+				userRs = userPs.executeQuery();
+				
+				if(!userRs.next()) {
+					return 0;
+				} else {
+					userRs.beforeFirst();
+					while(userRs.next()) {
+						return userRs.getInt("post_id");
+					}
+				}
+			} catch (SQLException sqle) {
+				System.out.println("sqle: " + sqle.getMessage());
+			} catch (ClassNotFoundException cnfe) {
+				System.out.println("cnfe: " + cnfe.getMessage());
+			} finally {
+				// You always need to close the connection to the database
+				try {
+					if (userRs != null) {
+						userRs.close();
+					}
+					if (userPs != null) {
+						userPs.close();
+					}
+					if (userConn != null) {
+						userConn.close();
+					}
+				} catch(SQLException sqle) {
+					System.out.println("sqle closing error: " + sqle.getMessage());
+				}
+			}
+
+			/*
+			 * SAM'S JUNK
+			 */
+//			ps = conn.prepareStatement("select max(post_id) as postID from Post");
+//			rs = ps.executeQuery();
+//			rs.next();
+//			result = rs.getInt("postID");
 
 			// insert into post song id table
 			//			if(newPost.getPostSongId() != null) {
@@ -833,8 +879,8 @@ public class Application {
 				if (rs != null) {
 					rs.close();
 				}
-				if (st != null) {
-					st.close();
+				if (ps != null) {
+					ps.close();
 				}
 				if (conn != null) {
 					conn.close();
