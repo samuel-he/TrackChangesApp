@@ -994,13 +994,20 @@ public class Application {
 						Class.forName(SQL_DRIVER_CLASS);
 						userConn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
 						userPs = userConn.prepareStatement(
-								"SELECT * from User u WHERE u.user_id= '" + tempUserId + "';");
+								"SELECT * from User WHERE user_id= '" + tempUserId + "';");
 						userRs = userPs.executeQuery();
-						while(userRs.next()) {
-
-							tempPost.setPostUserDisplayname(rs.getString("user_displayname"));
-							tempPost.setPostUserImageurl(rs.getString("user_imageurl"));
-							tempPost.setPostUserLogintimestamp(rs.getString("user_logintimestamp"));
+						
+						if(!userRs.next()) {
+							tempPost.setPostUserDisplayname("Can't be Found");
+							tempPost.setPostUserImageurl("Can't be Found");
+							tempPost.setPostUserLogintimestamp("Can't be Found");
+						} else {
+							userRs.beforeFirst();
+							while(userRs.next()) {
+								tempPost.setPostUserDisplayname(userRs.getString("user_displayname"));
+								tempPost.setPostUserImageurl(userRs.getString("user_imageurl"));
+								tempPost.setPostUserLogintimestamp(userRs.getString("user_logintimestamp"));	
+							}
 						}
 					} catch (SQLException sqle) {
 						System.out.println("sqle: " + sqle.getMessage());
