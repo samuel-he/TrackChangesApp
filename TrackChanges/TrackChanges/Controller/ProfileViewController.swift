@@ -270,7 +270,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 cell.shareContent.isHidden = false
                 
                 if currentUser.posts[indexPath.row].albumId == "" {
-                    playPauseButton.isHidden = false
+                    cell.playPauseButton.isHidden = false
                     // Make request to Spotify for track info
                     // Request accecssToken
                     let client = "4bebf0c82b774aaa99764eb7c5c58cc4:3be8d087faf841ea805d6d9842c0cbf0"
@@ -349,7 +349,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
                 } else {
                     // Album, so hide play button 
-                    playPauseButton.isHidden = true
+                    cell.playPauseButton.isHidden = true
                     
                     let client = "4bebf0c82b774aaa99764eb7c5c58cc4:3be8d087faf841ea805d6d9842c0cbf0"
                     let base64 = client.data(using: String.Encoding.utf8)?.base64EncodedString() ?? ""
@@ -416,7 +416,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 print(error.localizedDescription)
                             }
                         }
-                        }.resume()
+                    }.resume()
 
                 }
             }
