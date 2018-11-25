@@ -754,16 +754,16 @@
                                                                     </connections>
                                                                 </button>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="o4Z-FQ-ZOS">
-                                                                    <rect key="frame" x="107" y="33.666666666666657" width="94" height="42.666666666666657"/>
+                                                                    <rect key="frame" x="107" y="33.666666666666657" width="148" height="42.666666666666657"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Astronauts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Y5-c2-OCb">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="94" height="21.666666666666668"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="148" height="21.666666666666668"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Future" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAw-U8-f7u">
-                                                                            <rect key="frame" x="0.0" y="21.666666666666657" width="94" height="21"/>
+                                                                            <rect key="frame" x="0.0" y="21.666666666666657" width="148" height="21"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -781,6 +781,7 @@
                                                                 <constraint firstItem="RqQ-zT-a8w" firstAttribute="centerY" secondItem="67x-zx-hOj" secondAttribute="centerY" id="jxB-DE-Jf7"/>
                                                                 <constraint firstAttribute="trailing" secondItem="P4Z-hy-T1s" secondAttribute="trailing" constant="14" id="pSs-qe-uUs"/>
                                                                 <constraint firstAttribute="height" constant="110" id="y3h-Y5-BnU"/>
+                                                                <constraint firstItem="P4Z-hy-T1s" firstAttribute="leading" secondItem="o4Z-FQ-ZOS" secondAttribute="trailing" constant="10" id="yK3-Bf-sSh"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1001,16 +1002,16 @@
                                                                     </connections>
                                                                 </button>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Gpa-KE-JQQ">
-                                                                    <rect key="frame" x="107" y="33.666666666666686" width="94" height="42.666666666666657"/>
+                                                                    <rect key="frame" x="107" y="33.666666666666686" width="148" height="42.666666666666657"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Astronauts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qg5-wh-uUA">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="94" height="21.666666666666668"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="148" height="21.666666666666668"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Future" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9P-Ey-ZRJ">
-                                                                            <rect key="frame" x="0.0" y="21.666666666666629" width="94" height="21"/>
+                                                                            <rect key="frame" x="0.0" y="21.666666666666629" width="148" height="21"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -1024,6 +1025,7 @@
                                                                 <constraint firstItem="Gpa-KE-JQQ" firstAttribute="centerY" secondItem="NtB-XC-ped" secondAttribute="centerY" id="5AM-Ud-JnC"/>
                                                                 <constraint firstItem="NtB-XC-ped" firstAttribute="leading" secondItem="3sb-0C-3Nw" secondAttribute="leading" constant="13" id="95f-Je-s00"/>
                                                                 <constraint firstItem="Gpa-KE-JQQ" firstAttribute="leading" secondItem="NtB-XC-ped" secondAttribute="trailing" constant="14" id="IP4-aG-uuv"/>
+                                                                <constraint firstItem="3tL-Db-MhQ" firstAttribute="leading" secondItem="Gpa-KE-JQQ" secondAttribute="trailing" constant="10" id="P7W-qa-H2M"/>
                                                                 <constraint firstAttribute="width" constant="313" id="kuv-Z7-LfQ"/>
                                                                 <constraint firstItem="NtB-XC-ped" firstAttribute="centerY" secondItem="3sb-0C-3Nw" secondAttribute="centerY" id="lDN-Mj-tnr"/>
                                                                 <constraint firstAttribute="trailing" secondItem="3tL-Db-MhQ" secondAttribute="trailing" constant="14" id="nGI-k5-EDc"/>
@@ -2026,16 +2028,16 @@
                                                                     </connections>
                                                                 </button>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kr2-Jh-NgI">
-                                                                    <rect key="frame" x="107" y="33.666666666666657" width="94" height="42.666666666666657"/>
+                                                                    <rect key="frame" x="107" y="33.666666666666657" width="148" height="42.666666666666657"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Astronauts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upE-We-N3W">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="94" height="21.666666666666668"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="148" height="21.666666666666668"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Future" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZc-cm-tGq">
-                                                                            <rect key="frame" x="0.0" y="21.666666666666657" width="94" height="21"/>
+                                                                            <rect key="frame" x="0.0" y="21.666666666666657" width="148" height="21"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -2047,6 +2049,7 @@
                                                             <constraints>
                                                                 <constraint firstItem="wkP-wj-bWn" firstAttribute="centerY" secondItem="eoQ-K9-yZb" secondAttribute="centerY" id="5ce-Gx-oOv"/>
                                                                 <constraint firstItem="eoQ-K9-yZb" firstAttribute="leading" secondItem="7ut-Rd-MRl" secondAttribute="leading" constant="13" id="AOL-5c-GlH"/>
+                                                                <constraint firstItem="wkP-wj-bWn" firstAttribute="leading" secondItem="kr2-Jh-NgI" secondAttribute="trailing" constant="10" id="MpJ-Yt-SSD"/>
                                                                 <constraint firstItem="kr2-Jh-NgI" firstAttribute="leading" secondItem="eoQ-K9-yZb" secondAttribute="trailing" constant="14" id="Pt1-ve-mGg"/>
                                                                 <constraint firstItem="kr2-Jh-NgI" firstAttribute="centerY" secondItem="eoQ-K9-yZb" secondAttribute="centerY" id="W70-WP-dxC"/>
                                                                 <constraint firstItem="eoQ-K9-yZb" firstAttribute="centerY" secondItem="7ut-Rd-MRl" secondAttribute="centerY" id="atH-YJ-j17"/>
@@ -2476,7 +2479,7 @@
         <image name="user_male" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2CD-3s-Dfp"/>
+        <segue reference="MfB-RI-FRk"/>
         <segue reference="a2d-US-GiJ"/>
         <segue reference="ReD-vb-n90"/>
         <segue reference="gJS-Gs-XJH"/>

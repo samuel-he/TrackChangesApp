@@ -177,6 +177,143 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                         let id = post["post_type"] as! String
                         newPost.type = id
                     }
+                    
+                    
+                    if newPost.albumId == "" {
+                        // Make request to Spotify for track info
+                        // Request accecssToken
+                        let client = "4bebf0c82b774aaa99764eb7c5c58cc4:3be8d087faf841ea805d6d9842c0cbf0"
+                        let base64 = client.data(using: String.Encoding.utf8)?.base64EncodedString() ?? ""
+                        
+                        let tokenUrl = "https://accounts.spotify.com/api/token"
+                        
+                        // Request access token to make search requests
+                        var tokenRequest = URLRequest(url: URL.init(string: tokenUrl)!)
+                        tokenRequest.addValue("Basic \(base64)", forHTTPHeaderField: "Authorization")
+                        tokenRequest.httpBody = "grant_type=client_credentials".data(using: .utf8)
+                        tokenRequest.httpMethod = "POST"
+                        
+                        URLSession.shared.dataTask(with: tokenRequest) { (data, response, error) in
+                            if let data = data {
+                                do {
+                                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                                        let accessToken = (json["access_token"] as? String)!
+                                        
+                                        // Make request
+                                        var requestUrl = "https://api.spotify.com/v1/tracks/"
+                                        requestUrl += newPost.trackId!
+                                        
+                                        var request = URLRequest(url: URL.init(string: requestUrl)!)
+                                        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+                                        
+                                        URLSession.shared.dataTask(with: request) { (data, response, error) in
+                                            if let data = data {
+                                                do {
+                                                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                                                        
+                                                        
+                                                        if let trackName = json["name"] as? String {
+                                                            newPost.track?.name = trackName
+                                                        }
+                                                        
+                                                        if let trackUri = json["uri"] as? String {
+                                                            newPost.track?.uri = trackUri
+                                                        }
+                                                        
+                                                        if let artists = json["artists"] as? [[String: Any]] {
+                                                            if let artist = artists[0] as? [String: Any] {
+                                                                if let artistName = artist["name"] as? String {
+                                                                    newPost.album?.artist.name = artistName
+                                                                }
+                                                            }
+                                                        }
+                                                        
+                                                        if let album = json["album"] as? [String: Any] {
+                                                            if let images = album["images"] as? [[String: Any]] {
+                                                                if let imageUrl = images[1]["url"] as? String {
+                                                                    newPost.album?.image = imageUrl
+                                                                }
+                                                            }
+                                                        }
+                                                        
+                                                    }
+                                                } catch {
+                                                    print(error.localizedDescription)
+                                                }
+                                            }
+                                        }.resume()
+                                        
+                                    }
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                            }
+                        }.resume()
+                    
+                    } else {
+                        
+                        
+                        
+                        let client = "4bebf0c82b774aaa99764eb7c5c58cc4:3be8d087faf841ea805d6d9842c0cbf0"
+                        let base64 = client.data(using: String.Encoding.utf8)?.base64EncodedString() ?? ""
+                        
+                        let tokenUrl = "https://accounts.spotify.com/api/token"
+                        
+                        // Request access token to make search requests
+                        var tokenRequest = URLRequest(url: URL.init(string: tokenUrl)!)
+                        tokenRequest.addValue("Basic \(base64)", forHTTPHeaderField: "Authorization")
+                        tokenRequest.httpBody = "grant_type=client_credentials".data(using: .utf8)
+                        tokenRequest.httpMethod = "POST"
+                        
+                        URLSession.shared.dataTask(with: tokenRequest) { (data, response, error) in
+                            if let data = data {
+                                do {
+                                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                                        let accessToken = (json["access_token"] as? String)!
+                                        
+                                        // Make request
+                                        var requestUrl = "https://api.spotify.com/v1/albums/"
+                                        requestUrl += newPost.albumId!
+                                        
+                                        var request = URLRequest(url: URL.init(string: requestUrl)!)
+                                        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+                                        
+                                        URLSession.shared.dataTask(with: request) { (data, response, error) in
+                                            if let data = data {
+                                                do {
+                                                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                                                        
+                                                        if let albumName = json["name"] as? String {
+                                                            newPost.album?.name = albumName
+                                                        }
+                                                        
+                                                        if let artists = json["artists"] as? [[String: Any]] {
+                                                            if let artist = artists[0] as? [String: Any] {
+                                                                if let artistName = artist["name"] as? String {
+                                                                    newPost.album?.artist.name = artistName
+                                                                }
+                                                            }
+                                                        }
+                                                        
+                                                        if let images = json["images"] as? [[String: Any]] {
+                                                            if let imageUrl = images[1]["url"] as? String {
+                                                                newPost.album?.image = imageUrl
+                                                            }
+                                                        }
+                                                    }
+                                                } catch {
+                                                    print(error.localizedDescription)
+                                                }
+                                            }
+                                        }
+                                    }
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                            }
+                        }.resume()
+                    }
+                    
                     currentUser.posts.append(newPost)
                     
                     self.tableView.reloadData()
@@ -271,154 +408,28 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 if currentUser.posts[indexPath.row].albumId == "" {
                     cell.playPauseButton.isHidden = false
-                    // Make request to Spotify for track info
-                    // Request accecssToken
-                    let client = "4bebf0c82b774aaa99764eb7c5c58cc4:3be8d087faf841ea805d6d9842c0cbf0"
-                    let base64 = client.data(using: String.Encoding.utf8)?.base64EncodedString() ?? ""
                     
-                    let tokenUrl = "https://accounts.spotify.com/api/token"
-                    
-                    // Request access token to make search requests
-                    var tokenRequest = URLRequest(url: URL.init(string: tokenUrl)!)
-                    tokenRequest.addValue("Basic \(base64)", forHTTPHeaderField: "Authorization")
-                    tokenRequest.httpBody = "grant_type=client_credentials".data(using: .utf8)
-                    tokenRequest.httpMethod = "POST"
-                    
-                    URLSession.shared.dataTask(with: tokenRequest) { (data, response, error) in
-                        if let data = data {
-                            do {
-                                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                                    let accessToken = (json["access_token"] as? String)!
-                                    
-                                    // Make request
-                                    var requestUrl = "https://api.spotify.com/v1/tracks/"
-                                    requestUrl += currentUser.posts[indexPath.row].trackId!
-                                    
-                                    var request = URLRequest(url: URL.init(string: requestUrl)!)
-                                    request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-                                    
-                                    URLSession.shared.dataTask(with: request) { (data, response, error) in
-                                        if let data = data {
-                                            do {
-                                                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                                                    
-                                                
-                                                    if let trackName = json["name"] as? String {
-                                                        cell.title.text = trackName
-                                                    }
-                                                    
-                                                    if let trackUri = json["uri"] as? String {
-                                                        currentUser.posts[indexPath.row].track?.uri = trackUri
-                                                    }
-                                                    
-                                                    if let artists = json["artists"] as? [[String: Any]] {
-                                                        if let artist = artists[0] as? [String: Any] {
-                                                            if let artistName = artist["name"] as? String {
-                                                                cell.artist.text = artistName
-                                                            }
-                                                        }
-                                                    }
-                                                    
-                                                    if let album = json["album"] as? [String: Any] {
-                                                        if let images = album["images"] as? [[String: Any]] {
-                                                            if let imageUrl = images[1]["url"] as? String {
-                                                                do {
-                                                                    let data = try Data(contentsOf: URL.init(string: imageUrl)!)
-                                                                    cell.coverImage.image = UIImage.init(data: data)
-                                                                } catch {
-                                                                    print(error.localizedDescription)
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                    
-                                                    tableView.reloadData()
-                                                }
-                                            } catch {
-                                                print(error.localizedDescription)
-                                            }
-                                        }
-                                    }.resume()
-                                    
-                                }
-                            } catch {
-                                print(error.localizedDescription)
-                            }
-                        }
-                        }.resume()
-
+                    cell.title.text = currentUser.posts[indexPath.row].track?.name
+                    cell.artist.text = currentUser.posts[indexPath.row].album?.artist.name
+                    do {
+                        let data = try Data(contentsOf: URL.init(string: (currentUser.posts[indexPath.row].album?.image)!)!)
+                        cell.coverImage.image = UIImage.init(data: data)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
                 } else {
-                    // Album, so hide play button 
                     cell.playPauseButton.isHidden = true
+                    cell.title.text = currentUser.posts[indexPath.row].album?.name
+                    cell.artist.text = currentUser.posts[indexPath.row].album?.artist.name
                     
-                    let client = "4bebf0c82b774aaa99764eb7c5c58cc4:3be8d087faf841ea805d6d9842c0cbf0"
-                    let base64 = client.data(using: String.Encoding.utf8)?.base64EncodedString() ?? ""
-                    
-                    let tokenUrl = "https://accounts.spotify.com/api/token"
-                    
-                    // Request access token to make search requests
-                    var tokenRequest = URLRequest(url: URL.init(string: tokenUrl)!)
-                    tokenRequest.addValue("Basic \(base64)", forHTTPHeaderField: "Authorization")
-                    tokenRequest.httpBody = "grant_type=client_credentials".data(using: .utf8)
-                    tokenRequest.httpMethod = "POST"
-                    
-                    URLSession.shared.dataTask(with: tokenRequest) { (data, response, error) in
-                        if let data = data {
-                            do {
-                                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                                    let accessToken = (json["access_token"] as? String)!
-                                    
-                                    // Make request
-                                    var requestUrl = "https://api.spotify.com/v1/albums/"
-                                    requestUrl += currentUser.posts[indexPath.row].albumId!
-                                    
-                                    var request = URLRequest(url: URL.init(string: requestUrl)!)
-                                    request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-                                    
-                                    URLSession.shared.dataTask(with: request) { (data, response, error) in
-                                        if let data = data {
-                                            do {
-                                                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                                                    
-                                                    if let albumName = json["name"] as? String {
-                                                        cell.title.text = albumName
-                                                    }
-                                                    
-                                                    if let artists = json["artists"] as? [[String: Any]] {
-                                                        if let artist = artists[0] as? [String: Any] {
-                                                            if let artistName = artist["name"] as? String {
-                                                                cell.artist.text = artistName
-                                                            }
-                                                        }
-                                                    }
-                                                    
-                                                    if let images = json["images"] as? [[String: Any]] {
-                                                        if let imageUrl = images[1]["url"] as? String {
-                                                            do {
-                                                                let data = try Data(contentsOf: URL.init(string: imageUrl)!)
-                                                                cell.coverImage.image = UIImage.init(data: data)
-                                                            } catch {
-                                                                print(error.localizedDescription)
-                                                            }
-                                                        }
-                                                    }
-                                                    
-                                                    tableView.reloadData()
-                                                }
-                                            } catch {
-                                                print(error.localizedDescription)
-                                            }
-                                        }
-                                        }.resume()
-                                    
-                                }
-                            } catch {
-                                print(error.localizedDescription)
-                            }
-                        }
-                    }.resume()
-
+                    do {
+                        let data = try Data(contentsOf: URL.init(string: (currentUser.posts[indexPath.row].album?.image)!)!)
+                        cell.coverImage.image = UIImage.init(data: data)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
                 }
+                
             }
             
             
