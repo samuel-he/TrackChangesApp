@@ -817,12 +817,16 @@ public class Application {
 				userRs = userPs.executeQuery();
 				
 				if(!userRs.next()) {
-					return 0;
+					
+					System.out.println("Can't get the post id wtf");
+					
 				} else {
+					
 					userRs.beforeFirst();
 					while(userRs.next()) {
-						return userRs.getInt("post_id");
+						result = userRs.getInt("post_id");
 					}
+					
 				}
 			} catch (SQLException sqle) {
 				System.out.println("sqle: " + sqle.getMessage());
@@ -1301,7 +1305,6 @@ public class Application {
 
 	public Post getPost(int post_id) {
 		Connection conn = null;
-		Statement st = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		Post ret = new Post();
@@ -1310,24 +1313,26 @@ public class Application {
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
 			// not sure how to delete based off two parameters
 			ps = conn.prepareStatement(
-					"SELECT * from Post WHERE post_id= '" + post_id + "';");
+					"SELECT * from Post p WHERE p.post_id= '" + post_id + "';");
 			rs = ps.executeQuery();
-			String tempPostId = rs.getString("post_id");
-			String tempPostType = rs.getString("post_type");
-			String tempPostTimeStamp = rs.getString("post_timestamp");
-			String tempUserId = rs.getString("user_id");
-			String tempPostMessage = rs.getString("post_message");
-			String tempPostSongId = rs.getString("song_id");
-			String tempPostAlbumId = rs.getString("album_id");
-
-
-			ret.setPostId(tempPostId);
-			ret.setPostType(tempPostType);
-			ret.setPostTimeStamp(tempPostTimeStamp);
-			ret.setPostUserId(tempUserId);
-			ret.setPostMessage(tempPostMessage);
-			ret.setPostSongId(tempPostSongId);
-			ret.setPostAlbumId(tempPostAlbumId);
+			while(rs.next()){
+				String tempPostId = rs.getString("post_id");
+				String tempPostType = rs.getString("post_type");
+				String tempPostTimeStamp = rs.getString("post_timestamp");
+				String tempUserId = rs.getString("user_id");
+				String tempPostMessage = rs.getString("post_message");
+				String tempPostSongId = rs.getString("song_id");
+				String tempPostAlbumId = rs.getString("album_id");
+	
+	
+				ret.setPostId(tempPostId);
+				ret.setPostType(tempPostType);
+				ret.setPostTimeStamp(tempPostTimeStamp);
+				ret.setPostUserId(tempUserId);
+				ret.setPostMessage(tempPostMessage);
+				ret.setPostSongId(tempPostSongId);
+				ret.setPostAlbumId(tempPostAlbumId);
+			}
 
 		} catch (SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
@@ -1339,8 +1344,8 @@ public class Application {
 				if (rs != null) {
 					rs.close();
 				}
-				if (st != null) {
-					st.close();
+				if (ps != null) {
+					ps.close();
 				}
 				if (conn != null) {
 					conn.close();

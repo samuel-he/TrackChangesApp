@@ -308,6 +308,8 @@ public class WebSocketEndpoint {
 				newPost.setPostAlbumId(post_album_id);
 				int post_id = app.addPost(newPost);
 				
+				System.out.println("Post_id: " + post_id);
+				
 				Post post = app.getPost(post_id);
 				JSONObject response = new JSONObject();
 				response.put("response", "post_added");
@@ -327,7 +329,7 @@ public class WebSocketEndpoint {
 				sendToSession(this.clientSession, response.toString().getBytes());
 				
 				// Notify all of the user's followers that a new post has been added
-				updateFeeds(app.getFollowers((String)json.get("post_user_id")), response.toString().getBytes());
+				updateFeeds(app.getFollowers((String)json.get("post_user_id")), response);
 				
 				handleSuccess = true;
 
@@ -429,14 +431,14 @@ public class WebSocketEndpoint {
 				String prettyJsonString = gson.toJson(je);
 				System.out.println(prettyJsonString);
 				
-				updateFeeds(app.getFollowers(user_id), response.toString().getBytes());
+				updateFeeds(app.getFollowers(user_id), response);
 
 			} else if(request.equals("delete_post")) {
 
 				String post_id = (String)json.get("post_id");
 				handleSuccess = app.deletePost(post_id);
 
-			}else if(request.equals("search_users")) {
+			} else if(request.equals("search_users")) {
 
 				String search_input = (String)json.get("search_term");
 				System.out.println("Search Term: " + search_input);
@@ -482,15 +484,26 @@ public class WebSocketEndpoint {
 
 		}
 
-		private void updateFeeds(ArrayList<User> followers, byte[] data) {
+		private void updateFeeds(ArrayList<User> followers, JSONObject response) {
+			
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			JsonParser jp = new JsonParser();
+			
+			// Debug output
+			JsonElement je = jp.parse(response.toJSONString());
+			String prettyJsonString = gson.toJson(je);
 
 			synchronized(sessions) {
 
 				for(User follower : followers) {
 
 					if(clientSessionId.get(follower.getUserId()) != null) {
+						
+						System.out.println("Response sent to " + follower.getUserId() + ": ");
+						
+						System.out.println(prettyJsonString);
 
-						sendToSession(sessions.get(clientSessionId.get(follower.getUserId())).clientSession, data);
+						sendToSession(sessions.get(clientSessionId.get(follower.getUserId())).clientSession, response.toString().getBytes());
 
 					} else {
 						
