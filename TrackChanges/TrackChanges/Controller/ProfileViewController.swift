@@ -237,6 +237,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                                         }
                                                         
                                                         currentUser.posts.append(newPost)
+                                                        self.tableView.reloadData()
                                                         
                                                     }
                                                 } catch {
@@ -306,6 +307,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                                     
                                                     
                                                     currentUser.posts.append(newPost)
+                                                    self.tableView.reloadData()
                                                     
                                                 } catch {
                                                     print(error.localizedDescription)
@@ -320,7 +322,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                         }.resume()
                     }
                     
-                    self.tableView.reloadData()
                 }
                 currentUser.posts = currentUser.posts.reversed()
             }
