@@ -48,7 +48,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             tabBarController?.viewControllers?.removeLast()
             tabBarController?.viewControllers?.removeLast()
-            navigationItem.rightBarButtonItem?.isEnabled = false    
+            navigationItem.rightBarButtonItem?.isEnabled = false
         }
         
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
@@ -124,21 +124,16 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return 4
     }
     
+    @IBAction func playSongFromPost(_ sender: Any) {
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
         
-        
-        
-        
-        // Set the image for the play/pause button
-        if cell.playPauseButton.isPlaying {
-            cell.playPauseButton.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
-        } else {
-            cell.playPauseButton.setImage(UIImage.init(named: "play"), for: .normal)
-        }
-        
         // Add a tag to identify which cell was selected
         cell.playPauseButton.tag = indexPath.row
+        
+        
         return cell
     }
     

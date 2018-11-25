@@ -749,6 +749,9 @@
                                                                         <constraint firstAttribute="height" constant="38" id="SjQ-60-MPo"/>
                                                                     </constraints>
                                                                     <state key="normal" image="play"/>
+                                                                    <connections>
+                                                                        <action selector="playSongFromPost:" destination="lRA-dI-Ezf" eventType="touchUpInside" id="1j3-Gz-HTn"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="o4Z-FQ-ZOS">
                                                                     <rect key="frame" x="107" y="33.666666666666657" width="94" height="42.666666666666657"/>
@@ -986,13 +989,16 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tL-Db-MhQ" customClass="PlayPauseButton" customModule="TrackChanges" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tL-Db-MhQ">
                                                                     <rect key="frame" x="265" y="36" width="34" height="38"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="34" id="IMo-qV-p5J"/>
                                                                         <constraint firstAttribute="height" constant="38" id="SdS-1n-D0u"/>
                                                                     </constraints>
                                                                     <state key="normal" image="play"/>
+                                                                    <connections>
+                                                                        <action selector="playSongFromPost:" destination="9uo-Ck-xZo" eventType="touchUpInside" id="cEN-S0-xcx"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Gpa-KE-JQQ">
                                                                     <rect key="frame" x="107" y="33.666666666666686" width="94" height="42.666666666666657"/>
@@ -1012,7 +1018,7 @@
                                                                     </subviews>
                                                                 </stackView>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" white="0.90055338539999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="3tL-Db-MhQ" firstAttribute="centerY" secondItem="NtB-XC-ped" secondAttribute="centerY" id="3Sh-h7-B5z"/>
                                                                 <constraint firstItem="Gpa-KE-JQQ" firstAttribute="centerY" secondItem="NtB-XC-ped" secondAttribute="centerY" id="5AM-Ud-JnC"/>
@@ -2015,6 +2021,9 @@
                                                                         <constraint firstAttribute="width" constant="34" id="e6s-MA-yA1"/>
                                                                     </constraints>
                                                                     <state key="normal" image="play"/>
+                                                                    <connections>
+                                                                        <action selector="playSongFromPost:" destination="pjN-U1-MRS" eventType="touchUpInside" id="rSn-qc-8p4"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kr2-Jh-NgI">
                                                                     <rect key="frame" x="107" y="33.666666666666657" width="94" height="42.666666666666657"/>
@@ -2468,9 +2477,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2CD-3s-Dfp"/>
-        <segue reference="tdk-Bb-CWb"/>
+        <segue reference="a2d-US-GiJ"/>
         <segue reference="ReD-vb-n90"/>
-        <segue reference="gEO-3w-az6"/>
+        <segue reference="gJS-Gs-XJH"/>
         <segue reference="dZ0-AF-8NJ"/>
     </inferredMetricsTieBreakers>
 </document>

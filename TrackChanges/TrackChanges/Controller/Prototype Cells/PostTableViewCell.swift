@@ -17,7 +17,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var coverImage: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var artist: UILabel!
-    @IBOutlet weak var playPauseButton: PlayPauseButton!
+    @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var shareContent: UIView!
     
     override func layoutSubviews() {
