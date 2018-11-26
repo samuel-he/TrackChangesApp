@@ -88,8 +88,8 @@ class Post {
     
     var trackId: String?
     var albumId: String?
-    var track: Track?
-    var album: Album?
+    var track = Track()
+    var album = Album()
     
     init() {
         message = ""

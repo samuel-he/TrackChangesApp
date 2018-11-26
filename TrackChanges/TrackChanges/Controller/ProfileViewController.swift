@@ -125,6 +125,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                     currentUser.followers?.append(follower)
                 }
+                
+                tableView.reloadData()
             }
             
             // User following response
@@ -139,12 +141,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                     currentUser.following?.append(following)
                 }
+                
+                tableView.reloadData()
             }
             
             // User post response
-            if json["response"] as? String == "feed" {
+            if json["response"] as? String == "posts" {
                 currentUser.posts.removeAll()
-                let posts = json["feed"] as! [[String: Any]]
+                let posts = json["posts"] as! [[String: Any]]
                 for post in posts {
                     let newPost = Post()
                     newPost.user = currentUser
@@ -179,7 +183,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                     
                     
-                    if newPost.albumId == "" {
+                    if newPost.type == "song" {
                         // Make request to Spotify for track info
                         // Request accecssToken
                         let client = "4bebf0c82b774aaa99764eb7c5c58cc4:3be8d087faf841ea805d6d9842c0cbf0"
@@ -213,17 +217,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                                         
                                                         
                                                         if let trackName = json["name"] as? String {
-                                                            newPost.track?.name = trackName
+                                                            newPost.track.name = trackName
                                                         }
                                                         
                                                         if let trackUri = json["uri"] as? String {
-                                                            newPost.track?.uri = trackUri
+                                                            newPost.track.uri = trackUri
                                                         }
                                                         
                                                         if let artists = json["artists"] as? [[String: Any]] {
                                                             if let artist = artists[0] as? [String: Any] {
                                                                 if let artistName = artist["name"] as? String {
-                                                                    newPost.track?.album.artist.name = artistName
+                                                                    newPost.track.album.artist.name = artistName
                                                                 }
                                                             }
                                                         }
@@ -231,13 +235,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                                         if let album = json["album"] as? [String: Any] {
                                                             if let images = album["images"] as? [[String: Any]] {
                                                                 if let imageUrl = images[1]["url"] as? String {
-                                                                    newPost.track?.album.image = imageUrl
+                                                                    newPost.track.album.image = imageUrl
                                                                 }
                                                             }
                                                         }
                                                         
-                                                        currentUser.posts.append(newPost)
-                                                        self.tableView.reloadData()
+                                                        DispatchQueue.main.async {
+                                                            currentUser.posts.append(newPost)
+                                                            self.tableView.reloadData()
+                                                        }
                                                         
                                                     }
                                                 } catch {
@@ -253,7 +259,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                             }
                         }.resume()
                     
-                    } else {
+                    } else if newPost.type == "album" {
                         
                         
                         
@@ -287,27 +293,29 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                                                         
                                                         if let albumName = json["name"] as? String {
-                                                            newPost.album?.name = albumName
+                                                            newPost.album.name = albumName
                                                         }
                                                         
                                                         if let artists = json["artists"] as? [[String: Any]] {
                                                             if let artist = artists[0] as? [String: Any] {
                                                                 if let artistName = artist["name"] as? String {
-                                                                    newPost.album?.artist.name = artistName
+                                                                    newPost.album.artist.name = artistName
                                                                 }
                                                             }
                                                         }
                                                         
                                                         if let images = json["images"] as? [[String: Any]] {
                                                             if let imageUrl = images[1]["url"] as? String {
-                                                                newPost.album?.image = imageUrl
+                                                                newPost.album.image = imageUrl
                                                             }
                                                         }
                                                     }
                                                     
+                                                    DispatchQueue.main.async {
+                                                        currentUser.posts.append(newPost)
+                                                        self.tableView.reloadData()
+                                                    }
                                                     
-                                                    currentUser.posts.append(newPost)
-                                                    self.tableView.reloadData()
                                                     
                                                 } catch {
                                                     print(error.localizedDescription)
@@ -320,10 +328,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 }
                             }
                         }.resume()
+                    } else {
+                        currentUser.posts.append(newPost)
+                        tableView.reloadData()
                     }
                     
                 }
                 currentUser.posts = currentUser.posts.reversed()
+                
             }
             
             
@@ -367,7 +379,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func playSongFromPost(_ sender: Any) {
         let sender = sender as! UIButton
-        AppRemote.playerAPI?.play((currentUser.posts[sender.tag].track?.uri)!, callback: { (result, error) in
+        
+        if sender.image(for: .normal) == UIImage.init(named: "Navigation_Pause_2x") {
+            sender.setImage(UIImage.init(named: "play"), for: .normal)
+        } else {
+            sender.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
+        }
+        
+        AppRemote.playerAPI?.play((currentUser.posts[sender.tag].track.uri), callback: { (result, error) in
             print(error?.localizedDescription)
         })
     }
@@ -385,6 +404,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             cell.name.text = currentUser.displayName
             cell.username.text = "@" + currentUser.username
+            
             cell.followersCount.setTitle("\(currentUser.followers?.count ?? 0)", for: .normal)
             cell.followingCount.setTitle("\(currentUser.following?.count ?? 0)", for: .normal)
 
@@ -406,29 +426,29 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.profilePic.image = currentUser.image
 
             
-            if currentUser.posts[indexPath.row].albumId == "" && currentUser.posts[indexPath.row].trackId == "" {
+            if currentUser.posts[indexPath.row].type == "regular" {
                 cell.shareContent.isHidden = true
             } else {
                 cell.shareContent.isHidden = false
                 
-                if currentUser.posts[indexPath.row].albumId == "" {
+                if currentUser.posts[indexPath.row].type == "song" {
                     cell.playPauseButton.isHidden = false
                     
-                    cell.title.text = currentUser.posts[indexPath.row].track?.name
-                    cell.artist.text = currentUser.posts[indexPath.row].track?.album.artist.name
+                    cell.title.text = currentUser.posts[indexPath.row].track.name
+                    cell.artist.text = currentUser.posts[indexPath.row].track.album.artist.name
                     do {
-                        let data = try Data(contentsOf: URL.init(string: (currentUser.posts[indexPath.row].track?.album.image)!)!)
+                        let data = try Data(contentsOf: URL.init(string: (currentUser.posts[indexPath.row].track.album.image))!)
                         cell.coverImage.image = UIImage.init(data: data)
                     } catch {
                         print(error.localizedDescription)
                     }
-                } else {
+                } else if currentUser.posts[indexPath.row].type == "album" {
                     cell.playPauseButton.isHidden = true
-                    cell.title.text = currentUser.posts[indexPath.row].album?.name
-                    cell.artist.text = currentUser.posts[indexPath.row].album?.artist.name
+                    cell.title.text = currentUser.posts[indexPath.row].album.name
+                    cell.artist.text = currentUser.posts[indexPath.row].album.artist.name
                     
                     do {
-                        let data = try Data(contentsOf: URL.init(string: (currentUser.posts[indexPath.row].album?.image)!)!)
+                        let data = try Data(contentsOf: URL.init(string: (currentUser.posts[indexPath.row].album.image))!)
                         cell.coverImage.image = UIImage.init(data: data)
                     } catch {
                         print(error.localizedDescription)

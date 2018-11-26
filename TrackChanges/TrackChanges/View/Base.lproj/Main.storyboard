@@ -1111,6 +1111,15 @@
                                     <segue destination="F8P-Wl-1Yx" kind="embed" identifier="miniPlayer" id="2CD-3s-Dfp"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtF-IX-eoc">
+                                <rect key="frame" x="130" y="140" width="115" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="New Posts">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -1134,6 +1143,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="newPostsButton" destination="dtF-IX-eoc" id="hgV-D4-h5y"/>
                         <outlet property="postButton" destination="MVb-M6-3w9" id="ZOv-sS-KeH"/>
                         <outlet property="tableView" destination="1DY-cI-juC" id="MJE-6s-kqc"/>
                     </connections>
@@ -2479,8 +2489,8 @@
         <image name="user_male" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MfB-RI-FRk"/>
-        <segue reference="a2d-US-GiJ"/>
+        <segue reference="2CD-3s-Dfp"/>
+        <segue reference="tdk-Bb-CWb"/>
         <segue reference="ReD-vb-n90"/>
         <segue reference="gJS-Gs-XJH"/>
         <segue reference="dZ0-AF-8NJ"/>
