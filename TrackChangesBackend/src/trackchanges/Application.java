@@ -22,7 +22,7 @@ public class Application {
 	 * necessary for the application, for example:  
 	 * “jdbc:mysql://localhost:3306/CalendarApp?user=root&password=&useSSL=false”;
 	 */
-	private static final String DATABASE_CONNECTION_URL = "jdbc:mysql://localhost:3306/CSCI201?user=root&password=root&useSSL=false";
+	private static final String DATABASE_CONNECTION_URL = "jdbc:mysql://localhost:3306/CSCI201?user=root&password=peejay1997&useSSL=false";
 	private static final String SQL_DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
 
 	// search
@@ -903,7 +903,7 @@ public class Application {
 	 * a minimum level of error handling. Function will return an array of Post objects 
 	 * and null if no posts are found.
 	 */
-	public ArrayList<Post> getPosts(String user_id) {
+	public ArrayList<Post> getPosts (String user_id) {
 
 		//"SELECT f.follower_id FROM Follow f WHERE f.user_id = '" + user_id + "';"
 		Connection conn = null;
@@ -911,6 +911,7 @@ public class Application {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		ArrayList<Post> tempRes = new ArrayList<Post>(); 
+		
 		try {
 			Class.forName(SQL_DRIVER_CLASS);
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
@@ -1415,5 +1416,88 @@ public class Application {
 		}
 		return result;
 	}
+	
+	public String getUserImg(String user_id) {
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		String userProfilePic = "";
+		
+		try {
+			Class.forName(SQL_DRIVER_CLASS);
+			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
+			// not sure how to delete based off two parameters
+			ps = conn.prepareStatement(
+					"SELECT user_imageurl from User u WHERE u.user_id= '" + user_id + "';");
+			rs = ps.executeQuery();
+			while(rs.next()){
+				userProfilePic = rs.getString("user_imageurl");
+			}
 
+		} catch (SQLException sqle) {
+			System.out.println("sqle: " + sqle.getMessage());
+		} catch (ClassNotFoundException cnfe) {
+			System.out.println("cnfe: " + cnfe.getMessage());
+		} finally {
+			// You always need to close the connection to the database
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch(SQLException sqle) {
+				System.out.println("sqle closing error: " + sqle.getMessage());
+			}
+		}
+		return userProfilePic;
+	}
+	
+	public String getUserDisplayName(String user_id) {
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		String userDisplayName= "";
+		
+		try {
+			Class.forName(SQL_DRIVER_CLASS);
+			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
+			// not sure how to delete based off two parameters
+			ps = conn.prepareStatement(
+					"SELECT user_displayname from User u WHERE u.user_id= '" + user_id + "';");
+			rs = ps.executeQuery();
+			while(rs.next()){
+				userDisplayName = rs.getString("user_displayname");
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("sqle: " + sqle.getMessage());
+		} catch (ClassNotFoundException cnfe) {
+			System.out.println("cnfe: " + cnfe.getMessage());
+		} finally {
+			// You always need to close the connection to the database
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch(SQLException sqle) {
+				System.out.println("sqle closing error: " + sqle.getMessage());
+			}
+		}
+		return userDisplayName;
+	}
+		
+		
 }

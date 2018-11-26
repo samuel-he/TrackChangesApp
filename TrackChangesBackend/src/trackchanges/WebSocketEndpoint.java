@@ -317,6 +317,9 @@ public class WebSocketEndpoint {
 				response.put("post_type", post.getPostType());
 				response.put("post_timestamp", post.getPostTimeStamp());
 				response.put("post_user_id", post.getPostUserId());
+				response.put("post_user_displayname", app.getUserDisplayName(post.getPostUserId()));
+				response.put("post_user_imageurl", app.getUserImg(post.getPostUserId()));
+
 				response.put("post_message", post.getPostMessage());
 				response.put("post_song_id", post.getPostSongId());
 				response.put("post_album_id", post.getPostAlbumId());
@@ -483,7 +486,9 @@ public class WebSocketEndpoint {
 			}
 
 		}
-
+		/*
+		 * Function updates the feeds of the user's followers.
+		 */
 		private void updateFeeds(ArrayList<User> followers, JSONObject response) {
 			
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
