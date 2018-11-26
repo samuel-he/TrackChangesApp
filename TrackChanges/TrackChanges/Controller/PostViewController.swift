@@ -44,6 +44,12 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
         let newPost = Post()
         newPost.message = postText.text
         
+        let timestamp = NSDate().timeIntervalSince1970
+        let myTimeInterval = TimeInterval(timestamp)
+        let time = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
+        
+        newPost.timestamp = String(time.description)
+        
         if SharePost == 1 {
             let json:NSMutableDictionary = NSMutableDictionary()
             
@@ -52,7 +58,7 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
             json.setValue(newPost.timestamp, forKey: "post_timestamp")
             json.setValue(newPost.message, forKey: "post_message")
             json.setValue(ShareTrack.id, forKey: "post_song_id")
-            json.setValue("", forKey: "post_album_id")
+            json.setValue("N/A", forKey: "post_album_id")
             json.setValue("song", forKey: "post_type")
             
             let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
@@ -68,7 +74,7 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
             json.setValue(currentUser.username, forKey: "post_user_id")
             json.setValue(newPost.timestamp, forKey: "post_timestamp")
             json.setValue(newPost.message, forKey: "post_message")
-            json.setValue("", forKey: "post_song_id")
+            json.setValue("N/A", forKey: "post_song_id")
             json.setValue(ShareAlbum.id, forKey: "post_album_id")
             json.setValue("album", forKey: "post_type")
             
@@ -86,8 +92,8 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
             json.setValue(currentUser.username, forKey: "post_user_id")
             json.setValue(newPost.timestamp, forKey: "post_timestamp")
             json.setValue(newPost.message, forKey: "post_message")
-            json.setValue("", forKey: "post_song_id")
-            json.setValue("", forKey: "post_album_id")
+            json.setValue("N/A", forKey: "post_song_id")
+            json.setValue("N/A", forKey: "post_album_id")
             json.setValue("regular", forKey: "post_type") 
             
             let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
@@ -97,6 +103,8 @@ class PostViewController: UIViewController, UITextViewDelegate, WebSocketDelegat
             
             socket.write(data: jsonData)
         }
+        
+        NotificationCenter.default.post(name: Notification.Name.init(rawValue: "newPost"), object: nil) 
         
         exitPost(self)
     }
