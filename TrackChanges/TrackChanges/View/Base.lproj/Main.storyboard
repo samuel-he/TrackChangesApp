@@ -1111,15 +1111,6 @@
                                     <segue destination="F8P-Wl-1Yx" kind="embed" identifier="miniPlayer" id="2CD-3s-Dfp"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtF-IX-eoc">
-                                <rect key="frame" x="130" y="140" width="115" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
-                                <state key="normal" title="New Posts">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -1143,7 +1134,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="newPostsButton" destination="dtF-IX-eoc" id="hgV-D4-h5y"/>
                         <outlet property="postButton" destination="MVb-M6-3w9" id="ZOv-sS-KeH"/>
                         <outlet property="tableView" destination="1DY-cI-juC" id="MJE-6s-kqc"/>
                     </connections>
@@ -1502,7 +1492,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5IR-uV-swd">
-                                <rect key="frame" x="0.0" y="140" width="375" height="529"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="578"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -1548,7 +1538,7 @@
                                 </connections>
                             </tableView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNu-NH-Kle">
-                                <rect key="frame" x="0.0" y="669" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="X2p-uI-e16"/>
                                 </constraints>
@@ -1588,7 +1578,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xya-px-DbE">
-                                <rect key="frame" x="0.0" y="140" width="375" height="529"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="578"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -1687,7 +1677,7 @@
                                 </connections>
                             </tableView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCg-AZ-zsP">
-                                <rect key="frame" x="0.0" y="669" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="P7B-th-zEr"/>
                                 </constraints>
@@ -1803,7 +1793,6 @@
                         <segue destination="T8p-FZ-zMO" kind="relationship" relationship="viewControllers" id="1Yz-hC-tfi"/>
                         <segue destination="1E7-gT-6MV" kind="relationship" relationship="viewControllers" id="xvf-oy-XO1"/>
                         <segue destination="l2Y-K5-65c" kind="relationship" relationship="viewControllers" id="znH-a4-hiG"/>
-                        <segue destination="2kY-Kj-b6k" kind="relationship" relationship="viewControllers" id="i6i-KI-4r3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BZR-E8-X1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2489,8 +2478,8 @@
         <image name="user_male" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2CD-3s-Dfp"/>
-        <segue reference="tdk-Bb-CWb"/>
+        <segue reference="MfB-RI-FRk"/>
+        <segue reference="a2d-US-GiJ"/>
         <segue reference="ReD-vb-n90"/>
         <segue reference="gJS-Gs-XJH"/>
         <segue reference="dZ0-AF-8NJ"/>

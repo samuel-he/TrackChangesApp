@@ -19,7 +19,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var postButton: UIBarButtonItem!
-    @IBOutlet weak var newPostsButton: UIButton!
+//    @IBOutlet weak var newPostsButton: UIButton!
     
     // Mini player stuff
     var miniPlayer: MiniPlayerViewController?
@@ -46,28 +46,30 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 // Parse user information into a global 'currrentUser' object
                 self.parseData(JSONData: response.data!)
                 self.addUserToDatabase()
+                
+                self.getFeed()
             }
         } else {
             tabBarController?.viewControllers?.removeLast()
-            tabBarController?.viewControllers?.removeLast()
+//            tabBarController?.viewControllers?.removeLast()
             navigationItem.rightBarButtonItem?.isEnabled = false
         }
         
-        newPostsButton.layer.borderColor = UIColor.black.cgColor
-        newPostsButton.layer.borderWidth = 1
+//        newPostsButton.layer.borderColor = UIColor.black.cgColor
+//        newPostsButton.layer.borderWidth = 1
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        socket.delegate = self
-        
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: Notification.Name.init(rawValue: "newPost"), object: nil) 
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        socket.delegate = self
         getFeed()
     }
     
     @objc func reloadTableView() {
+        getPosts()
         tableView.reloadData()
     }
     
@@ -247,50 +249,62 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         socket.write(data: jsonData)
     }
     
+    @IBAction func updateFeed(_ sender: Any) {
+//        newPostsButton.isHidden = true
+        getPosts()
+    }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        DispatchQueue.global().async {
-                    
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                print(json)
-                if json["response"] as? String == "post_added" {
-                    DispatchQueue.main.async {
-                        self.newPostsButton.isHidden = false
-                    }
-                    
-                } else {
-                    DispatchQueue.main.async {
-                        self.newPostsButton.isHidden = true
-                    }
-                }
-            } catch {
-                print(error.localizedDescription)
+        
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+            print(json)
+            
+            // User followers response
+            if json["response"] as? String == "post_added" {
+                let postUser = User()
+                postUser.displayName = json["post_user_displayname"] as! String
+                postUser.username = json["post_user_id"] as! String
+                postUser.imageUrl = json["post_user_imageurl"] as! String
+                
+                var feedPost = Post()
+                feedPost.albumId = json["post_album_id"] as! String
+                feedPost.message = json["post_message"] as! String
+                feedPost.timestamp = json["post_timestamp"] as! String
+                feedPost.trackId = json["post_song_id"] as! String
+                feedPost.type = json["post_type"] as! String
+                feedPost.user = postUser
+                
+                UserFeed.addPost(post: feedPost)
+                
+                tableView.reloadData()
             }
-        
+        } catch {
+            print(error.localizedDescription)
         }
-        
         
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
             if json["response"] as? String == "feed" {
+                UserFeed.posts.removeAll()
                 print(json)
                 let feed = json["feed"] as! [[String: Any]]
                 
                 // Create new post for each item and add to user's feed
                 for item in feed {
                     // Get the user info who posted
-                    var postUser = User()
+                    let postUser = User()
                     postUser.displayName = item["post_user_displayname"] as! String
                     postUser.username = item["post_user_id"] as! String
                     postUser.imageUrl = item["post_user_imageurl"] as! String
                     
-                    var feedPost = Post()
+                    let feedPost = Post()
                     feedPost.albumId = item["post_album_id"] as! String
                     feedPost.message = item["post_message"] as! String
                     feedPost.timestamp = item["post_timestamp"] as! String
                     feedPost.trackId = item["post_song_id"] as! String
                     feedPost.type = item["post_type"] as! String
+                    feedPost.id = item["post_id"] as! String
                     feedPost.user = postUser
                     
                     
@@ -355,6 +369,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                                         
                                                         DispatchQueue.main.async {
                                                             UserFeed.addPost(post: feedPost)
+//                                                            UserFeed.posts = UserFeed.posts.sorted(by: {s1, s2 in s1.id > s2.id})
+                                                            for post in UserFeed.posts {
+//                                                                print()
+                                                                print(post.id)
+                                                            }
+                                                            print()
                                                             self.tableView.reloadData()
                                                         }
                                                     }
@@ -422,6 +442,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                                     
                                                     DispatchQueue.main.async {
                                                         UserFeed.posts.append(feedPost)
+                                                        UserFeed.posts = UserFeed.posts.sorted(by: {s1, s2 in s1.id > s2.id})
                                                         self.tableView.reloadData()
                                                     }
                                                     
@@ -440,6 +461,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         
                     } else {
                         UserFeed.addPost(post: feedPost)
+//                        UserFeed.posts = UserFeed.posts.sorted(by: {s1, s2 in s1.id > s2.id})
+                        for post in UserFeed.posts {
+//                            print()
+                            print(post.id)
+                        }
+                        print()
                         tableView.reloadData()
                     }
                     
@@ -450,5 +477,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } catch {
             print(error.localizedDescription)
         }
+        
+        
     }
 }

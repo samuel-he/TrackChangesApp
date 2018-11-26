@@ -330,6 +330,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                         }.resume()
                     } else {
                         currentUser.posts.append(newPost)
+                        
                         tableView.reloadData()
                     }
                     
