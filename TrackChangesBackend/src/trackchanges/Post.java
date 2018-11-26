@@ -21,6 +21,18 @@ public class Post {
 	@Expose
 	private String post_user_id;
 	
+	@SerializedName("Post_User_Displayname")
+	@Expose
+	private String post_user_displayname;
+	
+	@SerializedName("Post_User_Imageurl")
+	@Expose
+	private String post_user_imageurl;
+	
+	@SerializedName("Post_User_Logintimestamp")
+	@Expose
+	private String post_user_logintimestamp;
+	
 	@SerializedName("Post_Message")
 	@Expose
 	private String post_message;
@@ -63,6 +75,30 @@ public class Post {
 	
 	public void setPostUserId(String post_userId) {
 		this.post_user_id = post_userId;
+	}
+	
+	public String getPostUserDisplayname() {
+		return post_user_displayname;
+	}
+	
+	public void setPostUserDisplayname(String post_user_displayname) {
+		this.post_user_displayname = post_user_displayname;
+	}
+	
+	public String getPostUserImageurl() {
+		return post_user_imageurl;
+	}
+	
+	public void setPostUserImageurl(String post_user_imageurl) {
+		this.post_user_imageurl = post_user_imageurl;
+	}
+	
+	public String getPostUserLogintimestamp() {
+		return post_user_logintimestamp;
+	}
+	
+	public void setPostUserLogintimestamp(String post_user_logintimestamp) {
+		this.post_user_logintimestamp = post_user_logintimestamp;
 	}
 	
 	public String getPostMessage() {

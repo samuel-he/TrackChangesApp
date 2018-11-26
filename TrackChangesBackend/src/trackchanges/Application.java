@@ -801,11 +801,61 @@ public class Application {
 					+ newPost.getPostAlbumId() + "', '" 
 					+ newPost.getPostMessage() + "');");
 			ps.execute();
+			
+			ResultSet userRs = null;
+			PreparedStatement userPs = null;
+			Connection userConn = null;
 
-			ps = conn.prepareStatement("select max(post_id) as postID from Post");
-			rs = ps.executeQuery();
-			rs.next();
-			result = rs.getInt("postID");
+			try {
+				Class.forName(SQL_DRIVER_CLASS);
+				userConn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
+				userPs = userConn.prepareStatement(
+						"SELECT p.post_id from Post p WHERE "
+						+ "p.user_id = '" + newPost.getPostUserId() 
+						+ "' AND p.post_timestamp = '" + newPost.getPostTimeStamp().toString()
+						+ "' AND p.post_message = '" + newPost.getPostMessage() + "';");
+				userRs = userPs.executeQuery();
+				
+				if(!userRs.next()) {
+					
+					System.out.println("Can't get the post id wtf");
+					
+				} else {
+					
+					userRs.beforeFirst();
+					while(userRs.next()) {
+						result = userRs.getInt("post_id");
+					}
+					
+				}
+			} catch (SQLException sqle) {
+				System.out.println("sqle: " + sqle.getMessage());
+			} catch (ClassNotFoundException cnfe) {
+				System.out.println("cnfe: " + cnfe.getMessage());
+			} finally {
+				// You always need to close the connection to the database
+				try {
+					if (userRs != null) {
+						userRs.close();
+					}
+					if (userPs != null) {
+						userPs.close();
+					}
+					if (userConn != null) {
+						userConn.close();
+					}
+				} catch(SQLException sqle) {
+					System.out.println("sqle closing error: " + sqle.getMessage());
+				}
+			}
+
+			/*
+			 * SAM'S JUNK
+			 */
+//			ps = conn.prepareStatement("select max(post_id) as postID from Post");
+//			rs = ps.executeQuery();
+//			rs.next();
+//			result = rs.getInt("postID");
 
 			// insert into post song id table
 			//			if(newPost.getPostSongId() != null) {
@@ -833,8 +883,8 @@ public class Application {
 				if (rs != null) {
 					rs.close();
 				}
-				if (st != null) {
-					st.close();
+				if (ps != null) {
+					ps.close();
 				}
 				if (conn != null) {
 					conn.close();
@@ -956,12 +1006,8 @@ public class Application {
 		try {
 			Class.forName(SQL_DRIVER_CLASS);
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
-
-
-
 			// first select the users that the target user is following
-			ps = conn.prepareStatement(
-					"SELECT * FROM Follow f WHERE f.follower_id = '" + user_id + "';");
+			ps = conn.prepareStatement("SELECT * FROM Follow f WHERE f.follower_id = '" + user_id + "';");
 			//ps.setString(1, "%" + user_id + "%");
 
 			rs = ps.executeQuery();
@@ -973,9 +1019,14 @@ public class Application {
 			// do we have to reset rs, ps, etc. as null
 			// iterate through the users that the target user is following 
 			// add posts accordingly
-			for(int i = 0; i < following.size(); ++i) {
-				ps = conn.prepareStatement(
-						"SELECT * from Post WHERE user_id= '" + following.get(i) + "';");
+			for(int i = 0; i < following.size() + 1; ++i) {
+				if(i == following.size()) {
+					ps = conn.prepareStatement(
+							"SELECT * from Post WHERE user_id= '" + user_id + "';");
+				} else {
+					ps = conn.prepareStatement(
+							"SELECT * from Post WHERE user_id= '" + following.get(i) + "';");
+				}
 				//ps.setString(1, "%" + following.get(i) + "%");
 				rs = ps.executeQuery();
 				while(rs.next()){
@@ -989,6 +1040,49 @@ public class Application {
 					String tempPostSongId = rs.getString("song_id");
 					String tempPostAlbumId = rs.getString("album_id");
 
+					ResultSet userRs = null;
+					PreparedStatement userPs = null;
+					Connection userConn = null;
+
+					try {
+						Class.forName(SQL_DRIVER_CLASS);
+						userConn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
+						userPs = userConn.prepareStatement(
+								"SELECT * from User WHERE user_id= '" + tempUserId + "';");
+						userRs = userPs.executeQuery();
+						
+						if(!userRs.next()) {
+							tempPost.setPostUserDisplayname("Can't be Found");
+							tempPost.setPostUserImageurl("Can't be Found");
+							tempPost.setPostUserLogintimestamp("Can't be Found");
+						} else {
+							userRs.beforeFirst();
+							while(userRs.next()) {
+								tempPost.setPostUserDisplayname(userRs.getString("user_displayname"));
+								tempPost.setPostUserImageurl(userRs.getString("user_imageurl"));
+								tempPost.setPostUserLogintimestamp(userRs.getString("user_logintimestamp"));	
+							}
+						}
+					} catch (SQLException sqle) {
+						System.out.println("sqle: " + sqle.getMessage());
+					} catch (ClassNotFoundException cnfe) {
+						System.out.println("cnfe: " + cnfe.getMessage());
+					} finally {
+						// You always need to close the connection to the database
+						try {
+							if (userRs != null) {
+								userRs.close();
+							}
+							if (userPs != null) {
+								userPs.close();
+							}
+							if (userConn != null) {
+								userConn.close();
+							}
+						} catch(SQLException sqle) {
+							System.out.println("sqle closing error: " + sqle.getMessage());
+						}
+					}
 
 					tempPost.setPostId(tempPostId);
 					tempPost.setPostType(tempPostType);
@@ -1211,7 +1305,6 @@ public class Application {
 
 	public Post getPost(int post_id) {
 		Connection conn = null;
-		Statement st = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		Post ret = new Post();
@@ -1220,24 +1313,26 @@ public class Application {
 			conn = DriverManager.getConnection(DATABASE_CONNECTION_URL);
 			// not sure how to delete based off two parameters
 			ps = conn.prepareStatement(
-					"SELECT * from Post WHERE post_id= '" + post_id + "';");
+					"SELECT * from Post p WHERE p.post_id= '" + post_id + "';");
 			rs = ps.executeQuery();
-			String tempPostId = rs.getString("post_id");
-			String tempPostType = rs.getString("post_type");
-			String tempPostTimeStamp = rs.getString("post_timestamp");
-			String tempUserId = rs.getString("user_id");
-			String tempPostMessage = rs.getString("post_message");
-			String tempPostSongId = rs.getString("song_id");
-			String tempPostAlbumId = rs.getString("album_id");
-
-
-			ret.setPostId(tempPostId);
-			ret.setPostType(tempPostType);
-			ret.setPostTimeStamp(tempPostTimeStamp);
-			ret.setPostUserId(tempUserId);
-			ret.setPostMessage(tempPostMessage);
-			ret.setPostSongId(tempPostSongId);
-			ret.setPostAlbumId(tempPostAlbumId);
+			while(rs.next()){
+				String tempPostId = rs.getString("post_id");
+				String tempPostType = rs.getString("post_type");
+				String tempPostTimeStamp = rs.getString("post_timestamp");
+				String tempUserId = rs.getString("user_id");
+				String tempPostMessage = rs.getString("post_message");
+				String tempPostSongId = rs.getString("song_id");
+				String tempPostAlbumId = rs.getString("album_id");
+	
+	
+				ret.setPostId(tempPostId);
+				ret.setPostType(tempPostType);
+				ret.setPostTimeStamp(tempPostTimeStamp);
+				ret.setPostUserId(tempUserId);
+				ret.setPostMessage(tempPostMessage);
+				ret.setPostSongId(tempPostSongId);
+				ret.setPostAlbumId(tempPostAlbumId);
+			}
 
 		} catch (SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
@@ -1249,8 +1344,8 @@ public class Application {
 				if (rs != null) {
 					rs.close();
 				}
-				if (st != null) {
-					st.close();
+				if (ps != null) {
+					ps.close();
 				}
 				if (conn != null) {
 					conn.close();
