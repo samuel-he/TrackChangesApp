@@ -383,12 +383,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func playSongFromPost(_ sender: Any) {
         let sender = sender as! UIButton
         
-        if sender.image(for: .normal) == UIImage.init(named: "Navigation_Pause_2x") {
-            sender.setImage(UIImage.init(named: "play"), for: .normal)
-        } else {
-            sender.setImage(UIImage.init(named: "Navigation_Pause_2x"), for: .normal)
-        }
-        
         AppRemote.playerAPI?.play((currentUser.posts[sender.tag].track.uri), callback: { (result, error) in
             print(error?.localizedDescription)
         })
