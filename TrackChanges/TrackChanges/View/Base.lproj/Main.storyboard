@@ -710,14 +710,6 @@
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dhm-Jg-Sr0">
-                                                            <rect key="frame" x="311" y="15" width="19" height="26"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="19" id="OaM-n8-0SU"/>
-                                                                <constraint firstAttribute="height" constant="26" id="bFZ-Rb-xDJ"/>
-                                                            </constraints>
-                                                            <state key="normal" image="share"/>
-                                                        </button>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="67x-zx-hOj">
                                                             <rect key="frame" x="16" y="219" width="313" height="110"/>
                                                             <subviews>
@@ -805,7 +797,7 @@
                                                                 <constraint firstAttribute="width" constant="313" id="ZMa-ur-kMm"/>
                                                             </constraints>
                                                             <string key="text">fjkdslafjlsdkajfldskajfdksklslkkkfjdkjsfdlksaioqwrujeoiwqncowimwqeowfdvmasvwmeiomrmeqoiwmciowmoifmeqwiofeuqwoijreowmciowejeowjcimoifewiofmwqeiioiqpqjorqewijroewjqriewqjrioweqfjdaslkfjdklasjflasdkjflksadjflksadjflkasdjflksadjflkasdjflkasjdlkfajsdlkfjsdlkajflkasdjflkasdjflkasjdfkldsajflkasjdlkfjasdlkfjlkasdjflasdkfjaslkdjflkasdjflkasdjflasdlkjflsadkfjklsadlkfjalsdkjflkasdjflksadkfjasdlk</string>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
                                                     </subviews>
@@ -815,11 +807,9 @@
                                                         <constraint firstItem="mzT-ES-it8" firstAttribute="leading" secondItem="t6X-y4-dEc" secondAttribute="leading" constant="15" id="7ue-29-uiK"/>
                                                         <constraint firstItem="YAU-lz-xf7" firstAttribute="top" secondItem="t6X-y4-dEc" secondAttribute="top" constant="73" id="QVb-wB-oUe"/>
                                                         <constraint firstItem="YAU-lz-xf7" firstAttribute="centerX" secondItem="t6X-y4-dEc" secondAttribute="centerX" id="Vs1-6u-hKf"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Dhm-Jg-Sr0" secondAttribute="trailing" constant="15" id="hE0-6m-fto"/>
                                                         <constraint firstItem="94b-I2-uAj" firstAttribute="leading" secondItem="mzT-ES-it8" secondAttribute="trailing" constant="20" id="jeR-QR-g0A"/>
                                                         <constraint firstItem="94b-I2-uAj" firstAttribute="centerY" secondItem="mzT-ES-it8" secondAttribute="centerY" id="ldA-ji-HnB"/>
                                                         <constraint firstItem="67x-zx-hOj" firstAttribute="top" secondItem="YAU-lz-xf7" secondAttribute="bottom" constant="12" id="n9g-yi-Igb"/>
-                                                        <constraint firstItem="Dhm-Jg-Sr0" firstAttribute="top" secondItem="t6X-y4-dEc" secondAttribute="top" constant="15" id="nVt-8c-lHS"/>
                                                         <constraint firstItem="mzT-ES-it8" firstAttribute="top" secondItem="t6X-y4-dEc" secondAttribute="top" constant="15" id="xwc-uD-nsb"/>
                                                         <constraint firstItem="67x-zx-hOj" firstAttribute="centerX" secondItem="t6X-y4-dEc" secondAttribute="centerX" id="yDP-TV-m4Y"/>
                                                     </constraints>
@@ -948,14 +938,6 @@
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCj-Du-yiI">
-                                                            <rect key="frame" x="311" y="15" width="19" height="26"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="26" id="Smc-xG-OGZ"/>
-                                                                <constraint firstAttribute="width" constant="19" id="c18-tR-Hie"/>
-                                                            </constraints>
-                                                            <state key="normal" image="share"/>
-                                                        </button>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JlY-aD-AHP">
                                                             <rect key="frame" x="16" y="73" width="313" height="134"/>
                                                             <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -963,7 +945,7 @@
                                                                 <constraint firstAttribute="width" constant="313" id="Z7c-gt-725"/>
                                                             </constraints>
                                                             <string key="text">fjkdslafjlsdkajfldskajfdksklslkkkfjdkjsfdlksaioqwrujeoiwqncowimwqeowfdvmasvwmeiomrmeqoiwmciowmoifmeqwiofeuqwoijreowmciowejeowjcimoifewiofmwqeiioiqpqjorqewijroewjqriewqjrioweqfjdaslkfjdklasjflasdkjflksadjflksadjflkasdjflksadjflkasdjflkasjdlkfajsdlkfjsdlkajflkasdjflkasdjflkasjdfkldsajflkasjdlkfjasdlkfjlkasdjflasdkfjaslkdjflkasdjflkasdjflasdlkjflsadkfjklsadlkfjalsdkjflkasdjflksadkfjasdlkdja</string>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
                                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3sb-0C-3Nw">
@@ -1051,8 +1033,6 @@
                                                     <constraints>
                                                         <constraint firstItem="i83-qb-2wY" firstAttribute="leading" secondItem="6Rf-QV-b8Q" secondAttribute="leading" constant="15" id="Ea8-6Y-ILb"/>
                                                         <constraint firstItem="JlY-aD-AHP" firstAttribute="centerX" secondItem="6Rf-QV-b8Q" secondAttribute="centerX" id="Gej-wJ-vbR"/>
-                                                        <constraint firstAttribute="trailing" secondItem="wCj-Du-yiI" secondAttribute="trailing" constant="15" id="I2B-kX-1jP"/>
-                                                        <constraint firstItem="wCj-Du-yiI" firstAttribute="top" secondItem="6Rf-QV-b8Q" secondAttribute="top" constant="15" id="K1E-V1-6I0"/>
                                                         <constraint firstItem="wOM-rd-OMK" firstAttribute="centerY" secondItem="i83-qb-2wY" secondAttribute="centerY" id="NOv-Ma-Qkc"/>
                                                         <constraint firstAttribute="bottom" secondItem="3sb-0C-3Nw" secondAttribute="bottom" constant="14" id="alu-yf-548"/>
                                                         <constraint firstItem="3sb-0C-3Nw" firstAttribute="centerX" secondItem="6Rf-QV-b8Q" secondAttribute="centerX" constant="-1" id="b0g-fG-zjF"/>
@@ -1983,14 +1963,6 @@
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKz-NI-lzZ">
-                                                            <rect key="frame" x="311" y="15" width="19" height="26"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="19" id="EHi-mv-WLU"/>
-                                                                <constraint firstAttribute="height" constant="26" id="Gqe-Wk-Cxh"/>
-                                                            </constraints>
-                                                            <state key="normal" image="share"/>
-                                                        </button>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ut-Rd-MRl">
                                                             <rect key="frame" x="16" y="219" width="313" height="110"/>
                                                             <subviews>
@@ -2078,7 +2050,7 @@
                                                                 <constraint firstAttribute="width" constant="313" id="bVb-Cf-JOf"/>
                                                             </constraints>
                                                             <string key="text">fjkdslafjlsdkajfldskajfdksklslkkkfjdkjsfdlksaioqwrujeoiwqncowimwqeowfdvmasvwmeiomrmeqoiwmciowmoifmeqwiofeuqwoijreowmciowejeowjcimoifewiofmwqeiioiqpqjorqewijroewjqriewqjrioweqfjdaslkfjdklasjflasdkjflksadjflksadjflkasdjflksadjflkasdjflkasjdlkfajsdlkfjsdlkajflkasdjflkasdjflkasjdfkldsajflkasjdlkfjasdlkfjlkasdjflasdkfjaslkdjflkasdjflkasdjflasdlkjflsadkfjklsadlkfjalsdkjflkasdjflksadkfjasdlk</string>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
                                                     </subviews>
@@ -2087,8 +2059,6 @@
                                                         <constraint firstItem="Oow-VF-cPu" firstAttribute="leading" secondItem="Z6K-9C-HEP" secondAttribute="leading" constant="15" id="KPb-aa-JBe"/>
                                                         <constraint firstAttribute="bottom" secondItem="7ut-Rd-MRl" secondAttribute="bottom" constant="21" id="LAo-P6-69W"/>
                                                         <constraint firstItem="7ut-Rd-MRl" firstAttribute="centerX" secondItem="Z6K-9C-HEP" secondAttribute="centerX" id="NlK-dg-fIQ"/>
-                                                        <constraint firstItem="ZKz-NI-lzZ" firstAttribute="top" secondItem="Z6K-9C-HEP" secondAttribute="top" constant="15" id="NuL-Hy-GDT"/>
-                                                        <constraint firstAttribute="trailing" secondItem="ZKz-NI-lzZ" secondAttribute="trailing" constant="15" id="Q3r-dS-G2g"/>
                                                         <constraint firstItem="tdg-Vh-AA7" firstAttribute="leading" secondItem="Oow-VF-cPu" secondAttribute="trailing" constant="20" id="Y8i-z9-mN2"/>
                                                         <constraint firstItem="Oow-VF-cPu" firstAttribute="top" secondItem="Z6K-9C-HEP" secondAttribute="top" constant="15" id="Zos-ii-AYr"/>
                                                         <constraint firstItem="5u5-aK-DIh" firstAttribute="centerX" secondItem="Z6K-9C-HEP" secondAttribute="centerX" id="nMh-BZ-T9j"/>

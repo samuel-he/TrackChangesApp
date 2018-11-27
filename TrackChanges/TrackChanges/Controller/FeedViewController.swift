@@ -31,7 +31,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         SelectedUser = User()
         
         // Setup a socket to backend
-        var request = URLRequest(url: URL(string: "ws://10.0.1.70:8080/TrackChangesBackend/endpoint")!)
+        var request = URLRequest(url: URL(string: "ws://172.20.10.5:8080/TrackChangesBackend/endpoint")!)
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket.delegate = self
@@ -65,7 +65,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         socket.delegate = self
+        socket.connect()
         getFeed()
+        
     }
     
     @objc func reloadTableView() {
@@ -232,7 +234,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("Received text: \(text)")
+        print("Received dumbass text: \(text)")
     }
     
     func getPosts() {
@@ -262,9 +264,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             // User followers response
             if json["response"] as? String == "post_added" {
+                print("PLEASE")
                 let postUser = User()
                 postUser.displayName = json["post_user_displayname"] as! String
                 postUser.username = json["post_user_id"] as! String
+                postUser.username = "@" + postUser.username
                 postUser.imageUrl = json["post_user_imageurl"] as! String
                 
                 var feedPost = Post()
@@ -276,12 +280,19 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 feedPost.user = postUser
                 
                 UserFeed.addPost(post: feedPost)
-                
+                UserFeed.posts = UserFeed.posts.sorted{ $0.id > $1.id }
+                for post in UserFeed.posts {
+                    print(post.id)
+                }
+                print("")
                 tableView.reloadData()
             }
         } catch {
             print(error.localizedDescription)
         }
+ 
+        
+        
         
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
@@ -296,6 +307,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     let postUser = User()
                     postUser.displayName = item["post_user_displayname"] as! String
                     postUser.username = item["post_user_id"] as! String
+                    postUser.username = "@" + postUser.username
                     postUser.imageUrl = item["post_user_imageurl"] as! String
                     
                     let feedPost = Post()
@@ -369,12 +381,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                                         
                                                         DispatchQueue.main.async {
                                                             UserFeed.addPost(post: feedPost)
-//                                                            UserFeed.posts = UserFeed.posts.sorted(by: {s1, s2 in s1.id > s2.id})
+                                                            UserFeed.posts = UserFeed.posts.sorted{ $0.id > $1.id }
                                                             for post in UserFeed.posts {
-//                                                                print()
                                                                 print(post.id)
                                                             }
-                                                            print()
+                                                            print("")
                                                             self.tableView.reloadData()
                                                         }
                                                     }
@@ -439,11 +450,14 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                                             }
                                                         }
                                                     }
-                                                    
                                                     DispatchQueue.main.async {
                                                         UserFeed.posts.append(feedPost)
-                                                        UserFeed.posts = UserFeed.posts.sorted(by: {s1, s2 in s1.id > s2.id})
-                                                        self.tableView.reloadData()
+//                                                        UserFeed.posts = UserFeed.posts.sorted{ $0.id > $1.id }
+//                                                        for post in UserFeed.posts {
+//                                                            print(post.id)
+//                                                        }
+//                                                        print("")
+//                                                        self.tableView.reloadData()
                                                     }
                                                     
                                                     
@@ -461,16 +475,17 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         
                     } else {
                         UserFeed.addPost(post: feedPost)
-//                        UserFeed.posts = UserFeed.posts.sorted(by: {s1, s2 in s1.id > s2.id})
-                        for post in UserFeed.posts {
-//                            print()
-                            print(post.id)
-                        }
-                        print()
-                        tableView.reloadData()
+//                        UserFeed.posts = UserFeed.posts.sorted{ $0.id > $1.id }
+//                        for post in UserFeed.posts {
+//                            print(post.id)
+//                        }
+//                        print("")
+//                        self.tableView.reloadData()
                     }
                     
                 }
+                UserFeed.posts = UserFeed.posts.sorted{ $0.id > $1.id }
+                self.tableView.reloadData()
 
             }
             

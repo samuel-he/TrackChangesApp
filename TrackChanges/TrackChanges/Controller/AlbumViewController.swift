@@ -9,8 +9,12 @@
 import UIKit
 
 class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var miniPlayer: MiniPlayerViewController?
 
     @IBOutlet weak var table: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -96,9 +100,89 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        AppRemote.playerAPI?.play(SelectedAlbum.tracks[indexPath.row - 1].uri, callback: { (track, error) in
 //            print(error?.localizedDescription)
 //        })
-        
+//        AppRemote.playerAPI?.pause(defaultCallback)
         AppRemote.playerAPI?.play(SelectedAlbum.tracks[indexPath.row - 1].uri, callback: defaultCallback)
+        SelectedAlbumIndex = indexPath.row - 1
+        AppRemote.playerAPI?.getPlayerState(defaultCallback)
+        
+        /*
+        let client = "4bebf0c82b774aaa99764eb7c5c58cc4:3be8d087faf841ea805d6d9842c0cbf0"
+        let base64 = client.data(using: String.Encoding.utf8)?.base64EncodedString() ?? ""
+        
+        let tokenUrl = "https://accounts.spotify.com/api/token"
+        
+        // Request access token to make search requests
+        var tokenRequest = URLRequest(url: URL.init(string: tokenUrl)!)
+        tokenRequest.addValue("Basic \(base64)", forHTTPHeaderField: "Authorization")
+        tokenRequest.httpBody = "grant_type=client_credentials".data(using: .utf8)
+        tokenRequest.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: tokenRequest) { (data, response, error) in
+            if let data = data {
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                        let accessToken = (json["access_token"] as? String)!
+                        
+                        // Make request
+                        var requestUrl = "https://api.spotify.com/v1/tracks/"
+                        requestUrl += SelectedAlbum.tracks[indexPath.row - 1].id
+                        
+                        
+                        var request = URLRequest(url: URL.init(string: requestUrl)!)
+                        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+                        
+                        URLSession.shared.dataTask(with: request) { (data, response, error) in
+                            if let data = data {
+                                do {
+                                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                                        
+                                        var trackTemp: String = ""
+                                        var artistTemp: String = ""
+                                        var imageTemp: String = ""
+                                        
+                                        if let trackName = json["name"] as? String {
+                                            print("TRACK NAME: ", trackName)
+//                                            feedPost.track.name = trackName
+                                            trackTemp = trackName
+                                            print("TRACK: ", json["name"] as? String)
+                                        }
+                                        
+                                        if let artists = json["artists"] as? [[String: Any]] {
+                                            if let artist = artists[0] as? [String: Any] {
+                                                if let artistName = artist["name"] as? String {
+//                                                    feedPost.track.album.artist.name = artistName
+                                                    artistTemp = artistName
+                                                }
+                                            }
+                                        }
+                                        
+                                        if let album = json["album"] as? [String: Any] {
+                                            if let images = album["images"] as? [[String: Any]] {
+                                                if let imageUrl = images[1]["url"] as? String {
+                                                    imageTemp = imageUrl
+//                                                    feedPost.track.album.image = imageUrl
+                                                }
+                                            }
+                                        }
+//                                        self.miniPlayer?.updatePlayer(track: trackTemp, artist: artistTemp, imageurl: imageTemp)
+                                        
+                                    }
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                            }
+                            }.resume()
+                        
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+            }.resume()
+        */
+        NotificationCenter.default.post(name: Notification.Name.init("getPlayerState"), object: nil)
     }
+
     
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?

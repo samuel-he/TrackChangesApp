@@ -162,5 +162,19 @@ class Feed {
     }
 }
 
+extension Post: Equatable {
+    static func == (lhs: Post, rhs: Post) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
 
+extension Post: Comparable {
+    static func > (lhs: Post, rhs: Post) -> Bool {
+        return lhs.id > rhs.id
+    }
+    
+    static func < (lhs: Post, rhs: Post) -> Bool {
+        return lhs.id < rhs.id
+    }
+}
 

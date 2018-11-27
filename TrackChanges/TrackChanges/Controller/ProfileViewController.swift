@@ -242,6 +242,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                                         
                                                         DispatchQueue.main.async {
                                                             currentUser.posts.append(newPost)
+                                                            currentUser.posts = currentUser.posts.sorted{ $0.id > $1.id }
                                                             self.tableView.reloadData()
                                                         }
                                                         
@@ -313,6 +314,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                                     
                                                     DispatchQueue.main.async {
                                                         currentUser.posts.append(newPost)
+                                                        currentUser.posts = currentUser.posts.sorted{ $0.id > $1.id }
                                                         self.tableView.reloadData()
                                                     }
                                                     
@@ -330,7 +332,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                         }.resume()
                     } else {
                         currentUser.posts.append(newPost)
-                        
+                        currentUser.posts = currentUser.posts.sorted{ $0.id > $1.id }
                         tableView.reloadData()
                     }
                     
